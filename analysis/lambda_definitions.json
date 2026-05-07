@@ -1,0 +1,1032 @@
+[
+  {
+    "name": "BI_About",
+    "comment": "",
+    "formula": "_xlfn.LAMBDA(_xlfn.VSTACK( {\"Template Name\",\"Be Indian Excel Audit Tool\"},{\"Version\",\"2.0\"},{\"Author\",\"CA S. Rathinagiri\"},{\"Copyright\",\"None. 100% Free without any warranties whatsoever\"},{\"Date Published\",\"2023, October 25\"},{\"Contact Information\",\"srathinagiri@gmail.com\"},{\"Description\",\"Excel template containing 100+ Lambda functions useful for Audit Community.\"},{\"Instructions\",\"You are ready to use this template when you 1. Open as a New File 2. Copy any sheet to existing workbook\"},{\"Disclaimer\",\"This template comes with no warranties or guarantees of accuracy or fitness for a specific purpose.\"},{\"Additional Information\",\"If you use this template please give your comments/suggestions to the above mail id\"}))",
+    "params": [],
+    "formula_len": 725
+  },
+  {
+    "name": "BI_AltmanZScore",
+    "comment": "Calculates Altman Z Score. Use BI_AltmanZScoreVariables() function to list the variables.",
+    "formula": "_xlfn.LAMBDA(_xlpm.Data,_xlfn.LET(_xlpm.NWC,INDEX(_xlpm.Data,1),_xlpm.TA,INDEX(_xlpm.Data,2),_xlpm.RE,INDEX(_xlpm.Data,3),_xlpm.EBIT,INDEX(_xlpm.Data,4),_xlpm.MC,INDEX(_xlpm.Data,5),_xlpm.TL,INDEX(_xlpm.Data,6),_xlpm.S,INDEX(_xlpm.Data,7),_xlpm.a,_xlpm.NWC/_xlpm.TA, _xlpm.b, _xlpm.RE/_xlpm.TA, _xlpm.c, _xlpm.EBIT/_xlpm.TA, _xlpm.d, _xlpm.MC/_xlpm.TL,_xlpm.e,_xlpm.S/_xlpm.TA,_xlpm.zscore,1.2* _xlpm.a + 1.4*_xlpm.b+3.3*_xlpm.c+0.6*_xlpm.d+_xlpm.e,_xlfn.VSTACK(_xlfn.HSTACK(\"Altman Z Score\",_xlpm.zscore),_xlfn.HSTACK(\"Verdict\",_xlfn.IFS(_xlpm.zscore>=3,\">= 3 - Safe Zone - Low likelyhood of Bankruptcy\",_xlpm.zscore<1.81,\"<1.81 - Distress Zone – High Likelihood of Bankruptcy\",_xlpm.zscore>=1.81,\"Middle - Grey Zone – Moderate Risk of Bankruptcy\")))))",
+    "params": [
+      "_xlpm.Data"
+    ],
+    "formula_len": 753
+  },
+  {
+    "name": "BI_AltmanZScoreVariables",
+    "comment": "Lists out Altman Z Score Variables.",
+    "formula": "_xlfn.LAMBDA({\"Working Capital\";\"Total Assets\";\"Retained Earnings\";\"Earnings Before Interest and Taxes\";\"Market Value\";\"Total Liabilities\";\"Sales\"})",
+    "params": [],
+    "formula_len": 148
+  },
+  {
+    "name": "BI_AnovaSingleFactor",
+    "comment": "Calculates Anova (Analysis of Variance) Single Factor. This is one of the Data Analysis Toolpak features.",
+    "formula": "_xlfn.LAMBDA(_xlpm.TableData,_xlpm.alpha,_xlpm.labels,_xlfn.LET(_xlpm.data,IF(_xlpm.labels,_xlfn.DROP(_xlpm.TableData,1),_xlpm.TableData),_xlpm.colcount,COLUMNS(_xlpm.data),_xlpm.rowcount,ROWS(_xlpm.data),_xlpm.seq,_xlfn.SEQUENCE(_xlpm.colcount),_xlpm.headers,IF(_xlpm.labels,TRANSPOSE(_xlfn.TAKE(_xlpm.TableData,1)),_xlfn.BYROW(_xlpm.seq,_xlfn.LAMBDA(_xlpm.x,\"Column \"&_xlpm.x))),_xlpm.count,_xlfn.BYROW(_xlpm.seq,_xlfn.LAMBDA(_xlpm.x,COUNT(_xlfn.CHOOSECOLS(_xlpm.data,_xlpm.x)))),_xlpm.sum,_xlfn.BYROW(_xlpm.seq,_xlfn.LAMBDA(_xlpm.x,SUM(_xlfn.CHOOSECOLS(_xlpm.data,_xlpm.x)))),_xlpm.average,_xlfn.BYROW(_xlpm.seq,_xlfn.LAMBDA(_xlpm.x,AVERAGE(_xlfn.CHOOSECOLS(_xlpm.data,_xlpm.x)))),_xlpm.variance,_xlfn.BYROW(_xlpm.seq,_xlfn.LAMBDA(_xlpm.x,_xlfn.VAR.S(_xlfn.CHOOSECOLS(_xlpm.data,_xlpm.x)))),_xlpm.betgrpss,SUMPRODUCT(_xlpm.sum,_xlpm.average)-SUM(_xlpm.sum)^2/SUM(_xlpm.count),_xlpm.withingrpss,SUM(_xlfn.BYROW(_xlpm.seq,_xlfn.LAMBDA(_xlpm.x,DEVSQ(_xlfn.CHOOSECOLS(_xlpm.data,_xlpm.x))))),_xlpm.betgrpdf,_xlpm.colcount-1,_xlpm.withingrpdf,SUM(_xlpm.count)-_xlpm.colcount,_xlpm.betgrpms,_xlpm.betgrpss/_xlpm.betgrpdf,_xlpm.withingrpms,_xlpm.withingrpss/_xlpm.withingrpdf,_xlpm.fvalue,_xlpm.betgrpms/_xlpm.withingrpms,_xlpm.p,_xlfn.F.DIST.RT(_xlpm.fvalue,_xlpm.betgrpdf,_xlpm.withingrpdf),_xlpm.fcritic,_xlfn.F.INV.RT(_xlpm.alpha,_xlpm.betgrpdf,_xlpm.withingrpdf),_xlpm.blank,{\"\",\"\",\"\",\"\",\"\",\"\",\"\"},_xlpm.blankcol,_xlfn.MAKEARRAY(_xlpm.seq,1,_xlfn.LAMBDA(_xlpm.x,_xlpm.y,\"\")),_xlpm.result,_xlfn.VSTACK({\"Anova: Single Factor\",\"\",\"\",\"\",\"\",\"\",\"\"},_xlpm.blank,{\"Summary\",\"\",\"\",\"\",\"\",\"\",\"\"},{\"Groups\",\"Count\",\"Sum\",\"Average\",\"Variance\",\"\",\"\"},_xlfn.HSTACK(_xlpm.headers,_xlpm.count,_xlpm.sum,_xlpm.average,_xlpm.variance,_xlpm.blankcol,_xlpm.blankcol),_xlpm.blank,_xlpm.blank,{\"Anova\",\"\",\"\",\"\",\"\",\"\",\"\"},{\"Source of Variation\",\"SS\",\"DF\",\"MS\",\"F\",\"P-value\",\"F Crit\"},_xlfn.HSTACK(\"Between Groups\",_xlpm.betgrpss,_xlpm.betgrpdf,_xlpm.betgrpms,_xlpm.fvalue,_xlpm.p,_xlpm.fcritic),_xlfn.HSTACK(\"Within Groups\",_xlpm.withingrpss,_xlpm.withingrpdf,_xlpm.withingrpms,\"\",\"\",\"\"),_xlpm.blank,_xlfn.HSTACK(\"Total\",_xlpm.betgrpss+_xlpm.withingrpss,_xlpm.betgrpdf+_xlpm.withingrpdf,\"\",\"\",\"\",\"\")),_xlpm.result))",
+    "params": [
+      "_xlpm.TableData",
+      "_xlpm.alpha",
+      "_xlpm.labels"
+    ],
+    "formula_len": 2193
+  },
+  {
+    "name": "BI_AnovaTwoFactorsWithoutReplication",
+    "comment": "Calculates Anova (Analysis of Variance) without replication. This is one of the Data Analysis Toolpak features.",
+    "formula": "_xlfn.LAMBDA(_xlpm.Data,_xlpm.Alpha,_xlop.Labels,_xlfn.LET(_xlpm.label,IF(_xlfn.ISOMITTED(_xlpm.Labels),FALSE,_xlpm.Labels),_xlpm.rl,IF(_xlpm.label,_xlfn.CHOOSECOLS(_xlfn.DROP(_xlpm.Data,1),1),_xlfn.BYROW(_xlfn.SEQUENCE(ROWS(_xlpm.Data)),_xlfn.LAMBDA(_xlpm.x,\"Row\"&_xlpm.x))),_xlpm.cl,TRANSPOSE(IF(_xlpm.label,_xlfn.CHOOSEROWS(_xlfn.DROP(_xlpm.Data,,1),1),_xlfn.BYCOL(_xlfn.SEQUENCE(1,COLUMNS(_xlpm.Data)),_xlfn.LAMBDA(_xlpm.x,\"Column\"&_xlpm.x)))),_xlpm.DR,IF(_xlpm.label,_xlfn.DROP(_xlpm.Data,1,1),_xlpm.Data),_xlpm.Columns,COLUMNS(_xlpm.DR),_xlpm.samples,ROWS(_xlpm.DR),_xlpm.ccol,_xlfn.BYROW(_xlfn.SEQUENCE(_xlpm.samples),_xlfn.LAMBDA(_xlpm.x,COUNT(_xlfn.CHOOSEROWS(_xlpm.DR,_xlpm.x)))),_xlpm.scol,_xlfn.BYROW(_xlfn.SEQUENCE(_xlpm.samples),_xlfn.LAMBDA(_xlpm.x,SUM(_xlfn.CHOOSEROWS(_xlpm.DR,_xlpm.x)))),_xlpm.acol,_xlfn.BYROW(_xlfn.SEQUENCE(_xlpm.samples),_xlfn.LAMBDA(_xlpm.x,AVERAGE(_xlfn.CHOOSEROWS(_xlpm.DR,_xlpm.x)))),_xlpm.vcol,_xlfn.BYROW(_xlfn.SEQUENCE(_xlpm.samples),_xlfn.LAMBDA(_xlpm.x,_xlfn.VAR.S(_xlfn.CHOOSEROWS(_xlpm.DR,_xlpm.x)))),_xlpm.fc,_xlfn.BYROW(_xlfn.SEQUENCE(_xlpm.Columns),_xlfn.LAMBDA(_xlpm.x,COUNT(_xlfn.CHOOSECOLS(_xlpm.DR,_xlpm.x)))),_xlpm.fs,_xlfn.BYROW(_xlfn.SEQUENCE(_xlpm.Columns),_xlfn.LAMBDA(_xlpm.x,SUM(_xlfn.CHOOSECOLS(_xlpm.DR,_xlpm.x)))),_xlpm.fa,_xlfn.BYROW(_xlfn.SEQUENCE(_xlpm.Columns),_xlfn.LAMBDA(_xlpm.x,AVERAGE(_xlfn.CHOOSECOLS(_xlpm.DR,_xlpm.x)))),_xlpm.fv,_xlfn.BYROW(_xlfn.SEQUENCE(_xlpm.Columns),_xlfn.LAMBDA(_xlpm.x,_xlfn.VAR.S(_xlfn.CHOOSECOLS(_xlpm.DR,_xlpm.x)))),_xlpm.rss,SUMPRODUCT(_xlpm.scol,_xlpm.acol)-SUM(_xlpm.DR)^2/COUNT(_xlpm.DR),_xlpm.css,SUMPRODUCT(_xlpm.fs,_xlpm.fa)-SUM(_xlpm.DR)^2/COUNT(_xlpm.DR),_xlpm.ess,SUMSQ(_xlpm.DR)+SUM(_xlpm.DR)^2/COUNT(_xlpm.DR)-(SUMPRODUCT(_xlpm.scol,_xlpm.acol)+SUMPRODUCT(_xlpm.fs,_xlpm.fa)),_xlpm.totalss,_xlpm.rss+_xlpm.css+_xlpm.ess,_xlpm.rdf,MAX(_xlpm.fc)-1,_xlpm.cdf,MAX(_xlpm.ccol)-1,_xlpm.tdf,COUNT(_xlpm.DR)-1,_xlpm.edf,_xlpm.tdf-_xlpm.rdf-_xlpm.cdf,_xlpm.rms,_xlpm.rss/_xlpm.rdf,_xlpm.cms,_xlpm.css/_xlpm.cdf,_xlpm.errorms,_xlpm.ess/_xlpm.edf,_xlpm.rf,_xlpm.rms/_xlpm.errorms,_xlpm.cf,_xlpm.cms/_xlpm.errorms,_xlpm.rp,_xlfn.F.DIST.RT(_xlpm.rf,_xlpm.rdf,_xlpm.edf),_xlpm.cp,_xlfn.F.DIST.RT(_xlpm.cf,_xlpm.cdf,_xlpm.edf),_xlpm.rfcrit,_xlfn.F.INV.RT(_xlpm.Alpha,_xlpm.rdf,_xlpm.edf),_xlpm.cfcrit,_xlfn.F.INV.RT(_xlpm.Alpha,_xlpm.cdf,_xlpm.edf),_xlpm.emptyline,{\"\",\"\",\"\",\"\",\"\",\"\",\"\"},_xlpm.resulttable,_xlfn.VSTACK(_xlfn.HSTACK(\"Anova:Two-FactorWithoutReplication\",\"\",\"\",\"\",\"\",\"\",\"\"),_xlpm.emptyline,_xlfn.HSTACK(\"SUMMARY\",\"Count\",\"Sum\",\"Average\",\"Variance\",\"\",\"\"),_xlfn.HSTACK(_xlpm.rl,_xlpm.ccol,_xlpm.scol,_xlpm.acol,_xlpm.vcol,_xlfn.BYROW(_xlpm.rl,_xlfn.LAMBDA(_xlpm.x,\"\")),_xlfn.BYROW(_xlpm.rl,_xlfn.LAMBDA(_xlpm.x,\"\"))),_xlpm.emptyline,_xlfn.HSTACK(_xlpm.cl,_xlpm.fc,_xlpm.fs,_xlpm.fa,_xlpm.fv,_xlfn.BYROW(_xlpm.cl,_xlfn.LAMBDA(_xlpm.x,\"\")),_xlfn.BYROW(_xlpm.cl,_xlfn.LAMBDA(_xlpm.x,\"\"))),_xlpm.emptyline,_xlfn.HSTACK(\"Anova\",\"\",\"\",\"\",\"\",\"\",\"\"),_xlfn.HSTACK(\"SourceofVariation\",\"SS\",\"df\",\"MS\",\"F\",\"P-value\",\"Fcrit\"),_xlfn.HSTACK(\"Rows\",_xlpm.rss,_xlpm.rdf,_xlpm.rms,_xlpm.rf,_xlpm.rp,_xlpm.rfcrit),_xlfn.HSTACK(\"Columns\",_xlpm.css,_xlpm.cdf,_xlpm.cms,_xlpm.cf,_xlpm.cp,_xlpm.cfcrit),_xlfn.HSTACK(\"Error\",_xlpm.ess,_xlpm.edf,_xlpm.errorms,\"\",\"\",\"\"),_xlpm.emptyline,_xlfn.HSTACK(\"Total\",_xlpm.totalss,_xlpm.tdf,\"\",\"\",\"\",\"\")),_xlpm.resulttable))",
+    "params": [
+      "_xlpm.Data",
+      "_xlpm.Alpha",
+      "_xlop.Labels"
+    ],
+    "formula_len": 3353
+  },
+  {
+    "name": "BI_AnsCombeQuartet",
+    "comment": "Shows AnsCombe Quartet. Anscombe's quartet is a group of four data sets that are nearly identical in simple descriptive statistics, but there are peculiarities that fool the regression model once you plot each data set.",
+    "formula": "_xlfn.LAMBDA(_xlfn.LET(_xlpm.X,{10;8;13;9;11;14;6;4;12;7;5},_xlpm.FirstSetY,{8.04;6.95;7.58;8.81;8.33;9.96;7.24;4.26;10.84;4.82;5.68},_xlpm.SecondSetY,{9.14;8.14;8.74;8.77;9.26;8.1;6.13;3.1;9.13;7.26;4.74},_xlpm.ThirdSetY,{7.46;6.77;12.74;7.11;7.81;8.84;6.08;5.39;8.15;6.42;5.73},_xlpm.FourthSetX,{8;8;8;8;8;8;8;19;8;8;8},_xlpm.FourthSetY, {6.58;5.76;7.71;8.84;8.47;7.04;5.25;12.5;5.56;7.91;6.89},_xlpm.result,_xlfn.VSTACK({\"X1\",\"Y1\",\"X2\",\"Y2\",\"X3\",\"Y3\",\"X4\",\"Y4\"},_xlfn.HSTACK(_xlpm.X,_xlpm.FirstSetY,_xlpm.X,_xlpm.SecondSetY,_xlpm.X,_xlpm.ThirdSetY,_xlpm.FourthSetX, _xlpm.FourthSetY), _xlfn.HSTACK(\"Descriptive Statistics\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"),_xlfn.HSTACK(\"Average X\",9,\"\",\"\",\"\",\"\",\"\",\"\"), _xlfn.HSTACK(\"Average Y\",7.5,\"\",\"\",\"\",\"\",\"\",\"\"), _xlfn.HSTACK(\"Sample Variance\",11,\"\",\"\",\"\",\"\",\"\",\"\"), _xlfn.HSTACK(\"XY Correlation\",0.816,\"\",\"\",\"\",\"\",\"\",\"\"),_xlfn.HSTACK(\"R Squared\",0.67,\"\",\"\",\"\",\"\",\"\",\"\"),_xlfn.HSTACK(\"Linear Regression\",\"3.00+0.50x\",\"\",\"\",\"\",\"\",\"\",\"\")),_xlpm.result))",
+    "params": [],
+    "formula_len": 982
+  },
+  {
+    "name": "BI_ArrayContains",
+    "comment": "Verifies whether one record of data contains in a table and returns true or false. ",
+    "formula": "_xlfn.LAMBDA(_xlpm.Array1,_xlpm.Array2, _xlfn.LET(_xlpm.equals, _xlfn.BYROW(_xlpm.Array1,_xlfn.LAMBDA(_xlpm.x,BI_ExactArray(_xlpm.x,_xlpm.Array2))),OR(_xlpm.equals)))",
+    "params": [
+      "_xlpm.Array1",
+      "_xlpm.Array2"
+    ],
+    "formula_len": 166
+  },
+  {
+    "name": "BI_ArrayCountif",
+    "comment": "Counts howmany times a record of data repeated in a table of data. If not found returns 0.",
+    "formula": "_xlfn.LAMBDA(_xlpm.Array,_xlpm.CriteriaArray, _xlfn.LET(_xlpm.search, _xlfn.TEXTJOIN(\"<^>\",FALSE,_xlpm.CriteriaArray), _xlpm.index, _xlfn.SEQUENCE(ROWS(_xlpm.Array)),_xlpm.concat,_xlfn.BYROW(_xlpm.Array,_xlfn.LAMBDA(_xlpm.x,_xlfn.TEXTJOIN(\"<^>\",FALSE,_xlpm.x))), _xlpm.ascend,_xlfn._xlws.SORT(_xlpm.concat), _xlpm.sortedindex,_xlfn.HSTACK(_xlpm.ascend,_xlpm.index),_xlpm.descend,_xlfn._xlws.SORT(_xlpm.sortedindex,1,-1),_xlpm.firstorder,_xlfn.XLOOKUP(_xlpm.search,_xlfn.CHOOSECOLS(_xlpm.sortedindex,1),_xlfn.CHOOSECOLS(_xlpm.sortedindex,2),,0,2),_xlpm.secondorder,_xlfn.XLOOKUP(_xlpm.search,_xlfn.CHOOSECOLS(_xlpm.descend,1),_xlfn.CHOOSECOLS(_xlpm.descend,2),,0,-2),_xlpm.count,_xlpm.secondorder+1-_xlpm.firstorder,_xlpm.count))",
+    "params": [
+      "_xlpm.Array",
+      "_xlpm.CriteriaArray"
+    ],
+    "formula_len": 728
+  },
+  {
+    "name": "BI_ArrayFilter",
+    "comment": "Filters a Table for a multi-column criteria array by matching selected columns with the criteria array.",
+    "formula": "_xlfn.LAMBDA(_xlpm.Array,_xlpm.CriteriaArray,_xlop.SelectedColumns, _xlfn.LET(_xlpm.selcols, IF(_xlfn.ISOMITTED(_xlpm.SelectedColumns), _xlfn.SEQUENCE(1,COLUMNS(_xlpm.CriteriaArray)),_xlpm.SelectedColumns), _xlpm.datarows, _xlfn.CHOOSECOLS(_xlpm.Array, _xlpm.selcols), _xlpm.search, _xlfn.TEXTJOIN(\"<^>\",FALSE,_xlpm.CriteriaArray), _xlpm.index, _xlfn.SEQUENCE(ROWS(_xlpm.datarows)),_xlpm.concat,_xlfn.BYROW(_xlpm.datarows,_xlfn.LAMBDA(_xlpm.x,_xlfn.TEXTJOIN(\"<^>\",FALSE,_xlpm.x))), _xlpm.indexed, _xlfn.HSTACK(_xlpm.concat, _xlpm.index), _xlpm.ascend,_xlfn._xlws.SORT(_xlpm.indexed), _xlpm.sortedindex,_xlfn.HSTACK(_xlpm.ascend,_xlpm.index),_xlpm.descend,_xlfn._xlws.SORT(_xlpm.sortedindex,1,-1),_xlpm.firstorder,_xlfn.XLOOKUP(_xlpm.search,_xlfn.CHOOSECOLS(_xlpm.sortedindex,1),_xlfn.CHOOSECOLS(_xlpm.sortedindex,3),,0,2),_xlpm.secondorder,_xlfn.XLOOKUP(_xlpm.search,_xlfn.CHOOSECOLS(_xlpm.descend,1),_xlfn.CHOOSECOLS(_xlpm.descend,3),,0,-2),_xlpm.count,_xlpm.secondorder+1-_xlpm.firstorder,_xlpm.filteredkeys, _xlfn._xlws.FILTER(_xlpm.ascend,(_xlpm.index >= _xlpm.firstorder) * (_xlpm.index <= _xlpm.secondorder)), _xlpm.sortback, _xlfn._xlws.SORT(_xlpm.filteredkeys,2), _xlpm.result, _xlfn.CHOOSEROWS(_xlpm.Array, _xlfn.CHOOSECOLS(_xlpm.filteredkeys,2)), _xlpm.result))",
+    "params": [
+      "_xlpm.Array",
+      "_xlpm.CriteriaArray",
+      "_xlop.SelectedColumns"
+    ],
+    "formula_len": 1271
+  },
+  {
+    "name": "BI_ArrayInArray",
+    "comment": "Filters only the available rows in an array found in another array. ",
+    "formula": "_xlfn.LAMBDA(_xlpm.Array1,_xlpm.Array2, _xlfn.LET(_xlpm.equals, _xlfn.BYROW(_xlpm.Array1,_xlfn.LAMBDA(_xlpm.x,BI_ArrayContains(_xlpm.Array2,_xlpm.x))),_xlfn._xlws.FILTER(_xlpm.Array1,_xlpm.equals)))",
+    "params": [
+      "_xlpm.Array1",
+      "_xlpm.Array2"
+    ],
+    "formula_len": 198
+  },
+  {
+    "name": "BI_ArrayMatch",
+    "comment": "Returns the row number of an array where a matching row is first found. Returns #NA if not found.",
+    "formula": "_xlfn.LAMBDA(_xlpm.LookupValueArray,_xlpm.LookupArray,_xlop.SelectedColumns, _xlfn.LET(_xlpm.search, _xlfn.TEXTJOIN(\"<^>\",FALSE,_xlpm.LookupValueArray), _xlpm.selcols, IF(_xlfn.ISOMITTED(_xlpm.SelectedColumns), _xlfn.SEQUENCE(1,COLUMNS(_xlpm.LookupValueArray)), _xlpm.SelectedColumns),_xlpm.seldata, _xlfn.CHOOSECOLS(_xlpm.LookupArray,_xlpm.selcols),_xlpm.index, _xlfn.SEQUENCE(ROWS(_xlpm.seldata)),_xlpm.concat,_xlfn.BYROW(_xlpm.seldata,_xlfn.LAMBDA(_xlpm.x,_xlfn.TEXTJOIN(\"<^>\",FALSE,_xlpm.x))), _xlpm.indexed, _xlfn.HSTACK( _xlpm.concat, _xlpm.index), _xlpm.ascend,_xlfn._xlws.SORT(_xlpm.indexed), _xlpm.sortedindex,_xlfn.HSTACK(_xlpm.ascend,_xlpm.index),_xlpm.foundrow,_xlfn.XLOOKUP(_xlpm.search,_xlfn.CHOOSECOLS(_xlpm.sortedindex,1),_xlfn.CHOOSECOLS(_xlpm.sortedindex,2),,0,2),_xlpm.foundrow))",
+    "params": [
+      "_xlpm.LookupValueArray",
+      "_xlpm.LookupArray",
+      "_xlop.SelectedColumns"
+    ],
+    "formula_len": 798
+  },
+  {
+    "name": "BI_ASort",
+    "comment": "Returns the sorted array by all the columns  in the order entered. Useful for sorting Countrywise, Regionwise, Statewise, Citywise etc.,",
+    "formula": "_xlfn.LAMBDA(_xlpm.Array,_xlop.Order,_xlop.ColumnIndex,_xlfn.LET(_xlpm.columns, COLUMNS(_xlpm.Array), _xlpm.ColumnIndex1, IF(_xlfn.ISOMITTED(_xlpm.ColumnIndex),_xlpm.columns,_xlpm.ColumnIndex),_xlpm.order1,IF(_xlfn.ISOMITTED(_xlpm.Order),1,_xlpm.Order),IF(_xlpm.ColumnIndex1 = 0,_xlfn._xlws.SORT(_xlpm.Array,1,_xlpm.order1),BI_ASort(_xlfn._xlws.SORT(_xlpm.Array,_xlpm.ColumnIndex1,_xlpm.order1),_xlpm.order1,_xlpm.ColumnIndex1-1))))",
+    "params": [
+      "_xlpm.Array",
+      "_xlop.Order",
+      "_xlop.ColumnIndex"
+    ],
+    "formula_len": 432
+  },
+  {
+    "name": "BI_AttributeUnitCount",
+    "comment": "Returns Attribute Unit Sampling cumulative count of any attribute.",
+    "formula": "_xlfn.LAMBDA(_xlpm.Data,_xlfn.LET(_xlpm.rows,ROWS(_xlpm.Data),_xlpm.count,_xlfn.MAKEARRAY(_xlpm.rows,1,_xlfn.LAMBDA(_xlpm.x,_xlpm.y,COUNTIF(_xlfn.TAKE(_xlpm.Data,_xlpm.x),INDEX(_xlpm.Data,_xlpm.x)))),_xlfn.HSTACK(_xlpm.Data,_xlpm.count)))",
+    "params": [
+      "_xlpm.Data"
+    ],
+    "formula_len": 238
+  },
+  {
+    "name": "BI_BeginsWith",
+    "comment": "Returns whether one text begins with another text. ",
+    "formula": "_xlfn.LAMBDA(_xlpm.FindText,_xlpm.WithinText,_xlop.CaseSensitive,_xlfn.LET(_xlpm.CaseSensitive,IF(_xlfn.ISOMITTED(_xlpm.CaseSensitive),FALSE,_xlpm.CaseSensitive),IF(_xlpm.CaseSensitive,IFERROR(FIND(_xlpm.FindText,_xlpm.WithinText),0)=1,IFERROR(SEARCH(_xlpm.FindText,_xlpm.WithinText),0)=1)))",
+    "params": [
+      "_xlpm.FindText",
+      "_xlpm.WithinText",
+      "_xlop.CaseSensitive"
+    ],
+    "formula_len": 291
+  },
+  {
+    "name": "BI_BeneishMScore",
+    "comment": "Calculates Beneish M Score. Beneish's M-Score is a mathematical model that uses eight financial ratios weighted by coefficients to identify whether a company has manipulated its profits.",
+    "formula": "_xlfn.LAMBDA(_xlpm.LastYear,_xlpm.CurrentYear,_xlfn.LET(_xlpm.LYNS,INDEX(_xlpm.LastYear,1),_xlpm.CYNS,INDEX(_xlpm.CurrentYear,1),_xlpm.LYCGS,INDEX(_xlpm.LastYear,2),_xlpm.CYCGS,INDEX(_xlpm.CurrentYear,2),_xlpm.LYSGA,INDEX(_xlpm.LastYear,3),_xlpm.CYSGA,INDEX(_xlpm.CurrentYear,3),_xlpm.LYNI,INDEX(_xlpm.LastYear,4),_xlpm.CYNI,INDEX(_xlpm.CurrentYear,4),_xlpm.LYPPE,INDEX(_xlpm.LastYear,5),_xlpm.CYPPE,INDEX(_xlpm.CurrentYear,5),_xlpm.LYDEP,INDEX(_xlpm.LastYear,6),_xlpm.CYDEP,INDEX(_xlpm.CurrentYear,6),_xlpm.LYCA,INDEX(_xlpm.LastYear,7),_xlpm.CYCA,INDEX(_xlpm.CurrentYear,7),_xlpm.LYNR,INDEX(_xlpm.LastYear,8),_xlpm.CYNR,INDEX(_xlpm.CurrentYear,8),_xlpm.LYTA,INDEX(_xlpm.LastYear,9),_xlpm.CYTA,INDEX(_xlpm.CurrentYear,9),_xlpm.LYLD,INDEX(_xlpm.LastYear,10),_xlpm.CYLD,INDEX(_xlpm.CurrentYear,10),_xlpm.LYCL,INDEX(_xlpm.LastYear,11),_xlpm.CYCL,INDEX(_xlpm.CurrentYear,11),_xlpm.LYCF,INDEX(_xlpm.LastYear,12),_xlpm.CYCF,INDEX(_xlpm.CurrentYear,12),_xlpm.LYOLTA,(_xlpm.LYTA-(_xlpm.LYCA+_xlpm.LYPPE)),_xlpm.CYOLTA,(_xlpm.CYTA-(_xlpm.CYCA+_xlpm.CYPPE)),_xlpm.DSRI,(_xlpm.CYNR/_xlpm.CYNS)/(_xlpm.LYNR/_xlpm.LYNS),_xlpm.GMI,((_xlpm.LYNS-_xlpm.LYCGS)/_xlpm.LYNS)/((_xlpm.CYNS-_xlpm.CYCGS)/_xlpm.CYNS),_xlpm.AQI,(_xlpm.CYOLTA/_xlpm.CYTA)/(_xlpm.LYOLTA/_xlpm.LYTA),_xlpm.SGI,_xlpm.CYNS/_xlpm.LYNS,_xlpm.DEPI,(_xlpm.LYDEP/(_xlpm.LYDEP+_xlpm.LYPPE))/(_xlpm.CYDEP/(_xlpm.CYDEP+_xlpm.CYPPE)),_xlpm.SGAI,(_xlpm.CYSGA/_xlpm.CYNS)/(_xlpm.LYSGA/_xlpm.LYNS),_xlpm.LVGI,((_xlpm.CYLD+_xlpm.CYCL)/_xlpm.CYTA)/((_xlpm.LYLD+_xlpm.LYCL)/_xlpm.LYTA),_xlpm.TATA,(_xlpm.CYNI-_xlpm.CYCF)/_xlpm.CYTA,_xlpm.MScore8,-4.84+0.92*_xlpm.DSRI+0.528*_xlpm.GMI+0.404*_xlpm.AQI+0.892*_xlpm.SGI+0.115*_xlpm.DEPI-0.172*_xlpm.SGAI-0.327*_xlpm.LVGI+4.679*_xlpm.TATA, _xlpm.MScore5, -6.065 + 0.823*_xlpm.DSRI + 0.906*_xlpm.GMI + 0.593*_xlpm.AQI + 0.717*_xlpm.SGI + 0.107*_xlpm.DEPI,_xlfn.VSTACK(_xlfn.HSTACK(\"DSRI\",_xlpm.DSRI),_xlfn.HSTACK(\"GMI\",_xlpm.GMI),_xlfn.HSTACK(\"AQI\",_xlpm.AQI),_xlfn.HSTACK(\"SGI\",_xlpm.SGI),_xlfn.HSTACK(\"DEPI\",_xlpm.DEPI),_xlfn.HSTACK(\"SGAI\",_xlpm.SGAI),_xlfn.HSTACK(\"LVGI\",_xlpm.LVGI),_xlfn.HSTACK(\"TATA\",_xlpm.TATA),_xlfn.HSTACK(\"Beneish M Score 8 Variables\",_xlpm.MScore8),_xlfn.HSTACK(\"Verdict\",IF(_xlpm.MScore8<-2.22,\"Since M Score (8 Variables) is less than -2.22, the company is not likely to have manipulated its earnings\", \"Since the M Score is more than -2.22, the company is likely to have manipulated its earnings\")),_xlfn.HSTACK(\"Beneish M Score 5 Variables\",_xlpm.MScore5), _xlfn.HSTACK(\"Verdict\",IF(_xlpm.MScore5<-2.22,\"Since M Score (5 Variables) is less than -2.22, the company is not likely to have manipulated its earnings\", \"Since the M Score is more than -2.22, the company is likely to have manipulated its earnings\")))))",
+    "params": [
+      "_xlpm.LastYear",
+      "_xlpm.CurrentYear"
+    ],
+    "formula_len": 2725
+  },
+  {
+    "name": "BI_BeneishMScoreVariables",
+    "comment": "Lists out Beneish M Score variables to make it easy to enter two years data for calculating Beneish M Score.",
+    "formula": "_xlfn.LAMBDA({\"Net Sales\";\"Cost of Goods Sold\";\"Selling, General and Admin Expenses\";\"Net Income\";\"Property, Plant and Equipment\";\"Depreciation\";\"Current Assets\";\"Net Receivables\";\"Total Assets\";\"Long-tem Debt\";\"Current Liabilities\";\"Cash Flow from Operations\"})",
+    "params": [],
+    "formula_len": 262
+  },
+  {
+    "name": "BI_BenfordLaw_FirstDigit",
+    "comment": "Returns Benford Law for the first digit of a data set.",
+    "formula": "_xlfn.LAMBDA(_xlpm.BenfordRange, _xlfn.LET(_xlpm.Digits, _xlfn.SEQUENCE(9),_xlpm.Freq,_xlfn.BYROW(_xlpm.Digits,_xlfn.LAMBDA(_xlpm.RowIterator,COUNT(IF(VALUE(LEFT(_xlpm.BenfordRange))=_xlpm.RowIterator,1,\"\")))),_xlpm.Actual,_xlpm.Freq/SUM(_xlpm.Freq),_xlpm.Expected,LOG10((_xlpm.Digits+1)/_xlpm.Digits),_xlpm.absdev,ABS(_xlpm.Actual-_xlpm.Expected),_xlpm.meanabsdev,AVERAGE(_xlpm.absdev),_xlfn.VSTACK({\"Benford Law First Digit\",\"\",\"\",\"\"},{\"Digit\",\"Frequency\",\"Actual\",\"Expected\"},_xlfn.HSTACK(_xlpm.Digits,_xlpm.Freq,_xlpm.Actual,_xlpm.Expected),_xlfn.HSTACK(\"Total\",COUNT(IF(VALUE(LEFT(_xlpm.BenfordRange))>0,1,\"\")),1,1),_xlfn.HSTACK(\"Mean Absolute Deviation\",\"\",\"\",_xlpm.meanabsdev))))",
+    "params": [
+      "_xlpm.BenfordRange"
+    ],
+    "formula_len": 686
+  },
+  {
+    "name": "BI_BenfordLaw_FirstThreeDigits",
+    "comment": "Returns Benford Law for the first three digits of a data set.",
+    "formula": "_xlfn.LAMBDA(_xlpm.BenfordRange, _xlfn.LET(_xlpm.Digits, _xlfn.SEQUENCE(900,,100),_xlpm.Freq,_xlfn.BYROW(_xlpm.Digits,_xlfn.LAMBDA(_xlpm.RowIterator,COUNT(IF(IFERROR(VALUE(LEFT(_xlpm.BenfordRange,3)),\"\")=_xlpm.RowIterator,1,\"\")))), _xlpm.actual,_xlpm.Freq/SUM(_xlpm.Freq), _xlpm.expected, _xlfn.BYROW(_xlpm.Digits,_xlfn.LAMBDA(_xlpm.x,LOG10(1+1/(_xlpm.x)))), _xlpm.absdev,ABS(_xlpm.actual-_xlpm.expected),_xlpm.meanabsdev,AVERAGE(_xlpm.absdev), _xlfn.VSTACK({\"Benford Law First Three Digits\",\"\",\"\",\"\"},{\"Digit\",\"Frequency\",\"Actual\",\"Expected\"}, _xlfn.HSTACK(_xlpm.Digits,_xlpm.Freq,_xlpm.actual,_xlpm.expected),_xlfn.HSTACK(\"Total\",COUNT(IF(VALUE(LEFT(_xlpm.BenfordRange))>0,1,\"\")),1,1),_xlfn.HSTACK(\"Mean Absolute Deviation\",\"\",\"\",_xlpm.meanabsdev))))",
+    "params": [
+      "_xlpm.BenfordRange"
+    ],
+    "formula_len": 752
+  },
+  {
+    "name": "BI_BenfordLaw_FirstTwoDigits",
+    "comment": "Returns Benford Law for the first two digits of a data set.",
+    "formula": "_xlfn.LAMBDA(_xlpm.BenfordRange, _xlfn.LET(_xlpm.Digits, _xlfn.SEQUENCE(90,,10),_xlpm.Freq,_xlfn.BYROW(_xlpm.Digits,_xlfn.LAMBDA(_xlpm.RowIterator,COUNT(IF(IFERROR(VALUE(LEFT(_xlpm.BenfordRange,2)),\"\")=_xlpm.RowIterator,1,\"\")))), _xlpm.actual,_xlpm.Freq/SUM(_xlpm.Freq), _xlpm.expected, _xlfn.BYROW(_xlpm.Digits,_xlfn.LAMBDA(_xlpm.x,LOG10(1+1/(_xlpm.x)))), _xlpm.absdev,ABS(_xlpm.actual-_xlpm.expected),_xlpm.meanabsdev,AVERAGE(_xlpm.absdev), _xlfn.VSTACK({\"Benford Law First Two Digits\",\"\",\"\",\"\"},{\"Digit\",\"Frequency\",\"Actual\",\"Expected\"}, _xlfn.HSTACK(_xlpm.Digits,_xlpm.Freq,_xlpm.actual,_xlpm.expected),_xlfn.HSTACK(\"Total\",COUNT(IF(VALUE(LEFT(_xlpm.BenfordRange))>0,1,\"\")),1,1),_xlfn.HSTACK(\"Mean Absolute Deviation\",\"\",\"\",_xlpm.meanabsdev))))",
+    "params": [
+      "_xlpm.BenfordRange"
+    ],
+    "formula_len": 748
+  },
+  {
+    "name": "BI_BenfordLaw_LastTwoDigits",
+    "comment": "Returns Benford Law for the last two digits of a data set.",
+    "formula": "_xlfn.LAMBDA(_xlpm.BenfordRange, _xlfn.LET(_xlpm.Digits, _xlfn.SEQUENCE(99),_xlpm.Freq,_xlfn.BYROW(_xlpm.Digits,_xlfn.LAMBDA(_xlpm.RowIterator,COUNT(IF(IF(_xlpm.BenfordRange>=10,VALUE(RIGHT(INT(_xlpm.BenfordRange),2)),\"\")=_xlpm.RowIterator,1,\"\")))), _xlpm.actual,_xlpm.Freq/SUM(_xlpm.Freq), _xlpm.expected, _xlfn.MAKEARRAY(99,1,_xlfn.LAMBDA(_xlpm.x,_xlpm.y,0.01)), _xlpm.absdev,ABS(_xlpm.actual-_xlpm.expected),_xlpm.meanabsdev,AVERAGE(_xlpm.absdev), _xlfn.VSTACK({\"Benford Law Last Two Digits\",\"\",\"\",\"\"},{\"Digit\",\"Frequency\",\"Actual\",\"Expected\"}, _xlfn.HSTACK(_xlpm.Digits,_xlpm.Freq,_xlpm.actual,_xlpm.expected),_xlfn.HSTACK(\"Total\",COUNT(IF(VALUE(LEFT(_xlpm.BenfordRange))>0,1,\"\")),1,1),_xlfn.HSTACK(\"Mean Absolute Deviation\",\"\",\"\",_xlpm.meanabsdev))))",
+    "params": [
+      "_xlpm.BenfordRange"
+    ],
+    "formula_len": 755
+  },
+  {
+    "name": "BI_BenfordLaw_SecondDigit",
+    "comment": "Returns Benford Law for the second digit of a data set.",
+    "formula": "_xlfn.LAMBDA(_xlpm.BenfordRange, _xlfn.LET(_xlpm.Digits, _xlfn.SEQUENCE(10,,0),_xlpm.Freq,_xlfn.BYROW(_xlpm.Digits,_xlfn.LAMBDA(_xlpm.RowIterator,COUNT(IF(IFERROR(VALUE(MID(_xlpm.BenfordRange,2,1)),\"\")=_xlpm.RowIterator,1,\"\")))), _xlpm.actual,_xlpm.Freq/SUM(_xlpm.Freq), _xlpm.expected, _xlfn.BYROW(_xlpm.Digits,_xlfn.LAMBDA(_xlpm.x,SUM(LOG10(1+1/(_xlfn.SEQUENCE(9)*10+_xlpm.x))))), _xlpm.absdev,ABS(_xlpm.actual-_xlpm.expected),_xlpm.meanabsdev,AVERAGE(_xlpm.absdev), _xlfn.VSTACK({\"Benford Law Second Digit\",\"\",\"\",\"\"},{\"Digit\",\"Frequency\",\"Actual\",\"Expected\"}, _xlfn.HSTACK(_xlpm.Digits,_xlpm.Freq,_xlpm.actual,_xlpm.expected),_xlfn.HSTACK(\"Total\",COUNT(IF(VALUE(LEFT(_xlpm.BenfordRange))>0,1,\"\")),1,1),_xlfn.HSTACK(\"Mean Absolute Deviation\",\"\",\"\",_xlpm.meanabsdev))))",
+    "params": [
+      "_xlpm.BenfordRange"
+    ],
+    "formula_len": 770
+  },
+  {
+    "name": "BI_BenfordLaw_SecondOrder",
+    "comment": "Calculates Benford Law Second Order - Frequency, Actual and Expected values along with Mean Abstract Deviation. ",
+    "formula": "_xlfn.LAMBDA(_xlpm.BenfordRange, _xlfn.LET(_xlpm.Digits, _xlfn.SEQUENCE(90,,10),_xlpm.OrderedData,_xlfn._xlws.SORT(_xlpm.BenfordRange),_xlpm.difference,_xlfn.MAKEARRAY(ROWS(_xlpm.OrderedData),1,_xlfn.LAMBDA(_xlpm.x,_xlpm.y,IF(_xlpm.x=1,0,(INDEX(_xlpm.OrderedData,_xlpm.x)-INDEX(_xlpm.OrderedData,_xlpm.x-1))*100000))),_xlpm.firstdigits, IFERROR(VALUE(LEFT(ROUND(_xlpm.difference,0),2)),\"\"), _xlpm.Freq,_xlfn.BYROW(_xlpm.Digits,_xlfn.LAMBDA(_xlpm.RowIterator,ROWS(_xlfn._xlws.FILTER(_xlpm.firstdigits,_xlpm.firstdigits=_xlpm.RowIterator)))),_xlpm.Actual,_xlpm.Freq/SUM(_xlpm.Freq),_xlpm.Expected,_xlfn.BYROW(_xlpm.Digits,_xlfn.LAMBDA(_xlpm.x,LOG10(1+1/(_xlpm.x)))),_xlpm.absdev,ABS(_xlpm.Actual-_xlpm.Expected),_xlpm.meanabsdev,AVERAGE(_xlpm.absdev),_xlpm.result,_xlfn.VSTACK({\"Benford Law Second Order\",\"\",\"\",\"\"},{\"Digit\",\"Frequency\",\"Actual\",\"Expected\"},_xlfn.HSTACK(_xlpm.Digits,_xlpm.Freq,_xlpm.Actual,_xlpm.Expected),_xlfn.HSTACK(\"Total\",SUM(_xlpm.Freq),SUM(_xlpm.Actual),SUM(_xlpm.Expected)),_xlfn.HSTACK(\"Mean Absolute Deviation\",\"\",\"\",_xlpm.meanabsdev)),_xlpm.result))",
+    "params": [
+      "_xlpm.BenfordRange"
+    ],
+    "formula_len": 1075
+  },
+  {
+    "name": "BI_BenfordLaw_SummaryTest",
+    "comment": "Calculates Benford Law Summary Test - Frequency, Actual and Expected values along with Mean Abstract Deviation. ",
+    "formula": "_xlfn.LAMBDA(_xlpm.BenfordRange, _xlfn.LET(_xlpm.Digits, _xlfn.SEQUENCE(90,,10),_xlpm.firstdigits, VALUE(LEFT(_xlpm.BenfordRange,2)), _xlpm.summary,_xlfn.BYROW(_xlpm.Digits,_xlfn.LAMBDA(_xlpm.RowIterator,SUM(_xlfn._xlws.FILTER(_xlpm.BenfordRange,_xlpm.firstdigits=_xlpm.RowIterator)))),_xlpm.Total, SUM(_xlpm.summary),_xlpm.Actual,_xlpm.summary/_xlpm.Total,_xlpm.Expected,_xlfn.BYROW(_xlpm.Digits,_xlfn.LAMBDA(_xlpm.x,1/90)),_xlpm.absdev,ABS(_xlpm.Actual-_xlpm.Expected),_xlpm.meanabsdev,AVERAGE(_xlpm.absdev),_xlpm.result,_xlfn.VSTACK({\"Benford Law Summary Test\",\"\",\"\",\"\"},{\"Digit\",\"Frequency\",\"Actual\",\"Expected\"},_xlfn.HSTACK(_xlpm.Digits,_xlpm.summary,_xlpm.Actual,_xlpm.Expected),_xlfn.HSTACK(\"Total\",_xlpm.Total,1,1),_xlfn.HSTACK(\"Mean Absolute Deviation\",\"\",\"\",_xlpm.meanabsdev)),_xlpm.result))",
+    "params": [
+      "_xlpm.BenfordRange"
+    ],
+    "formula_len": 801
+  },
+  {
+    "name": "BI_BenfordLaw_ThirdDigit",
+    "comment": "Returns Benford Law for the third digit of a data set.",
+    "formula": "_xlfn.LAMBDA(_xlpm.BenfordRange, _xlfn.LET(_xlpm.Digits, _xlfn.SEQUENCE(10,,0),_xlpm.Freq,_xlfn.BYROW(_xlpm.Digits,_xlfn.LAMBDA(_xlpm.RowIterator,COUNT(IF(IFERROR(VALUE(MID(_xlpm.BenfordRange,3,1)),\"\")=_xlpm.RowIterator,1,\"\")))), _xlpm.actual,_xlpm.Freq/SUM(_xlpm.Freq), _xlpm.expected, _xlfn.BYROW(_xlpm.Digits,_xlfn.LAMBDA(_xlpm.x,SUM(LOG10(1+1/(_xlfn.SEQUENCE(90,,10,1)*10+_xlpm.x))))), _xlpm.absdev,ABS(_xlpm.actual-_xlpm.expected),_xlpm.meanabsdev,AVERAGE(_xlpm.absdev), _xlfn.VSTACK({\"Benford Law Third Digit\",\"\",\"\",\"\"},{\"Digit\",\"Frequency\",\"Actual\",\"Expected\"}, _xlfn.HSTACK(_xlpm.Digits,_xlpm.Freq,_xlpm.actual,_xlpm.expected),_xlfn.HSTACK(\"Total\",COUNT(IF(VALUE(LEFT(_xlpm.BenfordRange))>0,1,\"\")),1,1),_xlfn.HSTACK(\"Mean Absolute Deviation\",\"\",\"\",_xlpm.meanabsdev))))",
+    "params": [
+      "_xlpm.BenfordRange"
+    ],
+    "formula_len": 776
+  },
+  {
+    "name": "BI_BottomN",
+    "comment": "Returns Bottom N ranked rows of a column of data.",
+    "formula": "_xlfn.LAMBDA(_xlpm.DataRange,_xlpm.IndexColumn,_xlpm.N, _xlfn.TAKE(_xlfn._xlws.SORT(_xlpm.DataRange,IF(_xlpm.IndexColumn,_xlpm.IndexColumn,1)),_xlpm.N))",
+    "params": [
+      "_xlpm.DataRange",
+      "_xlpm.IndexColumn",
+      "_xlpm.N"
+    ],
+    "formula_len": 152
+  },
+  {
+    "name": "BI_BottomPercent",
+    "comment": "Returns Bottom N Percentage of Data",
+    "formula": "_xlfn.LAMBDA(_xlpm.Data,_xlpm.IndexColumn,_xlpm.Percent,_xlfn.LET(_xlpm.data1, _xlfn.CHOOSECOLS(_xlpm.Data,_xlpm.IndexColumn), _xlpm.totalrows, ROWS(_xlpm.Data), _xlpm.sum,SUM(_xlpm.data1),_xlpm.percentlimit,_xlpm.sum*_xlpm.Percent,_xlpm.sorted,_xlfn._xlws.SORT(_xlpm.Data,_xlpm.IndexColumn),_xlpm.sorteddata,_xlfn._xlws.SORT(_xlpm.data1),_xlpm.cumtot,_xlfn.SCAN(0,_xlpm.sorteddata,_xlfn.LAMBDA(_xlpm.x,_xlpm.y,_xlpm.x+_xlpm.y)),_xlpm.rows,ROWS(_xlfn._xlws.FILTER(_xlpm.cumtot,_xlpm.cumtot<=_xlpm.percentlimit))+1,_xlpm.result,_xlfn.TAKE(_xlpm.sorted,_xlpm.rows),_xlpm.result))",
+    "params": [
+      "_xlpm.Data",
+      "_xlpm.IndexColumn",
+      "_xlpm.Percent"
+    ],
+    "formula_len": 577
+  },
+  {
+    "name": "BI_Consolidate",
+    "comment": "Multiple Consolidation Ranges",
+    "formula": "_xlfn.LAMBDA(_xlpm.Function,_xlpm.DataRange1,_xlop.DataRange2,_xlop.DataRange3,_xlop.DataRange4,_xlop.DataRange5,_xlop.DataRange6,_xlop.DataRange7,_xlop.DataRange8,_xlop.DataRange9,_xlop.DataRange10,_xlfn.LET(_xlpm.unpivot1,_xlfn.DROP(BI_UnpivotExceptFirst(_xlpm.DataRange1),1),_xlpm.unpivot2,IF(_xlfn.ISOMITTED(_xlpm.DataRange2),{\"\",\"\",\"\"},_xlfn.DROP(BI_UnpivotExceptFirst(_xlpm.DataRange2),1)),_xlpm.unpivot3,IF(_xlfn.ISOMITTED(_xlpm.DataRange3),{\"\",\"\",\"\"},_xlfn.DROP(BI_UnpivotExceptFirst(_xlpm.DataRange3),1)),_xlpm.unpivot4,IF(_xlfn.ISOMITTED(_xlpm.DataRange4),{\"\",\"\",\"\"},_xlfn.DROP(BI_UnpivotExceptFirst(_xlpm.DataRange4),1)),_xlpm.unpivot5,IF(_xlfn.ISOMITTED(_xlpm.DataRange5),{\"\",\"\",\"\"},_xlfn.DROP(BI_UnpivotExceptFirst(_xlpm.DataRange5),1)),_xlpm.unpivot6,IF(_xlfn.ISOMITTED(_xlpm.DataRange6),{\"\",\"\",\"\"},_xlfn.DROP(BI_UnpivotExceptFirst(_xlpm.DataRange6),1)),_xlpm.unpivot7,IF(_xlfn.ISOMITTED(_xlpm.DataRange7),{\"\",\"\",\"\"},_xlfn.DROP(BI_UnpivotExceptFirst(_xlpm.DataRange7),1)),_xlpm.unpivot8,IF(_xlfn.ISOMITTED(_xlpm.DataRange8),{\"\",\"\",\"\"},_xlfn.DROP(BI_UnpivotExceptFirst(_xlpm.DataRange8),1)),_xlpm.unpivot9,IF(_xlfn.ISOMITTED(_xlpm.DataRange9),{\"\",\"\",\"\"},_xlfn.DROP(BI_UnpivotExceptFirst(_xlpm.DataRange9),1)),_xlpm.unpivot10,IF(_xlfn.ISOMITTED(_xlpm.DataRange10),{\"\",\"\",\"\"},_xlfn.DROP(BI_UnpivotExceptFirst(_xlpm.DataRange10),1)),_xlpm.alldata,_xlfn.VSTACK(_xlpm.unpivot1,_xlpm.unpivot2,_xlpm.unpivot3,_xlpm.unpivot4,_xlpm.unpivot5,_xlpm.unpivot6,_xlpm.unpivot7,_xlpm.unpivot8,_xlpm.unpivot9,_xlpm.unpivot10),_xlpm.cleandata,_xlfn._xlws.FILTER(_xlpm.alldata,(_xlfn.CHOOSECOLS(_xlpm.alldata,1) <>\"\") * (_xlfn.CHOOSECOLS(_xlpm.alldata,2) <>\"\") * (_xlfn.CHOOSECOLS(_xlpm.alldata,3) <>\"\")),_xlpm.consolidated,BI_Pivot(_xlpm.cleandata,3,1,2,IF(_xlfn.ISOMITTED(_xlpm.Function),9,_xlpm.Function)),_xlpm.consolidated))",
+    "params": [
+      "_xlpm.Function",
+      "_xlpm.DataRange1",
+      "_xlop.DataRange2",
+      "_xlop.DataRange3",
+      "_xlop.DataRange4",
+      "_xlop.DataRange5",
+      "_xlop.DataRange6",
+      "_xlop.DataRange7",
+      "_xlop.DataRange8",
+      "_xlop.DataRange9",
+      "_xlop.DataRange10"
+    ],
+    "formula_len": 1823
+  },
+  {
+    "name": "BI_Contains",
+    "comment": "Returns true if FindText is found in WithinText.",
+    "formula": "_xlfn.LAMBDA(_xlpm.FindText,_xlpm.WithinText,_xlop.CaseSensitive,_xlfn.LET(_xlpm.CaseSensitive,IF(_xlfn.ISOMITTED(_xlpm.CaseSensitive),FALSE,_xlpm.CaseSensitive),IF(_xlpm.CaseSensitive,IFERROR(FIND(_xlpm.FindText,_xlpm.WithinText),0)>0,IFERROR(SEARCH(_xlpm.FindText,_xlpm.WithinText),0)>0)))",
+    "params": [
+      "_xlpm.FindText",
+      "_xlpm.WithinText",
+      "_xlop.CaseSensitive"
+    ],
+    "formula_len": 291
+  },
+  {
+    "name": "BI_Correlation",
+    "comment": "Returns a Correlation Table of many attributes. This is one of the Data Analysis Toolpak features.",
+    "formula": "_xlfn.LAMBDA(_xlpm.Data,_xlop.Labels, _xlfn.LET( _xlpm.label, IF(_xlfn.ISOMITTED(_xlpm.Labels),FALSE,_xlpm.Labels), _xlpm.datarows, IF(_xlpm.label, _xlfn.DROP(_xlpm.Data,1),_xlpm.Data),_xlpm.Columns, COLUMNS(_xlpm.datarows), _xlpm.Head, IF(_xlpm.label,_xlfn.TAKE(_xlpm.Data,1),TRANSPOSE(\"Column\"&_xlfn.SEQUENCE(_xlpm.Columns))),_xlpm.corrtable,_xlfn.VSTACK(_xlfn.HSTACK({\"Correlation\"},_xlpm.Head),_xlfn.HSTACK(TRANSPOSE(_xlpm.Head),_xlfn.MAKEARRAY(_xlpm.Columns,_xlpm.Columns,_xlfn.LAMBDA(_xlpm.a,_xlpm.b,IF(_xlpm.a>=_xlpm.b,CORREL(INDEX(_xlpm.datarows,0,_xlpm.a),INDEX(_xlpm.datarows,0,_xlpm.b)),\"\"))))),_xlpm.unpivot, BI_UnpivotExceptFirst(_xlpm.corrtable),_xlpm.nonempty,_xlfn._xlws.FILTER(_xlpm.unpivot,_xlfn.CHOOSECOLS(_xlpm.unpivot,3)<>\"\"),_xlpm.values,_xlfn._xlws.FILTER(_xlpm.nonempty,_xlfn.CHOOSECOLS(_xlpm.nonempty,3)<>1),_xlpm.sorted, _xlfn._xlws.SORT(_xlpm.values,3,-1), _xlpm.emptyline, _xlfn.MAKEARRAY(1,_xlpm.Columns+1,_xlfn.LAMBDA(_xlpm.x,_xlpm.y,\"\")),_xlpm.result, _xlfn.VSTACK(_xlpm.corrtable, _xlpm.emptyline,_xlfn.HSTACK(_xlpm.sorted,_xlfn.MAKEARRAY(ROWS(_xlpm.sorted),_xlpm.Columns-2,_xlfn.LAMBDA(_xlpm.x,_xlpm.y,\"\")))),_xlpm.result))",
+    "params": [
+      "_xlpm.Data",
+      "_xlop.Labels"
+    ],
+    "formula_len": 1156
+  },
+  {
+    "name": "BI_Covariance",
+    "comment": "Returns a Covariance Table of many attributes. This is one of the Data Analysis Toolpak features.",
+    "formula": "_xlfn.LAMBDA(_xlpm.Data,_xlop.Labels, _xlfn.LET( _xlpm.label, IF(_xlfn.ISOMITTED(_xlpm.Labels),FALSE,_xlpm.Labels), _xlpm.datarows, IF(_xlpm.label, _xlfn.DROP(_xlpm.Data,1),_xlpm.Data),_xlpm.Columns, COLUMNS(_xlpm.datarows), _xlpm.Head, IF(_xlpm.label,_xlfn.TAKE(_xlpm.Data,1),TRANSPOSE(\"Column\"&_xlfn.SEQUENCE(_xlpm.Columns))),_xlfn.VSTACK(_xlfn.HSTACK({\"Covariance\"},_xlpm.Head),_xlfn.HSTACK(TRANSPOSE(_xlpm.Head),_xlfn.MAKEARRAY(_xlpm.Columns,_xlpm.Columns,_xlfn.LAMBDA(_xlpm.a,_xlpm.b,IF(_xlpm.a>=_xlpm.b,_xlfn.COVARIANCE.P(INDEX(_xlpm.datarows,0,_xlpm.a),INDEX(_xlpm.datarows,0,_xlpm.b)),\"\")))))))",
+    "params": [
+      "_xlpm.Data",
+      "_xlop.Labels"
+    ],
+    "formula_len": 602
+  },
+  {
+    "name": "BI_DateDif",
+    "comment": "Returns Age in years, months, days etc.,",
+    "formula": "_xlfn.LAMBDA(_xlpm.StartDate,_xlpm.EndDate,_xlfn.LET(_xlpm.fromyear,YEAR(_xlpm.StartDate),_xlpm.frommonth,MONTH(_xlpm.StartDate),_xlpm.fromday,DAY(_xlpm.StartDate),_xlpm.today,IF(DAY(_xlpm.EndDate)<_xlpm.fromday,DAY(_xlpm.EndDate)+_xlfn.SWITCH(IF(MONTH(_xlpm.EndDate)-1=1,12,MONTH(_xlpm.EndDate)-1),1,31,2,IF(MONTH(DATE(YEAR(_xlpm.EndDate),2,28)+1)=2,29,28),3,31,4,30,5,31,6,30,7,31,8,31,9,30,10,31,11,30,31),DAY(_xlpm.EndDate)),_xlpm.tomonth,IF(AND(DAY(_xlpm.EndDate)>=_xlpm.fromday,MONTH(_xlpm.EndDate)>=_xlpm.frommonth),MONTH(_xlpm.EndDate),IF(DAY(_xlpm.EndDate)>=_xlpm.fromday,IF(MONTH(_xlpm.EndDate)<_xlpm.frommonth,MONTH(_xlpm.EndDate)+12,MONTH(_xlpm.EndDate)),IF(MONTH(_xlpm.EndDate)=1,12,IF(MONTH(_xlpm.EndDate)-1>=_xlpm.frommonth,MONTH(_xlpm.EndDate)-1,MONTH(_xlpm.EndDate)+11)))),_xlpm.toyear,IF(MONTH(_xlpm.EndDate)<_xlpm.tomonth,YEAR(_xlpm.EndDate)-1,YEAR(_xlpm.EndDate)),_xlfn.VSTACK(_xlfn.HSTACK(\"Years\",\"Y\",_xlpm.toyear - _xlpm.fromyear),_xlfn.HSTACK(\"Months\",\"YM\",_xlpm.tomonth-_xlpm.frommonth),_xlfn.HSTACK(\"Days\",\"MD\",_xlpm.today-_xlpm.fromday),_xlfn.HSTACK(\"Total Months\",\"M\",(_xlpm.toyear-_xlpm.fromyear)*12+_xlpm.tomonth-_xlpm.frommonth),_xlfn.HSTACK(\"Total Days\",\"D\",_xlpm.EndDate-_xlpm.StartDate),_xlfn.HSTACK(\"Days after year\",\"YD\",_xlpm.EndDate-DATE(_xlpm.toyear,_xlpm.frommonth,_xlpm.fromday)))))",
+    "params": [
+      "_xlpm.StartDate",
+      "_xlpm.EndDate"
+    ],
+    "formula_len": 1322
+  },
+  {
+    "name": "BI_Describe",
+    "comment": "Returns the descriptive statistics of Data.",
+    "formula": "_xlfn.LAMBDA(_xlpm.Range,_xlfn.VSTACK(_xlfn.HSTACK(\"Descriptive Summary Statistics\",\"\"),_xlfn.HSTACK(\"Average\",AVERAGE(_xlpm.Range)),_xlfn.HSTACK(\"Median\",MEDIAN(_xlpm.Range)),_xlfn.HSTACK(\"Mode\",IFERROR(_xlfn.MODE.SNGL(_xlpm.Range),\"-\")),_xlfn.HSTACK(\"St.Dev. P.\",_xlfn.STDEV.P(_xlpm.Range)),_xlfn.HSTACK(\"St. Dev. S\",_xlfn.STDEV.S(_xlpm.Range)),_xlfn.HSTACK(\"Std. Error\",_xlfn.STDEV.S(_xlpm.Range)/(COUNT(_xlpm.Range)^0.5)), _xlfn.HSTACK(\"Population Variance\",_xlfn.VAR.P(_xlpm.Range)),_xlfn.HSTACK(\"Sample Variance\",_xlfn.VAR.S(_xlpm.Range)),_xlfn.HSTACK(\"Kurtosis\",KURT(_xlpm.Range)),_xlfn.HSTACK(\"Skewness.P\",_xlfn.SKEW.P(_xlpm.Range)),_xlfn.HSTACK(\"Skewness S\",SKEW(_xlpm.Range)),_xlfn.HSTACK(\"Range\",MAX(_xlpm.Range)-MIN(_xlpm.Range)),_xlfn.HSTACK(\"Maximum\",MAX(_xlpm.Range)),_xlfn.HSTACK(\"Minimum\",MIN(_xlpm.Range)),_xlfn.HSTACK(\"Sum\",SUM(_xlpm.Range)),_xlfn.HSTACK(\"Count\",COUNT(_xlpm.Range)), _xlfn.LET(_xlpm.Quart1,_xlfn.QUARTILE.INC(_xlpm.Range,1), _xlpm.Quart3, _xlfn.QUARTILE.INC(_xlpm.Range,3), _xlpm.IQR, _xlpm.Quart3-_xlpm.Quart1, _xlpm.wiqr15, _xlpm.IQR * 1.5, _xlpm.iqrlb, MAX(_xlpm.Quart1-_xlpm.wiqr15,MIN(_xlpm.Range)),_xlpm.iqrub, MIN(_xlpm.Quart3+_xlpm.wiqr15,MAX(_xlpm.Range)),_xlfn.VSTACK(_xlfn.HSTACK(\"Quartile1\",_xlpm.Quart1), _xlfn.HSTACK(\"Quartile3\",_xlpm.Quart3),_xlfn.HSTACK(\"IQR\",_xlpm.IQR), _xlfn.HSTACK(\"1.5 Times IQR\",_xlpm.wiqr15), _xlfn.HSTACK(\"Whisker Lower Bound\",_xlpm.iqrlb), _xlfn.HSTACK(\"Whisker Outer Bound\",_xlpm.iqrub)))))",
+    "params": [
+      "_xlpm.Range"
+    ],
+    "formula_len": 1468
+  },
+  {
+    "name": "BI_DiscountedPayback",
+    "comment": "Returns the Discounted Payback period for a series of cashflows",
+    "formula": "_xlfn.LAMBDA(_xlpm.CashFlows,_xlpm.DiscountRate,_xlfn.LET(_xlpm.seq,_xlfn.SEQUENCE(ROWS(_xlpm.CashFlows),1,0),_xlpm.discounted, _xlpm.CashFlows * (1/(1+_xlpm.DiscountRate)^_xlpm.seq),_xlpm.cumulative,_xlfn.SCAN(0,_xlpm.discounted,_xlfn.LAMBDA(_xlpm.x,_xlpm.y,_xlpm.x+_xlpm.y)),_xlpm.positive,_xlpm.cumulative>0,_xlpm.found,_xlfn.XMATCH(TRUE,_xlpm.positive),_xlpm.fullperiod, IFERROR(_xlpm.found-2,0),_xlpm.balance,INDEX(_xlpm.cumulative,_xlpm.found-1),_xlpm.balperiod, ABS(_xlpm.balance)/INDEX(_xlpm.discounted,_xlpm.found), _xlpm.payback,_xlpm.fullperiod + _xlpm.balperiod,_xlpm.payback))",
+    "params": [
+      "_xlpm.CashFlows",
+      "_xlpm.DiscountRate"
+    ],
+    "formula_len": 589
+  },
+  {
+    "name": "BI_EMISchedule",
+    "comment": "Returns EMI Schedule of a loan",
+    "formula": "_xlfn.LAMBDA(_xlpm.Principal,_xlpm.Period,_xlpm.InterestRate,_xlfn.LET(_xlpm.instalment,ABS(PMT(_xlpm.InterestRate,_xlpm.Period,_xlpm.Principal)),_xlpm.opening, PV(_xlpm.InterestRate,_xlfn.SEQUENCE(_xlpm.Period,,_xlpm.Period,-1),-_xlpm.instalment), _xlpm.interest, ABS(IPMT(_xlpm.InterestRate,_xlfn.SEQUENCE(_xlpm.Period),_xlpm.Period,_xlpm.Principal)), _xlpm.total, _xlpm.opening + _xlpm.interest, _xlpm.payment, _xlpm.instalment+(0*_xlfn.SEQUENCE(_xlpm.Period)), _xlpm.balance, _xlpm.total - _xlpm.payment, _xlfn.VSTACK(_xlfn.HSTACK(\"EMI Amount\",_xlpm.instalment,\"\",\"\",\"\",\"\"),{\"Period\",\"Op.Balance\",\"Interest\",\"Total\",\"Instalment\",\"Cl.Balance\"}, _xlfn.HSTACK(_xlfn.SEQUENCE(_xlpm.Period),_xlpm.opening, _xlpm.interest, _xlpm.total, _xlpm.payment, _xlpm.balance), _xlfn.HSTACK(\"Total\",\"\",SUM(_xlpm.interest),\"\",_xlpm.instalment * _xlpm.Period,\"\"))))",
+    "params": [
+      "_xlpm.Principal",
+      "_xlpm.Period",
+      "_xlpm.InterestRate"
+    ],
+    "formula_len": 850
+  },
+  {
+    "name": "BI_EndsWith",
+    "comment": "Returns whether one text ends with another text. ",
+    "formula": "_xlfn.LAMBDA(_xlpm.FindText,_xlpm.WithinText,_xlop.CaseSensitive,_xlfn.LET(_xlpm.CaseSensitive,IF(_xlfn.ISOMITTED(_xlpm.CaseSensitive),FALSE,_xlpm.CaseSensitive),_xlpm.RightText,RIGHT(_xlpm.WithinText,LEN(_xlpm.FindText)),IF(_xlpm.CaseSensitive,EXACT(_xlpm.FindText,_xlpm.RightText),_xlpm.FindText = _xlpm.RightText)))",
+    "params": [
+      "_xlpm.FindText",
+      "_xlpm.WithinText",
+      "_xlop.CaseSensitive"
+    ],
+    "formula_len": 318
+  },
+  {
+    "name": "BI_ExactArray",
+    "comment": "Compares two arrays and returns whether both the arrays are equal.",
+    "formula": "_xlfn.LAMBDA(_xlpm.Array1,_xlpm.Array2,_xlop.CaseSensitive,_xlfn.LET(_xlpm.case,IF(_xlfn.ISOMITTED(_xlpm.CaseSensitive),FALSE,_xlpm.CaseSensitive), AND(IF(_xlpm.case,EXACT(_xlpm.Array1,_xlpm.Array2),_xlpm.Array1=_xlpm.Array2))))",
+    "params": [
+      "_xlpm.Array1",
+      "_xlpm.Array2",
+      "_xlop.CaseSensitive"
+    ],
+    "formula_len": 228
+  },
+  {
+    "name": "BI_ExponentialSmoothing",
+    "comment": "Returns Exponential Smoothened data after applying Damping Factor. This is one of the Data Analysis Toolpak features.",
+    "formula": "_xlfn.LAMBDA(_xlpm.Data,_xlop.DampingFactor,_xlop.Labels,_xlfn.LET(_xlpm.damping, IF(_xlfn.ISOMITTED(_xlpm.DampingFactor),0.3,_xlpm.DampingFactor), _xlpm.label, IF(_xlfn.ISOMITTED(_xlpm.Labels),FALSE,_xlpm.Labels),_xlpm.datarows,IF(_xlpm.label,_xlfn.DROP(_xlpm.Data,1),_xlpm.Data),_xlpm.rowcount, ROWS(_xlpm.datarows), _xlpm.name,IF(_xlpm.label,_xlfn.TAKE(_xlpm.Data,1),\"Actual\"),_xlpm.I, _xlfn.SEQUENCE(_xlpm.rowcount), _xlpm.exponential, _xlfn.SCAN(INDEX(_xlpm.datarows,1),_xlpm.datarows,_xlfn.LAMBDA(_xlpm.x,_xlpm.y, _xlpm.x*(_xlpm.damping) + _xlpm.y * (1-_xlpm.damping))),_xlpm.exponential))",
+    "params": [
+      "_xlpm.Data",
+      "_xlop.DampingFactor",
+      "_xlop.Labels"
+    ],
+    "formula_len": 595
+  },
+  {
+    "name": "BI_ExtractNumbers",
+    "comment": "Extracts all the numbers from a text string.",
+    "formula": "_xlfn.LAMBDA(_xlpm.Text, _xlfn.LET(_xlpm.char,MID(_xlpm.Text,_xlfn.SEQUENCE(LEN(_xlpm.Text)),1),_xlfn.CONCAT(IF(ISNUMBER(VALUE(_xlpm.char)),_xlpm.char,\"\"))))",
+    "params": [
+      "_xlpm.Text"
+    ],
+    "formula_len": 157
+  },
+  {
+    "name": "BI_ExtractText",
+    "comment": "Extracts all the characters from a  text string excluding numbers.",
+    "formula": "_xlfn.LAMBDA(_xlpm.Text, _xlfn.LET(_xlpm.char,MID(_xlpm.Text,_xlfn.SEQUENCE(LEN(_xlpm.Text)),1),_xlfn.CONCAT(IF(ISNUMBER(VALUE(_xlpm.char)),\"\",_xlpm.char))))",
+    "params": [
+      "_xlpm.Text"
+    ],
+    "formula_len": 157
+  },
+  {
+    "name": "BI_FDRSchedule",
+    "comment": "Returns the Fixed Deposit Schedule of Interest calculations and maturiy value.",
+    "formula": "_xlfn.LAMBDA(_xlpm.DepositAmount,_xlpm.InterestRate,_xlpm.Stdate,_xlpm.Enddate, _xlfn.LET(_xlpm.months, (YEAR(_xlpm.Enddate)-YEAR(_xlpm.Stdate))*12+MONTH(_xlpm.Enddate)-MONTH(_xlpm.Stdate),_xlpm.count, ROUNDUP(_xlpm.months/3+2,0), _xlpm.seq, _xlfn.SEQUENCE(_xlpm.count), _xlpm.duedates,_xlfn.SCAN(0,_xlpm.seq,_xlfn.LAMBDA(_xlpm.x,_xlpm.y,IF(_xlpm.y=1,_xlpm.Stdate,IF(_xlpm.y=2,EOMONTH(DATE(YEAR(_xlpm.x),CEILING(MONTH(_xlpm.x),3),1),0),MIN(_xlpm.Enddate,EOMONTH(_xlpm.x,3)))))),_xlpm.daycount, _xlfn.MAKEARRAY(_xlpm.count,1,_xlfn.LAMBDA(_xlpm.x,_xlpm.y,IF(_xlpm.x=_xlpm.count,\"\",INDEX(_xlpm.duedates,_xlpm.x+1,1)-INDEX(_xlpm.duedates,_xlpm.x,1)))),_xlpm.closing, _xlfn.SCAN(_xlpm.DepositAmount,_xlpm.seq,_xlfn.LAMBDA(_xlpm.x,_xlpm.y,IF(_xlpm.y=_xlpm.count,_xlpm.x,_xlpm.x+(_xlpm.x*_xlpm.InterestRate/365*INDEX(_xlpm.daycount,_xlpm.y))))),_xlpm.opening, _xlfn.MAKEARRAY(_xlpm.count,1,_xlfn.LAMBDA(_xlpm.x,_xlpm.y,IF(_xlpm.x=1,_xlpm.DepositAmount,INDEX(_xlpm.closing,_xlpm.x-1)))),_xlpm.interest, _xlpm.closing-_xlpm.opening, _xlpm.stack,_xlfn.VSTACK({\"Date\",\"Days\",\"Opening\",\"Interest\",\"Closing\"},_xlfn.HSTACK(_xlpm.duedates,_xlpm.daycount,_xlpm.opening, _xlpm.interest, _xlpm.closing)),_xlfn._xlws.FILTER(_xlpm.stack,_xlfn.CHOOSECOLS(_xlpm.stack,2)<>\"\")))",
+    "params": [
+      "_xlpm.DepositAmount",
+      "_xlpm.InterestRate",
+      "_xlpm.Stdate",
+      "_xlpm.Enddate"
+    ],
+    "formula_len": 1255
+  },
+  {
+    "name": "BI_FillDown",
+    "comment": "Fills down blank cells with the content above. ",
+    "formula": "_xlfn.LAMBDA(_xlpm.Data,_xlfn.LET(_xlpm.blank,ISBLANK(_xlpm.Data),_xlpm.rows,ROWS(_xlpm.Data),_xlpm.index,_xlfn.MAKEARRAY(_xlpm.rows,1,_xlfn.LAMBDA(_xlpm.x,_xlpm.y,_xlfn.TAKE(_xlfn._xlws.SORT(_xlfn._xlws.FILTER(_xlfn.SEQUENCE(_xlpm.x),NOT(_xlfn.TAKE(_xlpm.blank,_xlpm.x))),,-1),1))),INDEX(_xlpm.Data,_xlpm.index)))",
+    "params": [
+      "_xlpm.Data"
+    ],
+    "formula_len": 314
+  },
+  {
+    "name": "BI_FinancialYear",
+    "comment": "Returns  the financial year (1st April to 31st March) of any date.",
+    "formula": "_xlfn.LAMBDA(_xlop.Date,_xlop.YearEndMonth,_xlop.Format,_xlfn.LET(_xlpm.date1,IF(_xlfn.ISOMITTED(_xlpm.Date),TODAY(),_xlpm.Date),_xlpm.YEM, IF(_xlfn.ISOMITTED(_xlpm.YearEndMonth),3,_xlpm.YearEndMonth),_xlpm.startyear,IF(MONTH(_xlpm.date1)>_xlpm.YEM,YEAR(_xlpm.date1),YEAR(_xlpm.date1)-1),_xlfn.SWITCH(_xlpm.Format,1,RIGHT(_xlpm.startyear,2)&\"-\"&RIGHT(_xlpm.startyear+1,2),2,_xlpm.startyear&\"-\"&RIGHT(_xlpm.startyear+1,2),_xlpm.startyear&\"-\"&_xlpm.startyear+1)))",
+    "params": [
+      "_xlop.Date",
+      "_xlop.YearEndMonth",
+      "_xlop.Format"
+    ],
+    "formula_len": 461
+  },
+  {
+    "name": "BI_FinancialYearEnd",
+    "comment": "Returns  the financial year end (31st March) of any date.",
+    "formula": "_xlfn.LAMBDA(_xlop.Date,_xlop.YearEndMonth,_xlfn.LET(_xlpm.date1, IF(_xlfn.ISOMITTED(_xlpm.Date),TODAY(),_xlpm.Date),_xlpm.Month, IF(_xlfn.ISOMITTED(_xlpm.YearEndMonth),4,MOD(_xlpm.YearEndMonth+1,12)),_xlpm.Year,IF(MONTH(_xlpm.date1)>=_xlpm.Month,YEAR(_xlpm.date1)+1,YEAR(_xlpm.date1)),DATE(_xlpm.Year,_xlpm.Month,1)-1))",
+    "params": [
+      "_xlop.Date",
+      "_xlop.YearEndMonth"
+    ],
+    "formula_len": 320
+  },
+  {
+    "name": "BI_FinancialYearStart",
+    "comment": "Returns  the financial year start (1st April) of any date.",
+    "formula": "_xlfn.LAMBDA(_xlop.Date,_xlop.YearEndMonth,_xlfn.LET(_xlpm.date1, IF( _xlfn.ISOMITTED( _xlpm.Date), TODAY(),_xlpm.Date),_xlpm.Month, IF(_xlfn.ISOMITTED(_xlpm.YearEndMonth),4,MOD(_xlpm.YearEndMonth+1,12)),_xlpm.Year,IF(MONTH(_xlpm.date1)>=_xlpm.Month,YEAR(_xlpm.date1),YEAR(_xlpm.date1)-1),DATE(_xlpm.Year,_xlpm.Month,1)))",
+    "params": [
+      "_xlop.Date",
+      "_xlop.YearEndMonth"
+    ],
+    "formula_len": 321
+  },
+  {
+    "name": "BI_FindDuplicates",
+    "comment": "Returns duplicate values from a list",
+    "formula": "_xlfn.LAMBDA(_xlpm.List,_xlfn.LET(_xlpm.set,_xlfn.UNIQUE(_xlpm.List),_xlpm.counts,IF(COUNTIF(_xlpm.List,_xlpm.set)>1,_xlpm.set,-1), _xlfn._xlws.FILTER(_xlpm.counts,_xlpm.counts>0)))",
+    "params": [
+      "_xlpm.List"
+    ],
+    "formula_len": 181
+  },
+  {
+    "name": "BI_FindMissingNumbers",
+    "comment": "Returns missing numbers from a list of numbers",
+    "formula": "_xlfn.LAMBDA(_xlpm.List,_xlfn.LET(_xlpm.set,_xlfn.SEQUENCE(MAX(_xlpm.List)-MIN(_xlpm.List)+1,1,MIN(_xlpm.List)),_xlpm.counts,IF(COUNTIF(_xlpm.List,_xlpm.set)=0,_xlpm.set,-1), _xlfn._xlws.FILTER(_xlpm.counts,_xlpm.counts>0)))",
+    "params": [
+      "_xlpm.List"
+    ],
+    "formula_len": 224
+  },
+  {
+    "name": "BI_FindOneOf",
+    "comment": "Returns the position of the first specified character value in a string. If the specified value is not found, 0 is returned. CaseWare IDEA inspiration.",
+    "formula": "_xlfn.LAMBDA(_xlpm.Text,_xlpm.Pattern, _xlfn.LET(_xlpm.char, MID(_xlpm.Pattern,_xlfn.SEQUENCE(LEN(_xlpm.Pattern)),1),_xlpm.position,IFERROR(SEARCH(_xlpm.char,_xlpm.Text),0),IFERROR(MIN(_xlfn._xlws.FILTER(_xlpm.position,_xlpm.position >  0)),0)))",
+    "params": [
+      "_xlpm.Text",
+      "_xlpm.Pattern"
+    ],
+    "formula_len": 245
+  },
+  {
+    "name": "BI_FindUnique",
+    "comment": "Returns the values available only once (without duplicates) in a list.",
+    "formula": "_xlfn.LAMBDA(_xlpm.List,_xlfn.LET(_xlpm.set,_xlfn.UNIQUE(_xlpm.List),_xlpm.counts,IF(COUNTIF(_xlpm.List,_xlpm.set)=1,_xlpm.set,-1), _xlfn._xlws.FILTER(_xlpm.counts,_xlpm.counts>0)))",
+    "params": [
+      "_xlpm.List"
+    ],
+    "formula_len": 181
+  },
+  {
+    "name": "BI_FormulaList",
+    "comment": "Returns the formula list in the specified range.",
+    "formula": "_xlfn.LAMBDA(_xlpm.reference,_xlfn.LET(_xlpm.formulas, _xlfn.TOCOL(IFERROR(ADDRESS(ROW(_xlpm.reference),COLUMN(_xlpm.reference),4)&\" \"&_xlfn.FORMULATEXT(_xlpm.reference),\"\")),_xlfn._xlws.FILTER(_xlpm.formulas,_xlpm.formulas<>\"\")))",
+    "params": [
+      "_xlpm.reference"
+    ],
+    "formula_len": 230
+  },
+  {
+    "name": "BI_Fuzzy",
+    "comment": "Returns the number of modifications required to change from first text to second text. This finds Levenshtein distance between two strings.",
+    "formula": "_xlfn.LAMBDA(_xlpm.a,_xlpm.b,_xlop.ii,_xlop.jj,_xlop.arr,_xlfn.LET(_xlpm.i,IF(_xlfn.ISOMITTED(_xlpm.ii),1,_xlpm.ii),_xlpm.j,IF(_xlfn.ISOMITTED(_xlpm.jj),1,_xlpm.jj),_xlpm.a_i,MID(_xlpm.a,_xlpm.i,1),_xlpm.b_j,MID(_xlpm.b,_xlpm.j,1),_xlpm.init_array,_xlfn.MAKEARRAY(LEN(_xlpm.a)+1,LEN(_xlpm.b)+1,_xlfn.LAMBDA(_xlpm.r,_xlpm.c,_xlfn.IFS(_xlpm.r=1,_xlpm.c-1,_xlpm.c=1,_xlpm.r-1,TRUE,0))),_xlpm.cost,N(NOT(_xlpm.a_i=_xlpm.b_j)),_xlpm.this_arr,IF(_xlfn.ISOMITTED(_xlpm.arr),_xlpm.init_array,_xlpm.arr),_xlpm.option_a,INDEX(_xlpm.this_arr,_xlpm.i+1-1,_xlpm.j+1)+1,_xlpm.option_b,INDEX(_xlpm.this_arr,_xlpm.i+1,_xlpm.j+1-1)+1,_xlpm.option_c,INDEX(_xlpm.this_arr,_xlpm.i+1-1,_xlpm.j+1-1)+_xlpm.cost,_xlpm.new_val,MIN(_xlpm.option_a,_xlpm.option_b,_xlpm.option_c),_xlpm.overlay,_xlfn.MAKEARRAY(LEN(_xlpm.a)+1,LEN(_xlpm.b)+1,_xlfn.LAMBDA(_xlpm.r,_xlpm.c,IF(AND(_xlpm.r=_xlpm.i+1,_xlpm.c=_xlpm.j+1),_xlpm.new_val,0))),_xlpm.new_arr,_xlpm.this_arr+_xlpm.overlay,_xlpm.new_i,IF(_xlpm.i=LEN(_xlpm.a),IF(_xlpm.j=LEN(_xlpm.b),_xlpm.i+1,1),_xlpm.i+1),_xlpm.new_j,IF(_xlpm.i<>LEN(_xlpm.a),_xlpm.j,IF(_xlpm.j=LEN(_xlpm.b),_xlpm.j+1,_xlpm.j+1)),_xlpm.is_end,AND(_xlpm.new_i>LEN(_xlpm.a),_xlpm.new_j>LEN(_xlpm.b)),IF(_xlpm.is_end,_xlpm.new_val,BI_Fuzzy(_xlpm.a,_xlpm.b,_xlpm.new_i,_xlpm.new_j,_xlpm.new_arr))))",
+    "params": [
+      "_xlpm.a",
+      "_xlpm.b",
+      "_xlop.ii",
+      "_xlop.jj",
+      "_xlop.arr"
+    ],
+    "formula_len": 1287
+  },
+  {
+    "name": "BI_GEL1Test",
+    "comment": "Calculates Gestalt Element Link Test between two columns of related data like Salesman and Customer",
+    "formula": "_xlfn.LAMBDA(_xlpm.AnalyzeData,_xlpm.RelatedData,_xlfn.LET(_xlpm.BothData,_xlfn.HSTACK(_xlpm.AnalyzeData,_xlpm.RelatedData),_xlpm.UniqueData,_xlfn.UNIQUE(_xlpm.BothData),_xlpm.Count,_xlfn.BYROW(_xlpm.UniqueData,_xlfn.LAMBDA(_xlpm.x,ROWS(_xlfn._xlws.FILTER(_xlpm.BothData,(_xlfn.CHOOSECOLS(_xlpm.BothData,1)=INDEX(_xlpm.x,1))*(_xlfn.CHOOSECOLS(_xlpm.BothData,2)=INDEX(_xlpm.x,2)))))),_xlpm.TotalFreq,_xlfn.BYROW(_xlpm.UniqueData,_xlfn.LAMBDA(_xlpm.x,ROWS(_xlfn._xlws.FILTER(_xlpm.BothData,_xlfn.CHOOSECOLS(_xlpm.BothData,1)=INDEX(_xlpm.x,1))))),_xlpm.gest1,_xlpm.Count/_xlpm.TotalFreq,_xlpm.result,_xlfn.HSTACK(_xlpm.UniqueData,_xlpm.Count,_xlpm.TotalFreq,_xlpm.gest1), _xlfn._xlws.SORT(_xlfn._xlws.SORT(_xlpm.result,4,-1),5,-1)))",
+    "params": [
+      "_xlpm.AnalyzeData",
+      "_xlpm.RelatedData"
+    ],
+    "formula_len": 729
+  },
+  {
+    "name": "BI_GEL2Test",
+    "comment": "Calculates Gestalt Element Link Test 2 between two columns of related data like Salesman and Customer for a particular dataitem.",
+    "formula": "_xlfn.LAMBDA(_xlpm.AnalyzeData,_xlpm.RelatedData,_xlpm.DataItem,_xlop.Total,_xlfn.LET(_xlpm.RelatedItems,_xlfn.UNIQUE(_xlfn._xlws.FILTER(_xlpm.RelatedData,_xlpm.AnalyzeData=_xlpm.DataItem)),_xlpm.freq,_xlfn.BYROW(_xlpm.RelatedItems,_xlfn.LAMBDA(_xlpm.x,ROWS(_xlfn._xlws.FILTER(_xlpm.RelatedData,(_xlpm.AnalyzeData=_xlpm.DataItem)*(_xlpm.RelatedData=_xlpm.x))))),_xlpm.totalfreq,_xlfn.BYROW(_xlpm.RelatedItems,_xlfn.LAMBDA(_xlpm.x,ROWS(_xlfn._xlws.FILTER(_xlpm.RelatedData,_xlpm.RelatedData=_xlpm.x)))),_xlpm.value,IF(_xlfn.ISOMITTED(_xlpm.Total),0,_xlfn.BYROW(_xlpm.RelatedItems,_xlfn.LAMBDA(_xlpm.x,SUM(_xlfn._xlws.FILTER(_xlpm.Total,(_xlpm.AnalyzeData=_xlpm.DataItem)*(_xlpm.RelatedData=_xlpm.x)))))),_xlpm.totalvalue,IF(_xlfn.ISOMITTED(_xlpm.Total),0,_xlfn.BYROW(_xlpm.RelatedItems,_xlfn.LAMBDA(_xlpm.x,SUM(_xlfn._xlws.FILTER(_xlpm.Total,_xlpm.RelatedData=_xlpm.x))))),_xlpm.result,IF(_xlfn.ISOMITTED(_xlpm.Total),_xlfn.VSTACK({\"\",\"Count\",\"Total Count\",\"Count/TotalCount\"},_xlfn._xlws.SORT(_xlfn.HSTACK(_xlpm.RelatedItems,_xlpm.freq,_xlpm.totalfreq,_xlpm.freq/_xlpm.totalfreq),4,-1)),_xlfn.VSTACK({\"\",\"Count\",\"Total Count\",\"Value\",\"TotalValue\",\"Count/TotalCount\",\"Value/TotalValue\"},_xlfn._xlws.SORT(_xlfn._xlws.SORT(_xlfn.HSTACK(_xlpm.RelatedItems,_xlpm.freq,_xlpm.totalfreq,_xlpm.value,_xlpm.totalvalue,_xlpm.freq/_xlpm.totalfreq,_xlpm.value/_xlpm.totalvalue),6,-1),7,-1))),_xlpm.result))",
+    "params": [
+      "_xlpm.AnalyzeData",
+      "_xlpm.RelatedData",
+      "_xlpm.DataItem",
+      "_xlop.Total"
+    ],
+    "formula_len": 1393
+  },
+  {
+    "name": "BI_GenerateRandom",
+    "comment": "Function to generate static random numbers between 0 and 1 using a Random Seed. This is one of the Data Analysis Toolpak features.",
+    "formula": "_xlfn.LAMBDA(_xlpm.Seed,_xlpm.Size,_xlfn.LET(_xlpm.size1, _xlpm.Size+1,_xlpm.g,48271, _xlpm.m, 2^31-1,_xlpm.random,_xlfn.SCAN(_xlpm.Seed/_xlpm.m,_xlfn.SEQUENCE(IF(_xlpm.size1=0,1,_xlpm.size1)),_xlfn.LAMBDA(_xlpm.a,_xlpm.b,MOD(_xlpm.a*_xlpm.m*_xlpm.g,_xlpm.m)/_xlpm.m)),_xlfn.DROP(_xlpm.random,1)))",
+    "params": [
+      "_xlpm.Seed",
+      "_xlpm.Size"
+    ],
+    "formula_len": 297
+  },
+  {
+    "name": "BI_GenerateRandomBetween",
+    "comment": "Function to generate static random numbers between two numbers using a Random Seed. This is one of the Data Analysis Toolpak features.",
+    "formula": "_xlfn.LAMBDA(_xlpm.Seed,_xlpm.Size,_xlpm.Bottom,_xlpm.Top,_xlop.Integer, _xlfn.LET(_xlpm.random, _xlpm.Bottom + (BI_GenerateRandom(_xlpm.Seed,_xlpm.Size)*(_xlpm.Top-_xlpm.Bottom)), _xlpm.int, IF(_xlfn.ISOMITTED(_xlpm.Integer),FALSE,_xlpm.Integer),IF(_xlpm.int, INT(_xlpm.random),_xlpm.random)))",
+    "params": [
+      "_xlpm.Seed",
+      "_xlpm.Size",
+      "_xlpm.Bottom",
+      "_xlpm.Top",
+      "_xlop.Integer"
+    ],
+    "formula_len": 294
+  },
+  {
+    "name": "BI_Histogram",
+    "comment": "Function to create Histogram analysis. This is one of the Data Analysis Toolpak features.",
+    "formula": "_xlfn.LAMBDA(_xlpm.Range,_xlop.BinStart,_xlop.BinIncrement,_xlfn.LET(_xlpm.Start,IF(_xlfn.ISOMITTED(_xlpm.BinStart),MIN(_xlpm.Range),_xlpm.BinStart), _xlpm.Increment, IF(_xlfn.ISOMITTED(_xlpm.BinIncrement),ROUNDUP((MAX(_xlpm.Range)-MIN(_xlpm.Range))/10,0),_xlpm.BinIncrement),_xlpm.BinRows,ROUNDUP((MAX(_xlpm.Range)-_xlpm.Start)/_xlpm.Increment,0),_xlpm.Bins,_xlfn.SEQUENCE(_xlpm.BinRows,,_xlpm.Start,_xlpm.Increment), _xlpm.bintext, _xlfn.MAP(_xlpm.Bins,_xlfn.LAMBDA(_xlpm.a,_xlpm.a&\"-\"&_xlpm.a+_xlpm.Increment)),_xlpm.BinCount, FREQUENCY(_xlpm.Range,_xlpm.Bins),_xlpm.result, _xlfn.HSTACK(_xlfn.VSTACK(MIN(0,MIN(_xlpm.Range)),_xlpm.bintext),_xlpm.BinCount),_xlfn._xlws.FILTER(_xlpm.result,_xlfn.CHOOSECOLS(_xlpm.result,2)<>0)))",
+    "params": [
+      "_xlpm.Range",
+      "_xlop.BinStart",
+      "_xlop.BinIncrement"
+    ],
+    "formula_len": 729
+  },
+  {
+    "name": "BI_IndianNum2Word",
+    "comment": "Returns the Indian spelling of a number. (Maximum 16 digits)",
+    "formula": "_xlfn.LAMBDA(_xlpm.Number,_xlfn.LET(_xlpm.z,{\"One\",\"Two\",\"Three\",\"Four\",\"Five\",\"Six\",\"Seven\",\"Eight\",\"Nine\"},_xlpm.y,{\"\",\"Twenty\",\"Thirty\",\"Forty\",\"Fifty\",\"Sixty\",\"Seventy\",\"Eighty\",\"Ninety\"},_xlpm.x,{\"Ten\",\"Eleven\",\"Twelve\",\"Thirteen\",\"Fourteen\",\"Fifteen\",\"Sixteen\",\"Seventeen\",\"Eighteen\",\"Nineteen\"},_xlpm.text1,TEXT(INT(_xlpm.Number),REPT(\"0\",16)),_xlpm.a,VALUE(MID(_xlpm.text1,1,1)),_xlpm.b,VALUE(MID(_xlpm.text1,2,1)),_xlpm.c,VALUE(MID(_xlpm.text1,3,1)),_xlpm.d,VALUE(MID(_xlpm.text1,4,1)),_xlpm.e,VALUE(MID(_xlpm.text1,5,1)),_xlpm.f,VALUE(MID(_xlpm.text1,6,1)),_xlpm.g,VALUE(MID(_xlpm.text1,7,1)),_xlpm.h,VALUE(MID(_xlpm.text1,8,1)),_xlpm.i,VALUE(MID(_xlpm.text1,9,1)),_xlpm.j,VALUE(MID(_xlpm.text1,10,1)),_xlpm.k,VALUE(MID(_xlpm.text1,11,1)),_xlpm.l,VALUE(MID(_xlpm.text1,12,1)),_xlpm.m,VALUE(MID(_xlpm.text1,13,1)),_xlpm.n,VALUE(MID(_xlpm.text1,14,1)),_xlpm.o,VALUE(MID(_xlpm.text1,15,1)),_xlpm.p,VALUE(MID(_xlpm.text1,16,1)),IF(LEN(TRIM(_xlpm.text1))>16,\"Overflow!\",TRIM(IF(_xlpm.a>0,IF(_xlpm.a=1,INDEX(_xlpm.x,_xlpm.b+1),IF(_xlpm.b=0,INDEX(_xlpm.y,_xlpm.a),INDEX(_xlpm.y,_xlpm.a)&\" \"&INDEX(_xlpm.z,_xlpm.b)))&\" Crores\",IF(_xlpm.b>0,IF(_xlpm.b=1,\"One Crore\",INDEX(_xlpm.z,_xlpm.b)&\" Crores\"),\"\"))&\" \"&IF(_xlpm.c>0,IF(_xlpm.c=1,INDEX(_xlpm.x,_xlpm.d+1),IF(_xlpm.d=0,INDEX(_xlpm.y,_xlpm.c),INDEX(_xlpm.y,_xlpm.c)&\" \"&INDEX(_xlpm.z,_xlpm.d)))&\" Lakhs\",IF(_xlpm.d>0,IF(_xlpm.d=1,\"One Lakh\",INDEX(_xlpm.z,_xlpm.d)&\" Lakhs\"),\"\"))& \" \" &IF(_xlpm.e>0,IF(_xlpm.e = 1, INDEX(_xlpm.x, _xlpm.f+1), IF( _xlpm.f=0, INDEX(_xlpm.y,_xlpm.e),INDEX(_xlpm.y,_xlpm.e)&\" \"&INDEX(_xlpm.z,_xlpm.f)))&\" Thousand\",IF(_xlpm.f>0, IF(_xlpm.f=1, \"One Thousand\",INDEX(_xlpm.z,_xlpm.f)&\" Thousand\"),\"\"))&\" \"& IF(_xlpm.g>0, INDEX(_xlpm.z,_xlpm.g)&\" Hundred\",\"\")&\" \"&IF(AND(OR(_xlpm.a,_xlpm.b, _xlpm.c, _xlpm.d, _xlpm.e, _xlpm.f, _xlpm.g), OR(_xlpm.h,_xlpm.i)),\" and \", IF(OR(_xlpm.a,_xlpm.b, _xlpm.c, _xlpm.d, _xlpm.e, _xlpm.f, _xlpm.g),\" Crores\",\"\"))&\" \"&IF(_xlpm.h>0,IF(_xlpm.h = 1, INDEX(_xlpm.x, _xlpm.i+1), IF( _xlpm.i=0, INDEX(_xlpm.y,_xlpm.h),INDEX(_xlpm.y,_xlpm.h)&\" \"&INDEX(_xlpm.z,_xlpm.i)))&\" Crores\",IF(_xlpm.i>0, IF(_xlpm.i=1, \"One Crore\",INDEX(_xlpm.z,_xlpm.i)&\" Crores\"),\"\"))&\" \"&IF(_xlpm.j>0,IF(_xlpm.j = 1, INDEX(_xlpm.x, _xlpm.k+1), IF( _xlpm.k=0, INDEX(_xlpm.y,_xlpm.j),INDEX(_xlpm.y,_xlpm.j)&\" \"&INDEX(_xlpm.z,_xlpm.k)))&\" Lakhs\",IF(_xlpm.k>0, IF(_xlpm.k=1, \"One Lakh\",INDEX(_xlpm.z,_xlpm.k)&\" Lakhs\"),\"\"))& \" \" &IF(_xlpm.l>0,IF(_xlpm.l = 1, INDEX(_xlpm.x, _xlpm.m+1), IF( _xlpm.m=0, INDEX(_xlpm.y,_xlpm.l),INDEX(_xlpm.y,_xlpm.l)&\" \"&INDEX(_xlpm.z,_xlpm.m)))&\" Thousand\",IF(_xlpm.m>0, IF(_xlpm.m=1, \"One Thousand\",INDEX(_xlpm.z,_xlpm.m)&\" Thousand\"),\"\"))&\" \"&IF(_xlpm.n>0, INDEX(_xlpm.z,_xlpm.n)&\" Hundred\",\"\")&\" \"&IF(AND(OR(_xlpm.a,_xlpm.b, _xlpm.c, _xlpm.d, _xlpm.e, _xlpm.f, _xlpm.g,_xlpm.h,_xlpm.i,_xlpm.j,_xlpm.k,_xlpm.l, _xlpm.m, _xlpm.n), OR(_xlpm.o,_xlpm.p)),\" and \", \"\")&\" \"&IF(_xlpm.o>0, IF(_xlpm.o=1, INDEX(_xlpm.x, _xlpm.p+1),IF(_xlpm.p=0, INDEX(_xlpm.y,_xlpm.o),INDEX(_xlpm.y,_xlpm.o)&\" \"&INDEX(_xlpm.z,_xlpm.p))),IF(_xlpm.p>0,INDEX(_xlpm.z,_xlpm.p),\"\"))))))",
+    "params": [
+      "_xlpm.Number"
+    ],
+    "formula_len": 3067
+  },
+  {
+    "name": "BI_Insert",
+    "comment": "Inserts a sub-string into Character field or string before a specified position.",
+    "formula": "_xlfn.LAMBDA(_xlpm.Text,_xlpm.Position,_xlpm.InsertText,MID(_xlpm.Text,1,_xlpm.Position-1)&_xlpm.InsertText&MID(_xlpm.Text,_xlpm.Position,LEN(_xlpm.Text)-_xlpm.Position+1))",
+    "params": [
+      "_xlpm.Text",
+      "_xlpm.Position",
+      "_xlpm.InsertText"
+    ],
+    "formula_len": 172
+  },
+  {
+    "name": "BI_IsCharAtoZ",
+    "comment": "Verifies whether the character is an alphabet from a to z.",
+    "formula": "_xlfn.LAMBDA(_xlpm.Character,_xlfn.LET(_xlpm.upper,UPPER(LEFT(_xlpm.Character)),IF(AND(CODE(_xlpm.upper)>=65, CODE(_xlpm.upper)<=90),TRUE,FALSE)))",
+    "params": [
+      "_xlpm.Character"
+    ],
+    "formula_len": 146
+  },
+  {
+    "name": "BI_IsLeap",
+    "comment": "Returns whether the year of a date is a leap year",
+    "formula": "_xlfn.LAMBDA(_xlop.Date,_xlfn.LET(_xlpm.date1,IF(_xlfn.ISOMITTED(_xlpm.Date),TODAY(),_xlpm.Date),MONTH(DATE(YEAR(_xlpm.date1),2,28)+1)=2))",
+    "params": [
+      "_xlop.Date"
+    ],
+    "formula_len": 138
+  },
+  {
+    "name": "BI_IsValidPAN",
+    "comment": "Function to validate Indian Income Tax PAN",
+    "formula": "_xlfn.LAMBDA(_xlpm.PAN,_xlfn.LET(_xlpm.sequence, _xlfn.SEQUENCE(10),_xlpm.characters,MID(_xlpm.PAN,_xlpm.sequence,1),_xlpm.isalpha,_xlfn.BYROW(_xlpm.characters,_xlfn.LAMBDA(_xlpm.x,BI_IsCharAtoZ(_xlpm.x))),_xlpm.valid,AND(LEN(_xlpm.PAN)=10,INDEX(_xlpm.isalpha,{1,2,3,4,10}),OR(MID(_xlpm.PAN,4,1)={\"P\",\"F\",\"C\",\"A\",\"T\",\"H\"}),ISNUMBER(VALUE(INDEX(_xlpm.characters,{6,7,8,9})))), IFERROR(_xlpm.valid,FALSE)))",
+    "params": [
+      "_xlpm.PAN"
+    ],
+    "formula_len": 404
+  },
+  {
+    "name": "BI_LuhnAlgorithm",
+    "comment": "Uses Luhn Algorithm to test the validity of Credit/Debit Card Numbers",
+    "formula": "_xlfn.LAMBDA(_xlpm.CCNo,_xlfn.LET(_xlpm.length,LEN(_xlpm.CCNo),_xlpm.even,ISEVEN(_xlpm.length),_xlpm.sequ1,IF(_xlpm.even,_xlfn.SEQUENCE(_xlpm.length/2,,1,2),_xlfn.SEQUENCE(_xlpm.length/2,,2,2)),_xlpm.numbers1,MID(_xlpm.CCNo,_xlpm.sequ1,1),_xlpm.double,_xlpm.numbers1*2,_xlpm.double1,IF(_xlpm.double>9,_xlpm.double-9,_xlpm.double),_xlpm.sequ2,IF(_xlpm.even,_xlfn.SEQUENCE(_xlpm.length/2-1,,2,2),_xlfn.SEQUENCE(_xlpm.length/2,,1,2)),_xlpm.numbers2,MID(_xlpm.CCNo,_xlpm.sequ2,1),_xlpm.summary1,SUM(_xlpm.double1),_xlpm.summary2,SUM(VALUE(_xlpm.numbers2)),_xlpm.summary3,_xlpm.summary1+_xlpm.summary2+VALUE(RIGHT(_xlpm.CCNo)),MOD(_xlpm.summary3,10)=0))",
+    "params": [
+      "_xlpm.CCNo"
+    ],
+    "formula_len": 648
+  },
+  {
+    "name": "BI_MonthlyCalendar",
+    "comment": "Returns the monthly Calendar",
+    "formula": "_xlfn.LAMBDA(_xlop.Month,_xlop.Year,_xlop.Format,_xlop.Vertical,_xlfn.LET(_xlpm.isvertical, IF(_xlfn.ISOMITTED(_xlpm.Vertical),FALSE,_xlpm.Vertical),_xlpm.month,IF(_xlfn.ISOMITTED(_xlpm.Month),MONTH(TODAY()),_xlpm.Month),_xlpm.year,IF(_xlfn.ISOMITTED(_xlpm.Year),YEAR(TODAY()),_xlpm.Year),_xlpm.format,IF(_xlfn.ISOMITTED(_xlpm.Format),\"DDD\",_xlpm.Format),_xlpm.dayshead,_xlfn.HSTACK(TEXT(_xlfn.SEQUENCE(1,7,DATE(1900,1,1),1),_xlpm.format)),_xlpm.start,WEEKDAY(DATE(_xlpm.year,_xlpm.month,1)),_xlpm.lines,IF(_xlpm.start>1,_xlfn.VSTACK(_xlfn.MAKEARRAY(_xlpm.start-1,1,_xlfn.LAMBDA(_xlpm.x,_xlpm.y,\"\")),_xlfn.SEQUENCE(DAY(EOMONTH(DATE(_xlpm.year,_xlpm.month,1),0)))),_xlfn.VSTACK(_xlfn.SEQUENCE(DAY(EOMONTH(DATE(_xlpm.year,_xlpm.month,1),0))))),_xlpm.count,ROWS(_xlpm.lines),_xlpm.filledlines,IF(MOD(_xlpm.count,7)=0,_xlpm.lines,_xlfn.VSTACK(_xlpm.lines,_xlfn.MAKEARRAY(7-MOD(_xlpm.count,7),1,_xlfn.LAMBDA(_xlpm.x,_xlpm.y,\"\")))),_xlpm.monthhead,_xlfn.HSTACK(TEXT(DATE(_xlpm.year,_xlpm.month,1),REPT(\"M\",LEN(_xlpm.format))),_xlpm.year),_xlpm.content,_xlfn.VSTACK(_xlpm.dayshead,INDEX(_xlpm.filledlines,_xlfn.SEQUENCE(ROWS(_xlpm.filledlines)/7,7))), _xlpm.result,IF(_xlpm.isvertical, _xlfn.VSTACK(_xlfn.EXPAND(_xlpm.monthhead,1,ROWS(_xlpm.content),\"\"),TRANSPOSE(_xlpm.content)), _xlfn.VSTACK(_xlfn.EXPAND(_xlpm.monthhead,1,COLUMNS(_xlpm.content),\"\"),_xlpm.content)),_xlpm.result))",
+    "params": [
+      "_xlop.Month",
+      "_xlop.Year",
+      "_xlop.Format",
+      "_xlop.Vertical"
+    ],
+    "formula_len": 1375
+  },
+  {
+    "name": "BI_MovingAverage",
+    "comment": "Returns the moving average calculation of data. This is one of the Data Analysis Toolpak features.",
+    "formula": "_xlfn.LAMBDA(_xlpm.Data,_xlop.Interval,_xlop.Labels,_xlop.StandardError,_xlfn.LET(_xlpm.int,IF(_xlfn.ISOMITTED(_xlpm.Interval),3,_xlpm.Interval),_xlpm.sterr, IF(_xlfn.ISOMITTED(_xlpm.StandardError),FALSE,_xlpm.StandardError),_xlpm.label, IF(_xlfn.ISOMITTED(_xlpm.Labels),FALSE,_xlpm.Labels),_xlpm.datarows,IF(_xlpm.label,_xlfn.DROP(_xlpm.Data,1),_xlpm.Data),_xlpm.rowcount, ROWS(_xlpm.datarows), _xlpm.moving, _xlfn.MAKEARRAY(_xlpm.rowcount,1,_xlfn.LAMBDA(_xlpm.x,_xlpm.y, IF(_xlpm.x<_xlpm.int,NA(),SUM(_xlfn.CHOOSEROWS(_xlpm.datarows,_xlfn.SEQUENCE(_xlpm.int,1,_xlpm.x-_xlpm.int+1,1)))/_xlpm.int))),_xlpm.error,_xlfn.MAKEARRAY(_xlpm.rowcount,1,_xlfn.LAMBDA(_xlpm.x,_xlpm.y,IF(_xlpm.x<=(_xlpm.int-1)*2,NA(),SQRT(SUMXMY2(_xlfn.CHOOSEROWS(_xlpm.datarows,_xlfn.SEQUENCE(_xlpm.int,1,_xlpm.x-_xlpm.int+1,1)),_xlfn.CHOOSEROWS(_xlpm.moving,_xlfn.SEQUENCE(_xlpm.int,1,_xlpm.x-_xlpm.int+1,1)))/_xlpm.int)))),_xlpm.result,IF(_xlpm.sterr,_xlfn.HSTACK(_xlpm.moving,_xlpm.error), _xlpm.moving), _xlpm.result))",
+    "params": [
+      "_xlpm.Data",
+      "_xlop.Interval",
+      "_xlop.Labels",
+      "_xlop.StandardError"
+    ],
+    "formula_len": 996
+  },
+  {
+    "name": "BI_MUS_Evaluate_OverStatement",
+    "comment": "Returns Monetary Unit Sampling evaluation of Over Statement from the Audited and Samples data.",
+    "formula": "_xlfn.LAMBDA(_xlpm.Data,_xlpm.Sample,_xlpm.Audited,_xlpm.Tolerable,_xlpm.Expected,_xlpm.Risk,_xlfn.LET(_xlpm.population,SUM(_xlpm.Data),_xlpm.samplesize,ROWS(_xlpm.Sample),_xlpm.diff,_xlpm.Sample-_xlpm.Audited,_xlpm.per,ABS(_xlpm.diff/_xlpm.Sample),_xlpm.over,_xlfn.VSTACK(1,_xlfn._xlws.SORT(_xlfn._xlws.FILTER(_xlpm.per,_xlpm.diff<0),,-1)),_xlpm.overrows,ROWS(_xlpm.over),_xlpm.overs,_xlfn.MAKEARRAY(_xlpm.overrows,1,_xlfn.LAMBDA(_xlpm.x,_xlpm.y,INDEX(_xlpm.over,_xlpm.x))),_xlpm.seq,_xlfn.SEQUENCE(ROWS(_xlpm.overs),,0),_xlpm.upperlimit,_xlfn.BYROW(_xlpm.seq,_xlfn.LAMBDA(_xlpm.x,IF(_xlpm.x=0,_xlfn.XLOOKUP(_xlpm.Risk,_xlfn.BINOM.DIST(0,_xlpm.samplesize,_xlfn.SEQUENCE(1000,,1,-0.001),1),_xlfn.SEQUENCE(1000,,1,-0.001),,-1),_xlfn.XLOOKUP(_xlpm.Risk,_xlfn.BINOM.DIST(_xlpm.x,_xlpm.samplesize,_xlfn.SEQUENCE(1000,,1,-0.001),1),_xlfn.SEQUENCE(1000,,1,-0.001),,-1)-_xlfn.XLOOKUP(_xlpm.Risk,_xlfn.BINOM.DIST(_xlpm.x-1,100,_xlfn.SEQUENCE(1000,,1,-0.001),1),_xlfn.SEQUENCE(1000,,1,-0.001),,-1)))),_xlpm.estoverstate,_xlpm.overs*_xlpm.upperlimit*_xlpm.population,_xlpm.totmis,SUM(_xlpm.estoverstate),_xlpm.tolerablelimit,_xlpm.population*_xlpm.Tolerable,_xlpm.result,IF(_xlpm.totmis<_xlpm.tolerablelimit,\"Accept\",\"Reject\"),_xlfn.VSTACK({\"#\",\"Percentage of Misstatement\",\"Upper  Limit\",\"Estimated Overstatement\"},_xlfn.HSTACK(_xlpm.seq,_xlpm.overs,_xlpm.upperlimit,_xlpm.estoverstate),_xlfn.HSTACK(\"Total\",\"\",\"\",_xlpm.totmis),_xlfn.HSTACK(\"Tolerable\",\"\",\"\",_xlpm.tolerablelimit),_xlfn.HSTACK(\"Result\",\"\",\"\",_xlpm.result))))",
+    "params": [
+      "_xlpm.Data",
+      "_xlpm.Sample",
+      "_xlpm.Audited",
+      "_xlpm.Tolerable",
+      "_xlpm.Expected",
+      "_xlpm.Risk"
+    ],
+    "formula_len": 1516
+  },
+  {
+    "name": "BI_MUS_Evaluate_UnderStatement",
+    "comment": "Returns Monetary Unit Sampling evaluation of Under Statement from the Audited and Samples data.",
+    "formula": "_xlfn.LAMBDA(_xlpm.Data,_xlpm.Sample,_xlpm.Audited,_xlpm.Tolerable,_xlpm.Expected,_xlpm.Risk,_xlfn.LET(_xlpm.population,SUM(_xlpm.Data),_xlpm.samplesize,ROWS(_xlpm.Sample),_xlpm.diff,_xlpm.Sample-_xlpm.Audited,_xlpm.per,ABS(_xlpm.diff/_xlpm.Sample),_xlpm.over,_xlfn.VSTACK(1,_xlfn._xlws.SORT(_xlfn._xlws.FILTER(_xlpm.per,_xlpm.diff>0),,-1)),_xlpm.overrows,ROWS(_xlpm.over),_xlpm.overs,_xlfn.MAKEARRAY(_xlpm.overrows,1,_xlfn.LAMBDA(_xlpm.x,_xlpm.y,INDEX(_xlpm.over,_xlpm.x))),_xlpm.seq,_xlfn.SEQUENCE(ROWS(_xlpm.overs),,0),_xlpm.upperlimit,_xlfn.BYROW(_xlpm.seq,_xlfn.LAMBDA(_xlpm.x,IF(_xlpm.x=0,_xlfn.XLOOKUP(_xlpm.Risk,_xlfn.BINOM.DIST(0,_xlpm.samplesize,_xlfn.SEQUENCE(1000,,1,-0.001),1),_xlfn.SEQUENCE(1000,,1,-0.001),,-1),_xlfn.XLOOKUP(_xlpm.Risk,_xlfn.BINOM.DIST(_xlpm.x,_xlpm.samplesize,_xlfn.SEQUENCE(1000,,1,-0.001),1),_xlfn.SEQUENCE(1000,,1,-0.001),,-1)-_xlfn.XLOOKUP(_xlpm.Risk,_xlfn.BINOM.DIST(_xlpm.x-1,100,_xlfn.SEQUENCE(1000,,1,-0.001),1),_xlfn.SEQUENCE(1000,,1,-0.001),,-1)))),_xlpm.estoverstate,_xlpm.overs*_xlpm.upperlimit*_xlpm.population,_xlpm.totmis,SUM(_xlpm.estoverstate),_xlpm.tolerablelimit,_xlpm.population*_xlpm.Tolerable,_xlpm.result,IF(_xlpm.totmis<_xlpm.tolerablelimit,\"Accept\",\"Reject\"),_xlfn.VSTACK({\"#\",\"Percentage of Misstatement\",\"Upper  Limit\",\"Estimated Understatement\"},_xlfn.HSTACK(_xlpm.seq,_xlpm.overs,_xlpm.upperlimit,_xlpm.estoverstate),_xlfn.HSTACK(\"Total\",\"\",\"\",_xlpm.totmis),_xlfn.HSTACK(\"Tolerable\",\"\",\"\",_xlpm.tolerablelimit),_xlfn.HSTACK(\"Result\",\"\",\"\",_xlpm.result))))",
+    "params": [
+      "_xlpm.Data",
+      "_xlpm.Sample",
+      "_xlpm.Audited",
+      "_xlpm.Tolerable",
+      "_xlpm.Expected",
+      "_xlpm.Risk"
+    ],
+    "formula_len": 1517
+  },
+  {
+    "name": "BI_MUS_ExtractSample",
+    "comment": "Returns Monetary Unit Sampling Samples from Data.",
+    "formula": "_xlfn.LAMBDA(_xlpm.Data,_xlpm.Tolerable,_xlpm.Expected,_xlpm.Risk,_xlop.OnlySamples,_xlfn.LET(_xlpm.issamplesonly, IF(_xlfn.ISOMITTED(_xlpm.OnlySamples),FALSE,_xlpm.OnlySamples), _xlpm.seq,_xlfn.SEQUENCE(ROWS(_xlpm.Data)),_xlpm.samplesize,BI_MUS_SampleSize(_xlpm.Tolerable,_xlpm.Expected,_xlpm.Risk,1),_xlpm.Sum, SUM(_xlpm.Data),_xlpm.MU, _xlpm.Sum/_xlpm.samplesize,_xlpm.ct,_xlfn.SCAN(0,_xlpm.Data,_xlfn.LAMBDA(_xlpm.x,_xlpm.y,_xlpm.x+_xlpm.y)),_xlpm.floor,_xlfn.FLOOR.MATH(_xlpm.ct,_xlpm.MU),_xlpm.select,_xlfn.BYROW(_xlpm.seq,_xlfn.LAMBDA(_xlpm.x,IF(_xlpm.x=1,FALSE,INDEX(_xlpm.floor,_xlpm.x)<>INDEX(_xlpm.floor,_xlpm.x-1)))),_xlpm.MUList,IF(_xlpm.issamplesonly, _xlfn.HSTACK(_xlpm.seq,_xlpm.Data), _xlfn.HSTACK(_xlpm.seq,_xlpm.Data,_xlpm.ct,_xlpm.floor)),_xlpm.resulttable,_xlfn.VSTACK({\"RowID\",\"Sample\",\"RunningTotal\",\"MU Hit\"},_xlfn._xlws.FILTER(_xlpm.MUList,_xlpm.select)), _xlpm.header,_xlfn.VSTACK(_xlfn.HSTACK(\"Population Size\",ROWS(_xlpm.Data),\"\",\"\"),_xlfn.HSTACK(\"Sample Size\",_xlpm.samplesize,\"\",\"\"),_xlfn.HSTACK(\"Monetary Unit\",_xlpm.MU,\"\",\"\")),IF(_xlpm.issamplesonly, _xlfn.VSTACK(_xlfn.HSTACK(\"Population Size\",ROWS(_xlpm.Data)),_xlfn.HSTACK(\"Sample Size\",_xlpm.samplesize),_xlfn.HSTACK(\"Monetary Unit\",_xlpm.MU),{\"RowID\",\"Sample\"},_xlfn._xlws.FILTER(_xlpm.MUList,_xlpm.select)), _xlfn.VSTACK(_xlpm.header,_xlpm.resulttable))))",
+    "params": [
+      "_xlpm.Data",
+      "_xlpm.Tolerable",
+      "_xlpm.Expected",
+      "_xlpm.Risk",
+      "_xlop.OnlySamples"
+    ],
+    "formula_len": 1343
+  },
+  {
+    "name": "BI_MUS_SampleSize",
+    "comment": "Returns Monetary Unit Sample size.",
+    "formula": "_xlfn.LAMBDA(_xlpm.Tolerable,_xlpm.Expected,_xlpm.Risk,_xlop.Start,_xlfn.LET(_xlpm.Iterator,IF(_xlfn.ISOMITTED(_xlpm.Start),1,_xlpm.Start),IF(_xlfn.BINOM.DIST(ROUNDUP(_xlpm.Expected*_xlpm.Iterator,0),_xlpm.Iterator,_xlpm.Tolerable,TRUE)>_xlpm.Risk,BI_MUS_SampleSize(_xlpm.Tolerable,_xlpm.Expected,_xlpm.Risk,_xlpm.Iterator+1),_xlpm.Iterator)))",
+    "params": [
+      "_xlpm.Tolerable",
+      "_xlpm.Expected",
+      "_xlpm.Risk",
+      "_xlop.Start"
+    ],
+    "formula_len": 343
+  },
+  {
+    "name": "BI_NetworkDays.Indian",
+    "comment": "Returns the number of whole work days between two dates considering Indian banking holidays (second and fourth Saturdays as holidays).",
+    "formula": "_xlfn.LAMBDA(_xlpm.startdate,_xlpm.enddate,_xlpm.holidays,_xlfn.LET(_xlpm.dates,_xlfn.SEQUENCE(_xlpm.enddate-_xlpm.startdate+1,,_xlpm.startdate),SUM(IF(COUNTIF(_xlpm.holidays,_xlpm.dates)>0,0,IF(WEEKDAY(_xlpm.dates)=1,0,IF(NOT(WEEKDAY(_xlpm.dates)=7),1,IF((((DAY(_xlpm.dates)>7)*(DAY(_xlpm.dates)<=14))+((DAY(_xlpm.dates)>21)*(DAY(_xlpm.dates)<=28))),0,1)))))))",
+    "params": [
+      "_xlpm.startdate",
+      "_xlpm.enddate",
+      "_xlpm.holidays"
+    ],
+    "formula_len": 361
+  },
+  {
+    "name": "BI_Num2Word",
+    "comment": "Returns the English spelling of a Number",
+    "formula": "_xlfn.LAMBDA(_xlpm.Number, _xlfn.LET(_xlpm.z,{\"One\",\"Two\",\"Three\",\"Four\",\"Five\",\"Six\",\"Seven\",\"Eight\",\"Nine\"},_xlpm.y,{\"\",\"Twenty\",\"Thirty\",\"Forty\",\"Fifty\",\"Sixty\",\"Seventy\",\"Eighty\",\"Ninety\"},_xlpm.x,{\"Ten\",\"Eleven\",\"Twelve\",\"Thirteen\",\"Fourteen\",\"Fifteen\",\"Sixteen\",\"Seventeen\",\"Eighteen\",\"Nineteen\"},_xlpm.text1,TEXT(INT(_xlpm.Number),REPT(\"0\",13)),_xlpm.a,VALUE(MID(_xlpm.text1,1,1)),_xlpm.b,VALUE(MID(_xlpm.text1,2,1)),_xlpm.c,VALUE(MID(_xlpm.text1,3,1)),_xlpm.d,VALUE(MID(_xlpm.text1,4,1)),_xlpm.e,VALUE(MID(_xlpm.text1,5,1)),_xlpm.f,VALUE(MID(_xlpm.text1,6,1)),_xlpm.g,VALUE(MID(_xlpm.text1,7,1)),_xlpm.h,VALUE(MID(_xlpm.text1,8,1)),_xlpm.i,VALUE(MID(_xlpm.text1,9,1)),_xlpm.j,VALUE(MID(_xlpm.text1,10,1)),_xlpm.k,VALUE(MID(_xlpm.text1,11,1)),_xlpm.l,VALUE(MID(_xlpm.text1,12,1)),_xlpm.m,VALUE(MID(_xlpm.text1,13,1)),IF(LEN(TRIM(_xlpm.text1))>13,\"Overflow!\",TRIM(IF(_xlpm.a>0,IF(_xlpm.a=1,\"One Trillion \", INDEX(_xlpm.z,_xlpm.a) & \" Trillion\" ),\"\" ) & \" \" & IF(_xlpm.b>0, INDEX(_xlpm.z,_xlpm.b)&\" Hundred\",\"\")&\" \"&IF(AND(OR(_xlpm.a,_xlpm.b),OR(_xlpm.c,_xlpm.d)),\" and \", \"\")&\" \"&IF(_xlpm.c>0,IF(_xlpm.c=1,INDEX(_xlpm.x,_xlpm.d+1),IF(_xlpm.d=0,INDEX(_xlpm.y,_xlpm.c),INDEX(_xlpm.y,_xlpm.c)&\" \"&INDEX(_xlpm.z,_xlpm.d))),IF(_xlpm.d>0,INDEX(_xlpm.z,_xlpm.d),\"\")) & IF(OR(_xlpm.b,_xlpm.c,_xlpm.d), \" Billion\", \"\")& \" \" & IF(_xlpm.e>0, INDEX(_xlpm.z,_xlpm.e)&\" Hundred\",\"\")&\" \"&IF(AND(OR(_xlpm.a,_xlpm.b,_xlpm.c,_xlpm.d,_xlpm.e),OR(_xlpm.f,_xlpm.g)),\" and \", \"\")&\" \"&IF(_xlpm.f>0,IF(_xlpm.f=1,INDEX(_xlpm.x,_xlpm.g+1),IF(_xlpm.g=0,INDEX(_xlpm.y,_xlpm.f),INDEX(_xlpm.y,_xlpm.f)&\" \"&INDEX(_xlpm.z,_xlpm.g))),IF(_xlpm.g>0,INDEX(_xlpm.z,_xlpm.g),\"\")) &\" \"& IF(OR(_xlpm.e,_xlpm.f,_xlpm.g), \" Million\", \"\")& \" \" & IF(_xlpm.h>0, INDEX(_xlpm.z,_xlpm.h)&\" Hundred\",\"\")&\" \"&IF(AND(OR(_xlpm.a,_xlpm.b,_xlpm.c,_xlpm.d,_xlpm.e,_xlpm.f,_xlpm.g,_xlpm.h),OR(_xlpm.i,_xlpm.j)),\" and \", \"\")&\" \"&IF(_xlpm.i>0,IF(_xlpm.i=1,INDEX(_xlpm.x,_xlpm.j+1),IF(_xlpm.j=0,INDEX(_xlpm.y,_xlpm.i),INDEX(_xlpm.y,_xlpm.i)&\" \"&INDEX(_xlpm.z,_xlpm.j))),IF(_xlpm.j>0,INDEX(_xlpm.z,_xlpm.j),\"\")) & IF(OR(_xlpm.h,_xlpm.i,_xlpm.j), \" Thousand\", \"\")& \" \" & IF(_xlpm.k>0, INDEX(_xlpm.z,_xlpm.k)&\" Hundred\",\"\")&\" \"&IF(AND(OR(_xlpm.a,_xlpm.b,_xlpm.c,_xlpm.d,_xlpm.e,_xlpm.f,_xlpm.g,_xlpm.h,_xlpm.i,_xlpm.j,_xlpm.k),OR(_xlpm.l,_xlpm.m)),\" and \", \"\")&\" \"&IF(_xlpm.l>0,IF(_xlpm.l=1,INDEX(_xlpm.x,_xlpm.m+1),IF(_xlpm.m=0,INDEX(_xlpm.y,_xlpm.l),INDEX(_xlpm.y,_xlpm.l)&\" \"&INDEX(_xlpm.z,_xlpm.m))),IF(_xlpm.m>0,INDEX(_xlpm.z,_xlpm.m),\"\"))))))",
+    "params": [
+      "_xlpm.Number"
+    ],
+    "formula_len": 2492
+  },
+  {
+    "name": "BI_OhlsonsOScore",
+    "comment": "Calculate Ohlsons O Score",
+    "formula": "_xlfn.LAMBDA(_xlpm.Data,_xlfn.LET(_xlpm.ta, INDEX(_xlpm.Data,1), _xlpm.GNP, INDEX(_xlpm.Data,2), _xlpm.TL, INDEX(_xlpm.Data,3), _xlpm.WC, INDEX(_xlpm.Data,4), _xlpm.CL, INDEX(_xlpm.Data, 5), _xlpm.CA, INDEX(_xlpm.Data, 6), _xlpm.LYNI, INDEX(_xlpm.Data, 7), _xlpm.CYNI, INDEX(_xlpm.Data,8), _xlpm.FFO, INDEX(_xlpm.Data, 9), _xlpm.Oscore, -1.32 -0.407*LOG(_xlpm.ta/_xlpm.GNP)+6.03*(_xlpm.WC/_xlpm.ta)+0.0757*(_xlpm.CL/_xlpm.CA)-1.72*(IF(_xlpm.TL>_xlpm.ta,1,0))-2.37*(_xlpm.CYNI/_xlpm.ta)-1.83*(_xlpm.FFO/_xlpm.TL)+0.285*(IF(AND(_xlpm.LYNI<0, _xlpm.CYNI<0),1,0))-0.521*((_xlpm.CYNI-_xlpm.LYNI)/(ABS(_xlpm.LYNI)+ABS(_xlpm.CYNI))),_xlfn.VSTACK(_xlfn.HSTACK(\"Ohlsons O Score\",_xlpm.Oscore), _xlfn.HSTACK(\"Verdict\",IF(_xlpm.Oscore > 0.5, \"The firm will default within two years.\", \"The firm is not likely to default within two years.\")))))",
+    "params": [
+      "_xlpm.Data"
+    ],
+    "formula_len": 832
+  },
+  {
+    "name": "BI_OhlsonsOScoreVariables",
+    "comment": "Calculates Ohlsons O Score. It is used for predicting bankruptcy is a multi-factor financial formula postulated in 1980 by Dr. James Ohlson of the New York University",
+    "formula": "_xlfn.LAMBDA({\"Total Assets\";\"Gross National Product Price Level Index\";\"Total Liabilities\";\"Working Capital\";\"Current Liabilities\";\"Current Assets\";\"LastYear Net Income\";\"Current Year Net Income\";\"Funds From Operations\"})",
+    "params": [],
+    "formula_len": 222
+  },
+  {
+    "name": "BI_PaybackPeriod",
+    "comment": "Returns the payback period from series of cash flows",
+    "formula": "_xlfn.LAMBDA(_xlpm.CashFlows,_xlfn.LET(_xlpm.seq,_xlfn.SEQUENCE(ROWS(_xlpm.CashFlows),1,0),_xlpm.cumulative,_xlfn.SCAN(0,_xlpm.CashFlows,_xlfn.LAMBDA(_xlpm.x,_xlpm.y,_xlpm.x+_xlpm.y)),_xlpm.positive,_xlpm.cumulative>0,_xlpm.found,_xlfn.XMATCH(TRUE,_xlpm.positive),_xlpm.fullperiod, IFERROR(_xlpm.found-2,0),_xlpm.balance,INDEX(_xlpm.cumulative,_xlpm.found-1),_xlpm.balperiod, ABS(_xlpm.balance)/INDEX(_xlpm.CashFlows,_xlpm.found), _xlpm.payback,_xlpm.fullperiod + _xlpm.balperiod,_xlpm.payback))",
+    "params": [
+      "_xlpm.CashFlows"
+    ],
+    "formula_len": 495
+  },
+  {
+    "name": "BI_PiotroskiFScore",
+    "comment": "Calculates Piotroski F-score. Use BI_PiotroskiFScoreVariables() to list the variables and enter two years data",
+    "formula": "_xlfn.LAMBDA(_xlpm.LastYearData,_xlpm.CurrentYearData,_xlfn.LET(_xlpm.LYNI,INDEX(_xlpm.LastYearData,1),_xlpm.CYNI,INDEX(_xlpm.CurrentYearData,1), _xlpm.LYOPTA,INDEX(_xlpm.LastYearData,2), _xlpm.CYOPTA, INDEX(_xlpm.CurrentYearData,2), _xlpm.LYCLTA, INDEX(_xlpm.LastYearData,3), _xlpm.CYCLTA, INDEX(_xlpm.CurrentYearData,3), _xlpm.LYCF, INDEX(_xlpm.LastYearData,4), _xlpm.CYCF, INDEX(_xlpm.CurrentYearData,4), _xlpm.LYLTD, INDEX(_xlpm.LastYearData,5), _xlpm.CYLTD, INDEX(_xlpm.CurrentYearData,5), _xlpm.LYCA, INDEX(_xlpm.LastYearData, 6), _xlpm.CYCA, INDEX(_xlpm.CurrentYearData,6), _xlpm.LYCL, INDEX(_xlpm.LastYearData, 7), _xlpm.CYCL, INDEX(_xlpm.CurrentYearData, 7), _xlpm.LYEQ, INDEX(_xlpm.LastYearData, 8), _xlpm.CYEQ, INDEX(_xlpm.CurrentYearData, 8), _xlpm.LYNS, INDEX(_xlpm.LastYearData, 9), _xlpm.CYNS, INDEX(_xlpm.CurrentYearData, 9), _xlpm.LYGPR, INDEX(_xlpm.LastYearData, 10), _xlpm.CYGPR, INDEX(_xlpm.CurrentYearData, 10), _xlpm.RoA, IF(_xlpm.CYNI > 0, 1, 0), _xlpm.CFO, IF(_xlpm.CYCF>_xlpm.LYCF, 1, 0), _xlpm.ROAChange, IF((_xlpm.CYNI/_xlpm.CYCLTA)>(_xlpm.LYNI/_xlpm.LYCLTA),1,0),_xlpm.CashFlowROA, IF(_xlpm.CYCF>_xlpm.CYNI,1,0),_xlpm.leverage,IF((_xlpm.CYLTD/((_xlpm.CYOPTA + _xlpm.CYCLTA)/2))<(_xlpm.LYLTD/((_xlpm.LYOPTA+_xlpm.LYCLTA)/2)),1,0),_xlpm.CR, IF(_xlpm.CYCA/_xlpm.CYCL > _xlpm.LYCA/_xlpm.LYCL, 1, 0), _xlpm.eq, IF(_xlpm.CYEQ>_xlpm.LYEQ, 0, 1), _xlpm.GPR, IF(_xlpm.CYGPR > _xlpm.LYGPR, 1, 0 ), _xlpm.AssetTO, IF((_xlpm.CYNS/_xlpm.CYOPTA)>(_xlpm.LYNS/_xlpm.LYOPTA),1, 0), _xlpm.FScore, _xlpm.RoA + _xlpm.CFO + _xlpm.ROAChange + _xlpm.CashFlowROA + _xlpm.leverage + _xlpm.CR + _xlpm.eq + _xlpm.GPR + _xlpm.AssetTO,_xlpm.result,_xlfn.VSTACK(_xlfn.HSTACK(\"Positive Net Income\", _xlpm.RoA), _xlfn.HSTACK(\"Positive Cash Flow\", _xlpm.CFO), _xlfn.HSTACK( \"Change in Return on Assets\", _xlpm.ROAChange), _xlfn.HSTACK(\"Cash Flow over Net Income\", _xlpm.CashFlowROA), _xlfn.HSTACK(\"Leverage - Long term debt over Average Assets\", _xlpm.leverage ), _xlfn.HSTACK(\"Liquidity - Current Ratio\", _xlpm.CR), _xlfn.HSTACK(\"Total Equity\", _xlpm.eq), _xlfn.HSTACK(\"GP Ratio\", _xlpm.GPR), _xlfn.HSTACK( \"Asset Turnover\", _xlpm.AssetTO), _xlfn.HSTACK(\"Total Score\", _xlpm.FScore), _xlfn.HSTACK(\"Verdict\", _xlpm.FScore &\" Out of 9 - \" & IF(_xlpm.FScore>=8,\"Strong!\",IF(_xlpm.FScore<=2,\"Weak\", \"Average\"))) ),_xlpm.result))",
+    "params": [
+      "_xlpm.LastYearData",
+      "_xlpm.CurrentYearData"
+    ],
+    "formula_len": 2320
+  },
+  {
+    "name": "BI_PiotroskiFScoreVariables",
+    "comment": "Lists out Piotroski F Score variables to make it easy to enter two years data for calculating Piotroski F Score.",
+    "formula": "_xlfn.LAMBDA({\"Net Income\";\"Opening Total Assets\";\"Closing Total Assets\";\"Cashflow from Operations\";\"Long Term Debt\";\"Current Assets\";\"Current Liabilities\";\"Common Equity\";\"Net Sales\";\"GP Ratio\"})",
+    "params": [],
+    "formula_len": 196
+  },
+  {
+    "name": "BI_Pivot",
+    "comment": "Creates a Pivot Table from Data.",
+    "formula": "_xlfn.LAMBDA(_xlpm.Data,_xlpm.Value,_xlpm.Row,_xlpm.Col,_xlop.Function,_xlfn.LET(_xlpm.function1, IF(_xlfn.ISOMITTED(_xlpm.Function),9,_xlpm.Function), _xlpm.rows,_xlfn._xlws.SORT(_xlfn.UNIQUE(_xlfn.CHOOSECOLS(_xlpm.Data,_xlpm.Row))),_xlpm.cols, TRANSPOSE(_xlfn._xlws.SORT(_xlfn.UNIQUE(_xlfn.CHOOSECOLS(_xlpm.Data,_xlpm.Col)))),_xlpm.nrows,ROWS(_xlpm.rows),_xlpm.ncols,COLUMNS(_xlpm.cols),_xlpm.resulttable,_xlfn.VSTACK(_xlfn.HSTACK({\"\"},_xlpm.cols),_xlfn.HSTACK(_xlpm.rows,_xlfn.MAKEARRAY(_xlpm.nrows,_xlpm.ncols,_xlfn.LAMBDA(_xlpm.a,_xlpm.b, _xlfn.LET(_xlpm.cells,IFERROR(_xlfn._xlws.FILTER(_xlfn.CHOOSECOLS(_xlpm.Data,_xlpm.Value),((_xlfn.CHOOSECOLS(_xlpm.Data,_xlpm.Row)=INDEX(_xlpm.rows,_xlpm.a))*(_xlfn.CHOOSECOLS(_xlpm.Data,_xlpm.Col)=INDEX(_xlpm.cols,_xlpm.b)))),0),_xlfn.SWITCH(_xlpm.function1,1, AVERAGE(_xlpm.cells),2,COUNT(_xlpm.cells),3, COUNTA(_xlpm.cells),4, MAX(_xlpm.cells),5, MIN(_xlpm.cells), 6, PRODUCT(_xlpm.cells), 7, _xlfn.STDEV.S(_xlpm.cells),8,_xlfn.STDEV.P(_xlpm.cells), 9, SUM(_xlpm.cells),10, _xlfn.VAR.S(_xlpm.cells),11,_xlfn.VAR.P(_xlpm.cells),SUM(_xlpm.cells))))))),_xlpm.resulttable))",
+    "params": [
+      "_xlpm.Data",
+      "_xlpm.Value",
+      "_xlpm.Row",
+      "_xlpm.Col",
+      "_xlop.Function"
+    ],
+    "formula_len": 1116
+  },
+  {
+    "name": "BI_Quarter",
+    "comment": "Returns the Quarter number for a date.",
+    "formula": "_xlfn.LAMBDA(_xlop.Date,_xlop.YearEndMonth,_xlfn.LET(_xlpm.date1, IF(_xlfn.ISOMITTED(_xlpm.Date),TODAY(),_xlpm.Date),_xlpm.yem, IF(_xlfn.ISOMITTED(_xlpm.YearEndMonth),3,_xlpm.YearEndMonth),_xlpm.curmonth, MONTH(_xlpm.date1),_xlpm.monthserial,MOD(_xlpm.curmonth + 12 - _xlpm.yem,12), IF(_xlpm.monthserial=0,4,IF(_xlpm.monthserial<=3,1,IF(_xlpm.monthserial<=6,2,IF(_xlpm.monthserial<=9,3,4))))))",
+    "params": [
+      "_xlop.Date",
+      "_xlop.YearEndMonth"
+    ],
+    "formula_len": 393
+  },
+  {
+    "name": "BI_QuarterEnd",
+    "comment": "Returns the Quarter ending date.",
+    "formula": "_xlfn.LAMBDA(_xlop.Date,_xlop.YearEndMonth,_xlfn.LET(_xlpm.date1, IF(_xlfn.ISOMITTED(_xlpm.Date),TODAY(),_xlpm.Date),_xlpm.yem, IF(_xlfn.ISOMITTED(_xlpm.YearEndMonth),3,_xlpm.YearEndMonth),_xlpm.curmonth, MONTH(_xlpm.date1),_xlpm.monthserial,MOD(_xlpm.curmonth + 12 - _xlpm.yem,3), EOMONTH(_xlpm.date1,_xlfn.SWITCH(_xlpm.monthserial,0,0,1,2,2,1))))",
+    "params": [
+      "_xlop.Date",
+      "_xlop.YearEndMonth"
+    ],
+    "formula_len": 348
+  },
+  {
+    "name": "BI_QuarterStart",
+    "comment": "Returns the Quarter Starting date.",
+    "formula": "_xlfn.LAMBDA(_xlop.Date,_xlop.YearEndMonth,_xlfn.LET(_xlpm.date1,IF(_xlfn.ISOMITTED(_xlpm.Date),TODAY(),_xlpm.Date),_xlpm.yem, IF(_xlfn.ISOMITTED(_xlpm.YearEndMonth),3,_xlpm.YearEndMonth),_xlpm.curmonth, MONTH(_xlpm.date1),_xlpm.monthserial,MOD(_xlpm.curmonth + 12 - _xlpm.yem,3), EOMONTH(_xlpm.date1,_xlfn.SWITCH(_xlpm.monthserial,0,-3,1,-1,2,-2))+1))",
+    "params": [
+      "_xlop.Date",
+      "_xlop.YearEndMonth"
+    ],
+    "formula_len": 352
+  },
+  {
+    "name": "BI_Rank.Dense",
+    "comment": "Returns the Rank without any missing rank when there is a tie. ",
+    "formula": "_xlfn.LAMBDA(_xlpm.Number,_xlpm.Ref,_xlop.Order,_xlfn.LET(_xlpm.order1, IF(_xlfn.ISOMITTED(_xlpm.Order),-1,IF(_xlpm.Order=0,-1,1)),_xlpm.sorted,_xlfn._xlws.SORT(_xlfn.UNIQUE(_xlpm.Ref),,_xlpm.order1),_xlfn.XMATCH(_xlpm.Number,_xlpm.sorted)))",
+    "params": [
+      "_xlpm.Number",
+      "_xlpm.Ref",
+      "_xlop.Order"
+    ],
+    "formula_len": 241
+  },
+  {
+    "name": "BI_Regression",
+    "comment": "Calculates the Linear Regression. This is one of the Data Analysis Toolpak features.",
+    "formula": "_xlfn.LAMBDA(_xlpm.KnownYs,_xlpm.KnownXs,_xlop.Labels,_xlop.Confidence, _xlfn.LET(_xlpm.conf, IF(_xlfn.ISOMITTED(_xlpm.Confidence),0.95,_xlpm.Confidence),_xlpm.label, IF(_xlfn.ISOMITTED(_xlpm.Labels), FALSE, _xlpm.Labels), _xlpm.cl,IF(_xlpm.label,TRANSPOSE(_xlfn.TAKE(_xlpm.KnownXs,1)),TRANSPOSE(_xlfn.BYCOL(_xlfn.SEQUENCE(1,COLUMNS(_xlpm.KnownXs)),_xlfn.LAMBDA(_xlpm.x,\"X\"&_xlpm.x)))),_xlpm.DX, IF(_xlpm.label,_xlfn.DROP(_xlpm.KnownXs,1),_xlpm.KnownXs), _xlpm.DY, IF(_xlpm.label, _xlfn.DROP(_xlpm.KnownYs,1),_xlpm.KnownYs),_xlpm.linest, LINEST(_xlpm.DY,_xlpm.DX,TRUE,TRUE),_xlpm.multir,SQRT(INDEX(_xlpm.linest,3,1)),_xlpm.rsq,INDEX(_xlpm.linest,3,1), _xlpm.cx,COLUMNS(_xlpm.DX), _xlpm.count, COUNT(_xlpm.DY),_xlpm.arsq,1-(1-_xlpm.rsq)*(_xlpm.count-1)/(_xlpm.count-_xlpm.cx-1), _xlpm.sterr, INDEX(_xlpm.linest,3,2), _xlpm.regdf, _xlpm.cx, _xlpm.resdf, INDEX(_xlpm.linest,4,2),_xlpm.totaldf, _xlpm.regdf+_xlpm.resdf, _xlpm.regss,INDEX(_xlpm.linest,5,1),_xlpm.resss,INDEX(_xlpm.linest,5,2),_xlpm.totss,_xlpm.regss+_xlpm.resss,_xlpm.regms,_xlpm.regss/_xlpm.regdf,_xlpm.resms,_xlpm.resss/_xlpm.resdf,_xlpm.regf,INDEX(_xlpm.linest,4,1),_xlpm.sigf,_xlfn.F.DIST.RT(_xlpm.regf,_xlpm.regdf,_xlpm.resdf),_xlpm.coeff,TRANSPOSE(INDEX(_xlfn.CHOOSEROWS(_xlpm.linest,1),1,_xlfn.SEQUENCE(1,_xlpm.cx+1,_xlpm.cx+1,-1))),_xlpm.serr, TRANSPOSE(INDEX(_xlfn.CHOOSEROWS(_xlpm.linest,2),1,_xlfn.SEQUENCE(1,_xlpm.cx+1,_xlpm.cx+1,-1))),_xlpm.tst,_xlpm.coeff/_xlpm.serr,_xlpm.p,_xlfn.T.DIST.2T(_xlpm.tst,_xlpm.resdf),_xlpm.l95l,_xlpm.coeff-_xlpm.serr* _xlfn.T.INV.2T(1 - _xlpm.conf, _xlpm.resdf),_xlpm.u95u,_xlpm.coeff+_xlpm.serr* _xlfn.T.INV.2T(1-_xlpm.conf, _xlpm.resdf),_xlpm.el, _xlfn.BYCOL(_xlfn.SEQUENCE(1,9),_xlfn.LAMBDA(_xlpm.x,\"\")),_xlpm.e7l, _xlfn.BYCOL(_xlfn.SEQUENCE(1,7),_xlfn.LAMBDA(_xlpm.x,\"\")),_xlpm.obs,_xlfn.SEQUENCE(_xlpm.count),_xlpm.pr,_xlfn.BYROW(_xlfn.HSTACK(_xlfn.SEQUENCE(_xlpm.count,1,1,0),_xlpm.DX),_xlfn.LAMBDA(_xlpm.x,SUMPRODUCT(_xlpm.x,TRANSPOSE(_xlpm.coeff)))),_xlpm.res,_xlpm.DY-_xlpm.pr, _xlpm.result, _xlfn.VSTACK(_xlfn.HSTACK(\"Summary Output\",\"\",_xlpm.e7l), _xlpm.el,_xlfn.HSTACK(\"Regression Statistics\",\"\",_xlpm.e7l),_xlfn.HSTACK(\"Multiple R\",_xlpm.multir,_xlpm.e7l), _xlfn.HSTACK(\"R Square\",_xlpm.rsq,_xlpm.e7l), _xlfn.HSTACK(\"Adjusted R Square\",_xlpm.arsq,_xlpm.e7l), _xlfn.HSTACK(\"Standard Error\",_xlpm.sterr,_xlpm.e7l),_xlfn.HSTACK(\"Observations\",_xlpm.count,_xlpm.e7l),_xlpm.el,_xlfn.HSTACK(\"ANOVA\",\"\",_xlpm.e7l),_xlfn.HSTACK(\"\",\"df\",\"SS\",\"MS\",\"F\",\"Significance F\",\"\",\"\",\"\"), _xlfn.HSTACK(\"Regression\",_xlpm.regdf,_xlpm.regss,_xlpm.regms,_xlpm.regf,_xlpm.sigf,\"\",\"\",\"\"),_xlfn.HSTACK(\"Residual\",_xlpm.resdf,_xlpm.resss,_xlpm.resms,\"\",\"\",\"\",\"\",\"\"),_xlfn.HSTACK(\"Total\",_xlpm.totaldf,_xlpm.totss,\"\",\"\",\"\",\"\",\"\",\"\"),_xlpm.el,_xlfn.HSTACK(\"\",\"Coefficients\",\"Standard Error\",\"t Stat\",\"P-Value\",\"Lower \"&_xlpm.conf,\"Upper \"&_xlpm.conf,\"Lower \"&_xlpm.conf,\"Upper \"&_xlpm.conf),_xlfn.HSTACK(_xlfn.VSTACK(\"Intercept\",_xlpm.cl),_xlpm.coeff,_xlpm.serr,_xlpm.tst,_xlpm.p,_xlpm.l95l,_xlpm.u95u,_xlpm.l95l,_xlpm.u95u),_xlpm.el,_xlfn.HSTACK(\"Observation\",\"Predicted Y\",\"Residuals\",_xlfn.DROP(_xlpm.e7l,,1)),_xlfn.HSTACK(_xlpm.obs,_xlpm.pr,_xlpm.res,_xlfn.MAKEARRAY(_xlpm.count,6,_xlfn.LAMBDA(_xlpm.x,_xlpm.y,\"\")))),_xlpm.result))",
+    "params": [
+      "_xlpm.KnownYs",
+      "_xlpm.KnownXs",
+      "_xlop.Labels",
+      "_xlop.Confidence"
+    ],
+    "formula_len": 3227
+  },
+  {
+    "name": "BI_RelativeSizeFactor",
+    "comment": "Returns the Relative Size Factor of given data on any attribute.",
+    "formula": "_xlfn.LAMBDA(_xlpm.categories,_xlpm.rowvalue,_xlpm.first,_xlpm.second,_xlfn.LET(_xlpm.categorylist,_xlfn.UNIQUE(_xlpm.categories),_xlpm.largest1,_xlfn.BYROW(_xlpm.categorylist,_xlfn.LAMBDA(_xlpm.x,LARGE(IF(_xlpm.categories=_xlpm.x,_xlpm.rowvalue,0),_xlpm.first))),_xlpm.largest2,_xlfn.BYROW(_xlpm.categorylist,_xlfn.LAMBDA(_xlpm.x,LARGE(IF(_xlpm.categories=_xlpm.x,_xlpm.rowvalue,0),_xlpm.second))),_xlpm.rsf,IFERROR(_xlpm.largest1/_xlpm.largest2,0),_xlfn.VSTACK({\"Category\",\"First Value\",\"Second Value\",\"Relative Size Factor\"},_xlfn._xlws.SORT(_xlfn.HSTACK(_xlpm.categorylist,_xlpm.largest1,_xlpm.largest2,_xlpm.rsf),4,-1))))",
+    "params": [
+      "_xlpm.categories",
+      "_xlpm.rowvalue",
+      "_xlpm.first",
+      "_xlpm.second"
+    ],
+    "formula_len": 626
+  },
+  {
+    "name": "BI_ReverseText",
+    "comment": "Returns the text in reverse order.",
+    "formula": "_xlfn.LAMBDA(_xlpm.Text,_xlfn.CONCAT(MID(_xlpm.Text,_xlfn.SEQUENCE(LEN(_xlpm.Text),1,LEN(_xlpm.Text),-1),1)))",
+    "params": [
+      "_xlpm.Text"
+    ],
+    "formula_len": 109
+  },
+  {
+    "name": "BI_RoundNumbersTest",
+    "comment": "Returns the Round numbers test in data.",
+    "formula": "_xlfn.LAMBDA(_xlpm.Data,_xlpm.ColumnIndex,_xlpm.Digits,_xlfn.LET(_xlpm.column, _xlfn.CHOOSECOLS(_xlpm.Data,_xlpm.ColumnIndex),_xlpm.den,10^_xlpm.Digits,_xlpm.select,MOD(_xlpm.column,_xlpm.den)=0,_xlpm.filtereddata,_xlfn._xlws.FILTER(_xlpm.Data,_xlpm.select), _xlpm.filteredcolumn, _xlfn._xlws.FILTER(_xlpm.column, _xlpm.select), _xlpm.roundrows, ROWS(_xlpm.filteredcolumn),_xlpm.totalrows, ROWS(_xlpm.Data), _xlpm.roundsum, SUM(_xlpm.filteredcolumn), _xlpm.totalsum, SUM(_xlpm.column),_xlpm.mincolumns, MAX( 2, COLUMNS(_xlpm.Data)), _xlpm.emptyline, _xlfn.MAKEARRAY(1,_xlpm.mincolumns, _xlfn.LAMBDA(_xlpm.x,_xlpm.y,\"\")),_xlpm.result, _xlfn.VSTACK(IF(COLUMNS(_xlpm.Data)=1, _xlfn.HSTACK(_xlpm.filtereddata,_xlfn.MAKEARRAY(_xlpm.roundrows,1, _xlfn.LAMBDA(_xlpm.x,_xlpm.y,\"\"))),_xlfn._xlws.SORT(_xlpm.filtereddata,_xlpm.ColumnIndex,-1)),_xlpm.emptyline, _xlfn.TAKE(_xlfn.HSTACK(\"Round Numbers Count\",_xlpm.roundrows, _xlpm.emptyline),,_xlpm.mincolumns), _xlfn.TAKE(_xlfn.HSTACK(\"Total Count\",_xlpm.totalrows, _xlpm.emptyline),,_xlpm.mincolumns), _xlfn.TAKE(_xlfn.HSTACK(\"Round Amount Total\",_xlpm.roundsum, _xlpm.emptyline),,_xlpm.mincolumns), _xlfn.TAKE(_xlfn.HSTACK(\"Total Amount\",_xlpm.totalsum, _xlpm.emptyline),,_xlpm.mincolumns),  _xlfn.TAKE(_xlfn.HSTACK(\"Count %\",_xlpm.roundrows/_xlpm.totalrows, _xlpm.emptyline),,_xlpm.mincolumns), _xlfn.TAKE(_xlfn.HSTACK(\"Amount %\",_xlpm.roundsum/_xlpm.totalsum, _xlpm.emptyline),,_xlpm.mincolumns)),_xlpm.result))",
+    "params": [
+      "_xlpm.Data",
+      "_xlpm.ColumnIndex",
+      "_xlpm.Digits"
+    ],
+    "formula_len": 1455
+  },
+  {
+    "name": "BI_RowOccurence",
+    "comment": "Returns how many times the same complete row or selected columns occurs in the data.",
+    "formula": "_xlfn.LAMBDA(_xlpm.Data,_xlop.SelectedColumns, _xlfn.LET(_xlpm.selcols, IF(_xlfn.ISOMITTED(_xlpm.SelectedColumns),_xlfn.SEQUENCE(1,COLUMNS(_xlpm.Data)),_xlpm.SelectedColumns),_xlpm.seldata, _xlfn.CHOOSECOLS(_xlpm.Data,_xlpm.selcols),_xlpm.index, _xlfn.SEQUENCE(ROWS(_xlpm.seldata)),_xlpm.concat,_xlfn.BYROW(_xlpm.seldata,_xlfn.LAMBDA(_xlpm.x,_xlfn.TEXTJOIN(\"<^>\",FALSE,_xlpm.x))), _xlpm.keys, _xlfn._xlws.SORT(_xlpm.concat), _xlpm.indexed, _xlfn.HSTACK(_xlpm.concat, _xlpm.index), _xlpm.sorted,_xlfn._xlws.SORT(_xlpm.indexed), _xlpm.ascend,_xlfn.HSTACK(_xlpm.sorted,_xlpm.index),_xlpm.descend,_xlfn._xlws.SORT(_xlpm.ascend,1,-1),_xlpm.firstorder,_xlfn.XLOOKUP(_xlpm.keys,_xlfn.CHOOSECOLS(_xlpm.ascend,1),_xlfn.CHOOSECOLS(_xlpm.ascend,3),,0,2),_xlpm.secondorder,_xlfn.XLOOKUP(_xlpm.keys,_xlfn.CHOOSECOLS(_xlpm.descend,1),_xlfn.CHOOSECOLS(_xlpm.descend,3),,0,-2),_xlpm.count,_xlpm.secondorder+1-_xlpm.firstorder,_xlpm.result,_xlfn.SORTBY(_xlpm.count,_xlfn.CHOOSECOLS(_xlpm.ascend,2)),_xlpm.result))",
+    "params": [
+      "_xlpm.Data",
+      "_xlop.SelectedColumns"
+    ],
+    "formula_len": 996
+  },
+  {
+    "name": "BI_RunningTotal",
+    "comment": "Returns Running Total of Data",
+    "formula": "_xlfn.LAMBDA(_xlpm.Data,_xlfn.SCAN(0,_xlpm.Data,_xlfn.LAMBDA(_xlpm.x,_xlpm.y,_xlpm.x+_xlpm.y)))",
+    "params": [
+      "_xlpm.Data"
+    ],
+    "formula_len": 95
+  },
+  {
+    "name": "BI_RupeeSymbol",
+    "comment": "Returns the Rupee Symbol ₹",
+    "formula": "_xlfn.LAMBDA(_xlfn.UNICHAR(8377))",
+    "params": [],
+    "formula_len": 33
+  },
+  {
+    "name": "BI_SameSameDifferentTest",
+    "comment": "Returns Same values in specified columns and different value in third column. Useful in forensic audit. ",
+    "formula": "_xlfn.LAMBDA(_xlpm.Data,_xlpm.TestColumns,_xlpm.DifferentColumn, _xlfn.LET(_xlpm.seldata, _xlfn.CHOOSECOLS(_xlpm.Data,_xlpm.TestColumns),_xlpm.index, _xlfn.SEQUENCE(ROWS(_xlpm.seldata)),_xlpm.concat,_xlfn.BYROW(_xlpm.seldata,_xlfn.LAMBDA(_xlpm.x,_xlfn.TEXTJOIN(\"<^>\",FALSE,_xlpm.x))), _xlpm.keyinc, _xlfn.HSTACK(_xlpm.Data,_xlpm.concat, _xlpm.index), _xlpm.ascend,_xlfn._xlws.SORT(_xlpm.concat), _xlpm.stacked,_xlfn.HSTACK(_xlpm.ascend,_xlpm.index),_xlpm.descend,_xlfn._xlws.SORT(_xlpm.stacked,1,-1),_xlpm.firstorder,_xlfn.XLOOKUP(_xlpm.ascend,_xlfn.CHOOSECOLS(_xlpm.stacked,1),_xlfn.CHOOSECOLS(_xlpm.stacked,2),,0,2),_xlpm.secondorder,_xlfn.XLOOKUP(_xlpm.ascend,_xlfn.CHOOSECOLS(_xlpm.descend,1),_xlfn.CHOOSECOLS(_xlpm.descend,2),,0,-2),_xlpm.count,_xlpm.secondorder+1-_xlpm.firstorder,_xlpm.filteredkeys,_xlfn.UNIQUE(_xlfn._xlws.FILTER(_xlpm.ascend,_xlpm.count>1)), _xlpm.found, _xlfn.BYROW(_xlpm.keyinc,_xlfn.LAMBDA(_xlpm.x,IFERROR(_xlfn.XMATCH(INDEX(_xlpm.x,COLUMNS(_xlpm.x)-1),_xlpm.filteredkeys,0,2),0))), _xlpm.duplicates,_xlfn._xlws.SORT(_xlfn._xlws.FILTER(_xlpm.keyinc,_xlpm.found>0),COLUMNS(_xlpm.keyinc),1), _xlpm.combined, _xlfn.CHOOSECOLS(_xlpm.duplicates, _xlpm.TestColumns, _xlpm.DifferentColumn, COLUMNS(_xlpm.Data)+1), _xlpm.combinedunique, _xlfn.UNIQUE(_xlpm.combined), _xlpm.totalcolumns, COLUMNS(_xlpm.combinedunique), _xlpm.counts, _xlfn.BYROW(_xlpm.combinedunique, _xlfn.LAMBDA(_xlpm.x, ROWS(_xlfn._xlws.FILTER(_xlpm.combinedunique, _xlfn.CHOOSECOLS(_xlpm.combinedunique, _xlpm.totalcolumns)=INDEX(_xlpm.x,_xlpm.totalcolumns))))), _xlfn.DROP(_xlfn._xlws.FILTER(_xlpm.combinedunique,_xlpm.counts>1),,-1)))",
+    "params": [
+      "_xlpm.Data",
+      "_xlpm.TestColumns",
+      "_xlpm.DifferentColumn"
+    ],
+    "formula_len": 1626
+  },
+  {
+    "name": "BI_SameSameSameTest",
+    "comment": "Returns Same values in the given columns (like invoice number, supplier id, employee id). Useful in forensic audit. ",
+    "formula": "_xlfn.LAMBDA(_xlpm.Data,_xlpm.TestColumns,_xlfn.LET(_xlpm.seldata, _xlfn.CHOOSECOLS(_xlpm.Data,_xlpm.TestColumns),_xlpm.index, _xlfn.SEQUENCE(ROWS(_xlpm.seldata)),_xlpm.concat,_xlfn.BYROW(_xlpm.seldata,_xlfn.LAMBDA(_xlpm.x,_xlfn.TEXTJOIN(\"<^>\",FALSE,_xlpm.x))), _xlpm.keyinc, _xlfn.HSTACK(_xlpm.Data,_xlpm.concat, _xlpm.index), _xlpm.ascend,_xlfn._xlws.SORT(_xlpm.concat), _xlpm.stacked,_xlfn.HSTACK(_xlpm.ascend,_xlpm.index),_xlpm.descend,_xlfn._xlws.SORT(_xlpm.stacked,1,-1),_xlpm.firstorder,_xlfn.XLOOKUP(_xlpm.ascend,_xlfn.CHOOSECOLS(_xlpm.stacked,1),_xlfn.CHOOSECOLS(_xlpm.stacked,2),,0,2),_xlpm.secondorder,_xlfn.XLOOKUP(_xlpm.ascend,_xlfn.CHOOSECOLS(_xlpm.descend,1),_xlfn.CHOOSECOLS(_xlpm.descend,2),,0,-2),_xlpm.count,_xlpm.secondorder+1-_xlpm.firstorder,_xlpm.filteredkeys,_xlfn.UNIQUE(_xlfn._xlws.FILTER(_xlpm.ascend,_xlpm.count>1)), _xlpm.found, _xlfn.BYROW(_xlpm.keyinc,_xlfn.LAMBDA(_xlpm.x,IFERROR(_xlfn.XMATCH(INDEX(_xlpm.x,COLUMNS(_xlpm.x)-1),_xlpm.filteredkeys,0,2),0))), _xlfn.TAKE(_xlfn._xlws.SORT(_xlfn._xlws.FILTER(_xlpm.keyinc,_xlpm.found>0),COLUMNS(_xlpm.keyinc),1),,COLUMNS(_xlpm.Data))))",
+    "params": [
+      "_xlpm.Data",
+      "_xlpm.TestColumns"
+    ],
+    "formula_len": 1112
+  },
+  {
+    "name": "BI_SLNSchedule",
+    "comment": "Returns Straight Line Method of Depreciation Schedule.",
+    "formula": "_xlfn.LAMBDA(_xlpm.cost,_xlpm.life,_xlpm.scrap,_xlfn.LET(_xlpm.deprate,((_xlpm.cost-_xlpm.scrap)/_xlpm.life)/_xlpm.cost,_xlpm.depn,_xlpm.cost * _xlpm.deprate,_xlfn.VSTACK(_xlfn.HSTACK(\"SLN Rate :\",_xlpm.deprate,\"\",\"\"),{\"Year\",\"Op.Balance\",\"Depreciation\",\"Cl.Balance\"},_xlfn.HSTACK(_xlfn.SEQUENCE(_xlpm.life),_xlpm.cost-(_xlpm.depn*(_xlfn.SEQUENCE(_xlpm.life)-1)),_xlpm.depn + (0*_xlfn.SEQUENCE(_xlpm.life)),_xlpm.cost - (_xlpm.depn*_xlfn.SEQUENCE(_xlpm.life))),_xlfn.HSTACK(\"Total\",\"\",_xlpm.cost-_xlpm.scrap,\"\"))))",
+    "params": [
+      "_xlpm.cost",
+      "_xlpm.life",
+      "_xlpm.scrap"
+    ],
+    "formula_len": 514
+  },
+  {
+    "name": "BI_SubsetNumberDuplicationTest",
+    "comment": "Calculates the Subset Number Duplication Test. ",
+    "formula": "_xlfn.LAMBDA(_xlpm.CategoryData,_xlpm.SubsetData, _xlfn.LET(_xlpm.combined, _xlfn.HSTACK(_xlpm.CategoryData,_xlpm.SubsetData), _xlpm.Count, BI_RowOccurence(_xlpm.combined), _xlpm.combined1, _xlfn.HSTACK(_xlpm.combined, _xlpm.Count), _xlpm.summary, BI_Summary(_xlpm.combined1,3,1,9), _xlpm.filtered, _xlfn._xlws.FILTER(_xlpm.combined1, _xlfn.CHOOSECOLS(_xlpm.combined1, 3)<>1), _xlpm.countsq, _xlfn.CHOOSECOLS(_xlpm.filtered,3)^2, _xlpm.combined2, _xlfn.HSTACK(_xlpm.filtered, _xlpm.countsq),_xlpm.summarycountsq, BI_Summary(_xlpm.combined2,4,1,9), _xlpm.summarysq, _xlfn.BYROW(_xlpm.summarycountsq, _xlfn.LAMBDA(_xlpm.x, _xlfn.XLOOKUP(INDEX(_xlpm.x,1),_xlfn.CHOOSECOLS(_xlpm.summary,1),_xlfn.CHOOSECOLS(_xlpm.summary,2),,0,2)^2)),_xlpm.combined3, _xlfn.HSTACK(_xlpm.summarycountsq, _xlpm.summarysq), _xlpm.freqfactor, _xlfn.CHOOSECOLS(_xlpm.combined3, 2)/_xlfn.CHOOSECOLS(_xlpm.combined3, 3), _xlpm.combined4, _xlfn.HSTACK(_xlpm.combined3, _xlpm.freqfactor), _xlpm.resulttable, _xlfn._xlws.SORT(_xlpm.combined4, 4,-1), _xlfn.CHOOSECOLS(_xlpm.resulttable,1,4)))",
+    "params": [
+      "_xlpm.CategoryData",
+      "_xlpm.SubsetData"
+    ],
+    "formula_len": 1060
+  },
+  {
+    "name": "BI_Summary",
+    "comment": "Returns Summary of data according to any attribute.",
+    "formula": "_xlfn.LAMBDA(_xlpm.Data,_xlpm.ValueColumn,_xlpm.SummaryColumn,_xlop.Function,_xlfn.LET(_xlpm.function1, IF(_xlfn.ISOMITTED(_xlpm.Function),9,_xlpm.Function),_xlpm.rows,_xlfn._xlws.SORT(_xlfn.UNIQUE(_xlfn.CHOOSECOLS(_xlpm.Data,_xlpm.SummaryColumn))),_xlfn.HSTACK(_xlpm.rows,_xlfn.MAKEARRAY(ROWS(_xlpm.rows),1,_xlfn.LAMBDA(_xlpm.a,_xlpm.b,_xlfn.LET(_xlpm.cells,IFERROR(_xlfn._xlws.FILTER(_xlfn.CHOOSECOLS(_xlpm.Data,_xlpm.ValueColumn),_xlfn.CHOOSECOLS(_xlpm.Data,_xlpm.SummaryColumn)=INDEX(_xlpm.rows,_xlpm.a)),0),_xlfn.SWITCH(_xlpm.function1,1, AVERAGE(_xlpm.cells),2,COUNT(_xlpm.cells),3, COUNTA(_xlpm.cells),4, MAX(_xlpm.cells),5, MIN(_xlpm.cells), 6, PRODUCT(_xlpm.cells), 7, _xlfn.STDEV.S(_xlpm.cells),8,_xlfn.STDEV.P(_xlpm.cells), 9, SUM(_xlpm.cells),10, _xlfn.VAR.S(_xlpm.cells),11,_xlfn.VAR.P(_xlpm.cells),SUM(_xlpm.cells))))))))",
+    "params": [
+      "_xlpm.Data",
+      "_xlpm.ValueColumn",
+      "_xlpm.SummaryColumn",
+      "_xlop.Function"
+    ],
+    "formula_len": 835
+  },
+  {
+    "name": "BI_TextSplitByPositions",
+    "comment": "Returns an array of text split by number of positions as in Power Query.",
+    "formula": "_xlfn.LAMBDA(_xlpm.Text,_xlpm.Positions,_xlfn.LET(_xlpm.positionrows,IF(COLUMNS(_xlpm.Positions)>1,TRANSPOSE(_xlpm.Positions),_xlpm.Positions),_xlpm.columns,ROWS(_xlpm.positionrows),_xlfn.MAKEARRAY(1,_xlpm.columns,_xlfn.LAMBDA(_xlpm.x,_xlpm.y,IF(_xlpm.y=1,MID(_xlpm.Text,1,INDEX(_xlpm.positionrows,_xlpm.y)-1),MID(_xlpm.Text,INDEX(_xlpm.positionrows,_xlpm.y-1),INDEX(_xlpm.positionrows,_xlpm.y)-INDEX(_xlpm.positionrows,_xlpm.y-1)))))))",
+    "params": [
+      "_xlpm.Text",
+      "_xlpm.Positions"
+    ],
+    "formula_len": 436
+  },
+  {
+    "name": "BI_TopN",
+    "comment": "Returns Top N ranked rows of a column of data.",
+    "formula": "_xlfn.LAMBDA(_xlpm.DataRange,_xlpm.IndexColumn,_xlpm.N, _xlfn.TAKE(_xlfn._xlws.SORT(_xlpm.DataRange,IF(_xlpm.IndexColumn,_xlpm.IndexColumn,1),-1),_xlpm.N))",
+    "params": [
+      "_xlpm.DataRange",
+      "_xlpm.IndexColumn",
+      "_xlpm.N"
+    ],
+    "formula_len": 155
+  },
+  {
+    "name": "BI_TopPercent",
+    "comment": "Returns Top N Percentage of Data",
+    "formula": "_xlfn.LAMBDA(_xlpm.Data,_xlpm.IndexColumn,_xlpm.Percent,_xlfn.LET(_xlpm.data1, _xlfn.CHOOSECOLS(_xlpm.Data,_xlpm.IndexColumn), _xlpm.totalrows, ROWS(_xlpm.Data), _xlpm.sum,SUM(_xlpm.data1),_xlpm.percentlimit,_xlpm.sum*_xlpm.Percent,_xlpm.sorted,_xlfn._xlws.SORT(_xlpm.Data,_xlpm.IndexColumn,-1),_xlpm.sorteddata,_xlfn._xlws.SORT(_xlpm.data1,,-1),_xlpm.cumtot,_xlfn.SCAN(0,_xlpm.sorteddata,_xlfn.LAMBDA(_xlpm.x,_xlpm.y,_xlpm.x+_xlpm.y)),_xlpm.rows,ROWS(_xlfn._xlws.FILTER(_xlpm.cumtot,_xlpm.cumtot<=_xlpm.percentlimit))+1,_xlpm.result,_xlfn.TAKE(_xlpm.sorted,_xlpm.rows),_xlpm.result))",
+    "params": [
+      "_xlpm.Data",
+      "_xlpm.IndexColumn",
+      "_xlpm.Percent"
+    ],
+    "formula_len": 584
+  },
+  {
+    "name": "BI_Unpivot",
+    "comment": "Returns unpivoted data",
+    "formula": "_xlfn.LAMBDA(_xlpm.UnpivotData,_xlop.RemainingData,_xlfn.LET(_xlpm.isremaining,IF(TYPE(_xlpm.RemainingData)=64,TRUE,FALSE),_xlpm.rows, ROWS(_xlpm.UnpivotData), _xlpm.columns, COLUMNS(_xlpm.UnpivotData),_xlpm.cells,_xlpm.rows*_xlpm.columns,_xlpm.repeatrows,IF(_xlpm.isremaining,_xlfn.MAKEARRAY((_xlpm.rows-1)*_xlpm.columns,COLUMNS(_xlpm.RemainingData),_xlfn.LAMBDA(_xlpm.a,_xlpm.b,INDEX(_xlfn.DROP(_xlpm.RemainingData,1),QUOTIENT(_xlpm.a-1,_xlpm.columns)+1,_xlpm.b))),0),_xlpm.attributes,_xlfn.MAKEARRAY(_xlpm.cells-_xlpm.columns,1,_xlfn.LAMBDA(_xlpm.a,_xlpm.b,INDEX(_xlfn.CHOOSEROWS(_xlpm.UnpivotData,1),IF(MOD(_xlpm.a,_xlpm.columns)>0,MOD(_xlpm.a,_xlpm.columns),_xlpm.columns)))),_xlpm.values, _xlfn.MAKEARRAY(_xlpm.cells-_xlpm.columns,1,_xlfn.LAMBDA(_xlpm.a,_xlpm.b,INDEX(_xlfn.DROP(_xlpm.UnpivotData,1),QUOTIENT(_xlpm.a-1,_xlpm.columns)+1,IF(MOD(_xlpm.a,_xlpm.columns)>0,MOD(_xlpm.a,_xlpm.columns),_xlpm.columns)))), _xlpm.fulldata,IF(_xlpm.isremaining,_xlfn.HSTACK(_xlpm.repeatrows,_xlpm.attributes,_xlpm.values),_xlfn.HSTACK(_xlpm.attributes,_xlpm.values)),IF(_xlpm.isremaining,_xlfn.VSTACK(_xlfn.HSTACK(INDEX(_xlpm.RemainingData,1,0),{\"Attributes\",\"Values\"}),_xlfn._xlws.FILTER(_xlpm.fulldata,_xlpm.values<>0)),_xlfn.VSTACK({\"Attributes\",\"Values\"},_xlfn._xlws.FILTER(_xlpm.fulldata,_xlpm.values<>0)))))",
+    "params": [
+      "_xlpm.UnpivotData",
+      "_xlop.RemainingData"
+    ],
+    "formula_len": 1308
+  },
+  {
+    "name": "BI_UnpivotExceptFirst",
+    "comment": "Unpivot Except First Column",
+    "formula": "_xlfn.LAMBDA(_xlpm.Data,BI_Unpivot(_xlfn.CHOOSECOLS(_xlpm.Data,_xlfn.SEQUENCE(1,COLUMNS(_xlpm.Data)-1,2)),_xlfn.CHOOSECOLS(_xlpm.Data,1)))",
+    "params": [
+      "_xlpm.Data"
+    ],
+    "formula_len": 138
+  },
+  {
+    "name": "BI_WDVSchedule",
+    "comment": "Returns Written Down Value (Declining Balance) Method of Depreciation Schedule.",
+    "formula": "_xlfn.LAMBDA(_xlpm.cost,_xlpm.life,_xlpm.scrap,_xlfn.LET(_xlpm.rate,(_xlpm.scrap/_xlpm.cost)^(1/_xlpm.life),_xlpm.deprate,1-_xlpm.rate,_xlfn.VSTACK(_xlfn.HSTACK(\"WDV Rate :\",_xlpm.deprate,\"\",\"\"),{\"Year\",\"Op.Balance\",\"Depreciation\",\"Cl.Balance\"},_xlfn.HSTACK(_xlfn.SEQUENCE(_xlpm.life),_xlpm.cost*_xlpm.rate^(_xlfn.SEQUENCE(_xlpm.life)-1),_xlpm.cost*_xlpm.deprate*_xlpm.rate^(_xlfn.SEQUENCE(_xlpm.life)-1),_xlpm.cost*_xlpm.rate^_xlfn.SEQUENCE(_xlpm.life)),_xlfn.HSTACK(\"Total\",\"\",SUM(_xlpm.cost*_xlpm.deprate*_xlpm.rate^(_xlfn.SEQUENCE(_xlpm.life)-1)),\"\"))))",
+    "params": [
+      "_xlpm.cost",
+      "_xlpm.life",
+      "_xlpm.scrap"
+    ],
+    "formula_len": 557
+  },
+  {
+    "name": "BI_WordCount",
+    "comment": "Returns the number of words in text.",
+    "formula": "_xlfn.LAMBDA(_xlpm.Text,_xlfn.LET(_xlpm.trimmed,TRIM(_xlpm.Text),_xlpm.length1, LEN(_xlpm.trimmed), _xlpm.length2, LEN(SUBSTITUTE(_xlpm.trimmed, \" \", \"\")),SUM(_xlpm.length1-_xlpm.length2+1)))",
+    "params": [
+      "_xlpm.Text"
+    ],
+    "formula_len": 191
+  },
+  {
+    "name": "BI_WorkDay.Indian",
+    "comment": "Returns the date after a specified number of Indian workdays (Second and Fourth Saturdays as holidays)",
+    "formula": "_xlfn.LAMBDA(_xlpm.StartDate,_xlpm.Days,_xlpm.Holidays,IF(_xlpm.Days = 0, _xlpm.StartDate,IF(COUNTIF(_xlpm.Holidays,_xlpm.StartDate)>0,BI_WorkDay.Indian(_xlpm.StartDate+1,_xlpm.Days,_xlpm.Holidays),IF(WEEKDAY(_xlpm.StartDate)=1,BI_WorkDay.Indian(_xlpm.StartDate+1,_xlpm.Days,_xlpm.Holidays),IF(NOT(WEEKDAY(_xlpm.StartDate)=7),BI_WorkDay.Indian(_xlpm.StartDate+1,_xlpm.Days-1,_xlpm.Holidays),IF(OR(AND(DAY(_xlpm.StartDate)>7,DAY(_xlpm.StartDate)<=14),AND(DAY(_xlpm.StartDate)>21,DAY(_xlpm.StartDate)<=28)),BI_WorkDay.Indian(_xlpm.StartDate+1,_xlpm.Days,_xlpm.Holidays),BI_WorkDay.Indian(_xlpm.StartDate+1,_xlpm.Days-1,_xlpm.Holidays)))))))",
+    "params": [
+      "_xlpm.StartDate",
+      "_xlpm.Days",
+      "_xlpm.Holidays"
+    ],
+    "formula_len": 638
+  },
+  {
+    "name": "BI_YearlyCalendar",
+    "comment": "Returns the Yearly Calendar of any date or current date in horizontal or vertical format.",
+    "formula": "_xlfn.LAMBDA(_xlop.Year,_xlop.Format,_xlop.Vertical,_xlfn.LET(_xlpm.isvertical, IF(_xlfn.ISOMITTED(_xlpm.Vertical),FALSE,_xlpm.Vertical), _xlpm.year,IF(_xlfn.ISOMITTED(_xlpm.Year),YEAR(TODAY()),_xlpm.Year),_xlpm.format, IF(_xlfn.ISOMITTED(_xlpm.Format),\"MMM\",_xlpm.Format),_xlpm.dformat,REPT(\"D\",LEN(_xlpm.format)),_xlpm.el, _xlfn.MAKEARRAY(1,7,_xlfn.LAMBDA(_xlpm.x,_xlpm.y,\"\")),_xlpm.result,_xlfn.VSTACK(_xlfn.EXPAND(BI_MonthlyCalendar(1,_xlpm.year,_xlpm.dformat,_xlpm.isvertical),,7,\"\"),_xlpm.el,_xlfn.EXPAND(BI_MonthlyCalendar(2,_xlpm.year,_xlpm.dformat,_xlpm.isvertical),,7,\"\"),_xlpm.el,_xlfn.EXPAND(BI_MonthlyCalendar(3,_xlpm.year,_xlpm.dformat,_xlpm.isvertical),,7,\"\"),_xlpm.el,_xlfn.EXPAND(BI_MonthlyCalendar(4,_xlpm.year,_xlpm.dformat,_xlpm.isvertical),,7,\"\"),_xlpm.el,_xlfn.EXPAND(BI_MonthlyCalendar(5,_xlpm.year,_xlpm.dformat,_xlpm.isvertical),,7,\"\"),_xlpm.el,_xlfn.EXPAND(BI_MonthlyCalendar(6,_xlpm.year,_xlpm.dformat,_xlpm.isvertical),,7,\"\"),_xlpm.el,_xlfn.EXPAND(BI_MonthlyCalendar(7,_xlpm.year,_xlpm.dformat,_xlpm.isvertical),,7,\"\"),_xlpm.el,_xlfn.EXPAND(BI_MonthlyCalendar(8,_xlpm.year,_xlpm.dformat,_xlpm.isvertical),,7,\"\"),_xlpm.el,_xlfn.EXPAND(BI_MonthlyCalendar(9,_xlpm.year,_xlpm.dformat,_xlpm.isvertical),,7,\"\"),_xlpm.el,_xlfn.EXPAND(BI_MonthlyCalendar(10,_xlpm.year,_xlpm.dformat,_xlpm.isvertical),,7,\"\"),_xlpm.el,_xlfn.EXPAND(BI_MonthlyCalendar(11,_xlpm.year,_xlpm.dformat,_xlpm.isvertical),,7,\"\"),_xlpm.el,_xlfn.EXPAND(BI_MonthlyCalendar(12,_xlpm.year,_xlpm.dformat,_xlpm.isvertical),,7,\"\")),_xlpm.result))",
+    "params": [
+      "_xlop.Year",
+      "_xlop.Format",
+      "_xlop.Vertical"
+    ],
+    "formula_len": 1530
+  },
+  {
+    "name": "BI_ZScore",
+    "comment": "Returns the Z Score of data.",
+    "formula": "_xlfn.LAMBDA(_xlpm.Data,_xlop.Population,_xlfn.LET(_xlpm.average,AVERAGE(_xlpm.Data),_xlpm.stdev,_xlfn.SWITCH(_xlpm.Population,TRUE,_xlfn.STDEV.P(_xlpm.Data),_xlfn.STDEV.S(_xlpm.Data)),(_xlpm.Data-_xlpm.average)/_xlpm.stdev))",
+    "params": [
+      "_xlpm.Data",
+      "_xlop.Population"
+    ],
+    "formula_len": 225
+  }
+]

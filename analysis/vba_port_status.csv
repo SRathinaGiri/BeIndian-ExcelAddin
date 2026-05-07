@@ -1,0 +1,102 @@
+lambda_name,vba_name,status,comment
+BI_About,BI_About,implemented-preview,
+BI_AltmanZScore,BI_AltmanZScore,implemented-preview,Calculates Altman Z Score. Use BI_AltmanZScoreVariables() function to list the variables.
+BI_AltmanZScoreVariables,BI_AltmanZScoreVariables,implemented-preview,Lists out Altman Z Score Variables.
+BI_AnovaSingleFactor,BI_AnovaSingleFactor,implemented-preview,Calculates Anova (Analysis of Variance) Single Factor. This is one of the Data Analysis Toolpak features.
+BI_AnovaTwoFactorsWithoutReplication,BI_AnovaTwoFactorsWithoutReplication,implemented-preview,Calculates Anova (Analysis of Variance) without replication. This is one of the Data Analysis Toolpak features.
+BI_AnsCombeQuartet,BI_AnsCombeQuartet,implemented-preview,"Shows AnsCombe Quartet. Anscombe's quartet is a group of four data sets that are nearly identical in simple descriptive statistics, but there are peculiarities that fool the regression model once you plot each data set."
+BI_ArrayContains,BI_ArrayContains,implemented-preview,Verifies whether one record of data contains in a table and returns true or false. 
+BI_ArrayCountif,BI_ArrayCountif,implemented-preview,Counts howmany times a record of data repeated in a table of data. If not found returns 0.
+BI_ArrayFilter,BI_ArrayFilter,implemented-preview,Filters a Table for a multi-column criteria array by matching selected columns with the criteria array.
+BI_ArrayInArray,BI_ArrayInArray,implemented-preview,Filters only the available rows in an array found in another array. 
+BI_ArrayMatch,BI_ArrayMatch,implemented-preview,Returns the row number of an array where a matching row is first found. Returns #NA if not found.
+BI_ASort,BI_ASort,implemented-preview,"Returns the sorted array by all the columns  in the order entered. Useful for sorting Countrywise, Regionwise, Statewise, Citywise etc.,"
+BI_AttributeUnitCount,BI_AttributeUnitCount,implemented-preview,Returns Attribute Unit Sampling cumulative count of any attribute.
+BI_BeginsWith,BI_BeginsWith,implemented-preview,Returns whether one text begins with another text. 
+BI_BeneishMScore,BI_BeneishMScore,pending,Calculates Beneish M Score. Beneish's M-Score is a mathematical model that uses eight financial ratios weighted by coefficients to identify whether a company has manipulated its profits.
+BI_BeneishMScoreVariables,BI_BeneishMScoreVariables,pending,Lists out Beneish M Score variables to make it easy to enter two years data for calculating Beneish M Score.
+BI_BenfordLaw_FirstDigit,BI_BenfordLaw_FirstDigit,implemented-preview,Returns Benford Law for the first digit of a data set.
+BI_BenfordLaw_FirstThreeDigits,BI_BenfordLaw_FirstThreeDigits,implemented-preview,Returns Benford Law for the first three digits of a data set.
+BI_BenfordLaw_FirstTwoDigits,BI_BenfordLaw_FirstTwoDigits,implemented-preview,Returns Benford Law for the first two digits of a data set.
+BI_BenfordLaw_LastTwoDigits,BI_BenfordLaw_LastTwoDigits,implemented-preview,Returns Benford Law for the last two digits of a data set.
+BI_BenfordLaw_SecondDigit,BI_BenfordLaw_SecondDigit,implemented-preview,Returns Benford Law for the second digit of a data set.
+BI_BenfordLaw_SecondOrder,BI_BenfordLaw_SecondOrder,implemented-preview,"Calculates Benford Law Second Order - Frequency, Actual and Expected values along with Mean Abstract Deviation. "
+BI_BenfordLaw_SummaryTest,BI_BenfordLaw_SummaryTest,implemented-preview,"Calculates Benford Law Summary Test - Frequency, Actual and Expected values along with Mean Abstract Deviation. "
+BI_BenfordLaw_ThirdDigit,BI_BenfordLaw_ThirdDigit,implemented-preview,Returns Benford Law for the third digit of a data set.
+BI_BottomN,BI_BottomN,implemented-preview,Returns Bottom N ranked rows of a column of data.
+BI_BottomPercent,BI_BottomPercent,implemented-preview,Returns Bottom N Percentage of Data
+BI_Consolidate,BI_Consolidate,implemented-preview,Multiple Consolidation Ranges
+BI_Contains,BI_Contains,implemented-preview,Returns true if FindText is found in WithinText.
+BI_Correlation,BI_Correlation,implemented-preview,Returns a Correlation Table of many attributes. This is one of the Data Analysis Toolpak features.
+BI_Covariance,BI_Covariance,implemented-preview,Returns a Covariance Table of many attributes. This is one of the Data Analysis Toolpak features.
+BI_DateDif,BI_DateDif,implemented-preview,"Returns Age in years, months, days etc.,"
+BI_Describe,BI_Describe,implemented-preview,Returns the descriptive statistics of Data.
+BI_DiscountedPayback,BI_DiscountedPayback,implemented-preview,Returns the Discounted Payback period for a series of cashflows
+BI_EMISchedule,BI_EMISchedule,implemented-preview,Returns EMI Schedule of a loan
+BI_EndsWith,BI_EndsWith,implemented-preview,Returns whether one text ends with another text. 
+BI_ExactArray,BI_ExactArray,implemented-preview,Compares two arrays and returns whether both the arrays are equal.
+BI_ExponentialSmoothing,BI_ExponentialSmoothing,implemented-preview,Returns Exponential Smoothened data after applying Damping Factor. This is one of the Data Analysis Toolpak features.
+BI_ExtractNumbers,BI_ExtractNumbers,implemented-preview,Extracts all the numbers from a text string.
+BI_ExtractText,BI_ExtractText,implemented-preview,Extracts all the characters from a  text string excluding numbers.
+BI_FDRSchedule,BI_FDRSchedule,pending,Returns the Fixed Deposit Schedule of Interest calculations and maturiy value.
+BI_FillDown,BI_FillDown,implemented-preview,Fills down blank cells with the content above. 
+BI_FinancialYear,BI_FinancialYear,implemented-preview,Returns  the financial year (1st April to 31st March) of any date.
+BI_FinancialYearEnd,BI_FinancialYearEnd,implemented-preview,Returns  the financial year end (31st March) of any date.
+BI_FinancialYearStart,BI_FinancialYearStart,implemented-preview,Returns  the financial year start (1st April) of any date.
+BI_FindDuplicates,BI_FindDuplicates,implemented-preview,Returns duplicate values from a list
+BI_FindMissingNumbers,BI_FindMissingNumbers,implemented-preview,Returns missing numbers from a list of numbers
+BI_FindOneOf,BI_FindOneOf,implemented-preview,"Returns the position of the first specified character value in a string. If the specified value is not found, 0 is returned. CaseWare IDEA inspiration."
+BI_FindUnique,BI_FindUnique,implemented-preview,Returns the values available only once (without duplicates) in a list.
+BI_FormulaList,BI_FormulaList,implemented-preview,Returns the formula list in the specified range.
+BI_Fuzzy,BI_Fuzzy,implemented-preview,Returns the number of modifications required to change from first text to second text. This finds Levenshtein distance between two strings.
+BI_GEL1Test,BI_GEL1Test,pending,Calculates Gestalt Element Link Test between two columns of related data like Salesman and Customer
+BI_GEL2Test,BI_GEL2Test,pending,Calculates Gestalt Element Link Test 2 between two columns of related data like Salesman and Customer for a particular dataitem.
+BI_GenerateRandom,BI_GenerateRandom,implemented-preview,Function to generate static random numbers between 0 and 1 using a Random Seed. This is one of the Data Analysis Toolpak features.
+BI_GenerateRandomBetween,BI_GenerateRandomBetween,implemented-preview,Function to generate static random numbers between two numbers using a Random Seed. This is one of the Data Analysis Toolpak features.
+BI_Histogram,BI_Histogram,implemented-preview,Function to create Histogram analysis. This is one of the Data Analysis Toolpak features.
+BI_IndianNum2Word,BI_IndianNum2Word,implemented-preview,Returns the Indian spelling of a number. (Maximum 16 digits)
+BI_Insert,BI_Insert,implemented-preview,Inserts a sub-string into Character field or string before a specified position.
+BI_IsCharAtoZ,BI_IsCharAtoZ,implemented-preview,Verifies whether the character is an alphabet from a to z.
+BI_IsLeap,BI_IsLeap,implemented-preview,Returns whether the year of a date is a leap year
+BI_IsValidPAN,BI_IsValidPAN,implemented-preview,Function to validate Indian Income Tax PAN
+BI_LuhnAlgorithm,BI_LuhnAlgorithm,implemented-preview,Uses Luhn Algorithm to test the validity of Credit/Debit Card Numbers
+BI_MonthlyCalendar,BI_MonthlyCalendar,implemented-preview,Returns the monthly Calendar
+BI_MovingAverage,BI_MovingAverage,implemented-preview,Returns the moving average calculation of data. This is one of the Data Analysis Toolpak features.
+BI_MUS_Evaluate_OverStatement,BI_MUS_Evaluate_OverStatement,pending,Returns Monetary Unit Sampling evaluation of Over Statement from the Audited and Samples data.
+BI_MUS_Evaluate_UnderStatement,BI_MUS_Evaluate_UnderStatement,pending,Returns Monetary Unit Sampling evaluation of Under Statement from the Audited and Samples data.
+BI_MUS_ExtractSample,BI_MUS_ExtractSample,pending,Returns Monetary Unit Sampling Samples from Data.
+BI_MUS_SampleSize,BI_MUS_SampleSize,pending,Returns Monetary Unit Sample size.
+BI_NetworkDays.Indian,BI_NetworkDays_Indian,implemented-preview,Returns the number of whole work days between two dates considering Indian banking holidays (second and fourth Saturdays as holidays).
+BI_Num2Word,BI_Num2Word,implemented-preview,Returns the English spelling of a Number
+BI_OhlsonsOScore,BI_OhlsonsOScore,implemented-preview,Calculate Ohlsons O Score
+BI_OhlsonsOScoreVariables,BI_OhlsonsOScoreVariables,implemented-preview,Calculates Ohlsons O Score. It is used for predicting bankruptcy is a multi-factor financial formula postulated in 1980 by Dr. James Ohlson of the New York University
+BI_PaybackPeriod,BI_PaybackPeriod,implemented-preview,Returns the payback period from series of cash flows
+BI_PiotroskiFScore,BI_PiotroskiFScore,pending,Calculates Piotroski F-score. Use BI_PiotroskiFScoreVariables() to list the variables and enter two years data
+BI_PiotroskiFScoreVariables,BI_PiotroskiFScoreVariables,pending,Lists out Piotroski F Score variables to make it easy to enter two years data for calculating Piotroski F Score.
+BI_Pivot,BI_Pivot,implemented-preview,Creates a Pivot Table from Data.
+BI_Quarter,BI_Quarter,implemented-preview,Returns the Quarter number for a date.
+BI_QuarterEnd,BI_QuarterEnd,implemented-preview,Returns the Quarter ending date.
+BI_QuarterStart,BI_QuarterStart,implemented-preview,Returns the Quarter Starting date.
+BI_Rank.Dense,BI_Rank_Dense,implemented-preview,Returns the Rank without any missing rank when there is a tie. 
+BI_Regression,BI_Regression,implemented-preview,Calculates the Linear Regression. This is one of the Data Analysis Toolpak features.
+BI_RelativeSizeFactor,BI_RelativeSizeFactor,implemented-preview,Returns the Relative Size Factor of given data on any attribute.
+BI_ReverseText,BI_ReverseText,implemented-preview,Returns the text in reverse order.
+BI_RoundNumbersTest,BI_RoundNumbersTest,pending,Returns the Round numbers test in data.
+BI_RowOccurence,BI_RowOccurence,implemented-preview,Returns how many times the same complete row or selected columns occurs in the data.
+BI_RunningTotal,BI_RunningTotal,implemented-preview,Returns Running Total of Data
+BI_RupeeSymbol,BI_RupeeSymbol,implemented-preview,Returns the Rupee Symbol ₹
+BI_SameSameDifferentTest,BI_SameSameDifferentTest,pending,Returns Same values in specified columns and different value in third column. Useful in forensic audit. 
+BI_SameSameSameTest,BI_SameSameSameTest,pending,"Returns Same values in the given columns (like invoice number, supplier id, employee id). Useful in forensic audit. "
+BI_SLNSchedule,BI_SLNSchedule,implemented-preview,Returns Straight Line Method of Depreciation Schedule.
+BI_SubsetNumberDuplicationTest,BI_SubsetNumberDuplicationTest,pending,Calculates the Subset Number Duplication Test. 
+BI_Summary,BI_Summary,implemented-preview,Returns Summary of data according to any attribute.
+BI_TextSplitByPositions,BI_TextSplitByPositions,implemented-preview,Returns an array of text split by number of positions as in Power Query.
+BI_TopN,BI_TopN,implemented-preview,Returns Top N ranked rows of a column of data.
+BI_TopPercent,BI_TopPercent,implemented-preview,Returns Top N Percentage of Data
+BI_Unpivot,BI_Unpivot,implemented-preview,Returns unpivoted data
+BI_UnpivotExceptFirst,BI_UnpivotExceptFirst,implemented-preview,Unpivot Except First Column
+BI_WDVSchedule,BI_WDVSchedule,implemented-preview,Returns Written Down Value (Declining Balance) Method of Depreciation Schedule.
+BI_WordCount,BI_WordCount,implemented-preview,Returns the number of words in text.
+BI_WorkDay.Indian,BI_WorkDay_Indian,implemented-preview,Returns the date after a specified number of Indian workdays (Second and Fourth Saturdays as holidays)
+BI_YearlyCalendar,BI_YearlyCalendar,implemented-preview,Returns the Yearly Calendar of any date or current date in horizontal or vertical format.
+BI_ZScore,BI_ZScore,implemented-preview,Returns the Z Score of data.

@@ -1,0 +1,11 @@
+tmp/
+.codex_extract_xltx/
+.codex_pdf_text.txt
+dist/*.zip
+*.log
+*.tmp
+*.bak
+*.xlk
+~$*.xls*
+*.exd
+*.cache

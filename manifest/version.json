@@ -1,0 +1,12 @@
+{
+  "name": "BeIndian Excel Add-in",
+  "version": "2.0-vba-preview-2026.05.07.2",
+  "build_date": "2026-05-07",
+  "workbook": "dist/BeIndian2_VBA_build.xlsm",
+  "source_template": "BeIndian2.0.xltx",
+  "status": "preview",
+  "notes": [
+    "Range-in/range-out VBA port for Excel 2019 and later.",
+    "Ribbon and userform workflow under active development."
+  ]
+}

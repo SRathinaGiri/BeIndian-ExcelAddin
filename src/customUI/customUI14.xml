@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<customUI xmlns="http://schemas.microsoft.com/office/2009/07/customui" onLoad="BI_RibbonOnLoad">
+  <ribbon>
+    <tabs>
+      <tab id="tabBeIndian" label="BeIndian">
+        <group id="grpValidators" label="Validators">
+          <button id="btnPAN" label="PAN Validator" imageMso="AcceptInvitation" size="large" onAction="BI_Tool_ValidatePAN" />
+        </group>
+        <group id="grpForensics" label="Forensics">
+          <button id="btnBenfordFirstDigit" label="Benford Tests" imageMso="ChartInsert" size="large" onAction="BI_Tool_BenfordFirstDigit" />
+          <button id="btnAltman" label="Altman Z-Score" imageMso="Calculator" size="large" onAction="BI_Tool_AltmanZScore" />
+          <button id="btnBeneishScore" label="Beneish M-Score" imageMso="Calculator" onAction="BI_Tool_BeneishMScore" />
+          <button id="btnOhlsonScore" label="Ohlson O-Score" imageMso="Calculator" onAction="BI_Tool_OhlsonOScore" />
+          <button id="btnPiotroskiScore" label="Piotroski F-Score" imageMso="Calculator" onAction="BI_Tool_PiotroskiFScore" />
+          <separator id="sepScoreTemplates" />
+          <button id="btnAltmanTemplate" label="Altman Template" imageMso="TableInsert" onAction="BI_Tool_AltmanTemplate" />
+          <button id="btnBeneishTemplate" label="Beneish Template" imageMso="TableInsert" onAction="BI_Tool_BeneishTemplate" />
+          <button id="btnOhlsonTemplate" label="Ohlson Template" imageMso="TableInsert" onAction="BI_Tool_OhlsonTemplate" />
+          <button id="btnPiotroskiTemplate" label="Piotroski Template" imageMso="TableInsert" onAction="BI_Tool_PiotroskiTemplate" />
+          <button id="btnRSF" label="Relative Size Factor" imageMso="TraceDependents" onAction="BI_Tool_RelativeSizeFactor" />
+        </group>
+        <group id="grpAnalytics" label="Analytics">
+          <button id="btnEMI" label="EMI Schedule" imageMso="FinancialFunctionsMenu" size="large" onAction="BI_Tool_EMISchedule" />
+          <button id="btnPayback" label="Payback" imageMso="FunctionsFinancialInsertGallery" onAction="BI_Tool_PaybackPeriod" />
+          <button id="btnDiscountedPayback" label="Discounted Payback" imageMso="FunctionsFinancialInsertGallery" onAction="BI_Tool_DiscountedPayback" />
+          <button id="btnSLN" label="SLN Schedule" imageMso="FunctionsFinancialInsertGallery" onAction="BI_Tool_SLNSchedule" />
+          <button id="btnWDV" label="WDV Schedule" imageMso="FunctionsFinancialInsertGallery" onAction="BI_Tool_WDVSchedule" />
+          <separator id="sepAnalyticsStats" />
+          <button id="btnDescribe" label="Describe" imageMso="PivotTableInsert" onAction="BI_Tool_Describe" />
+          <button id="btnAnovaSingle" label="Anova Single" imageMso="PivotChartInsert" onAction="BI_Tool_AnovaSingleFactor" />
+          <button id="btnAnovaTwo" label="Anova Two-Way" imageMso="PivotChartInsert" onAction="BI_Tool_AnovaTwoFactorsWithoutReplication" />
+          <button id="btnAnscombe" label="Anscombe Quartet" imageMso="ScatterInsert" onAction="BI_Tool_AnsCombeQuartet" />
+          <button id="btnCorrelation" label="Correlation" imageMso="PivotChartInsert" onAction="BI_Tool_Correlation" />
+          <button id="btnCovariance" label="Covariance" imageMso="PivotChartInsert" onAction="BI_Tool_Covariance" />
+          <button id="btnRegression" label="Regression" imageMso="ChartTrendlineInsert" onAction="BI_Tool_Regression" />
+          <button id="btnHistogram" label="Histogram" imageMso="ChartInsert" onAction="BI_Tool_Histogram" />
+          <button id="btnMovingAverage" label="Moving Average" imageMso="ChartInsert" onAction="BI_Tool_MovingAverage" />
+          <button id="btnExponentialSmoothing" label="Exp Smoothing" imageMso="ChartInsert" onAction="BI_Tool_ExponentialSmoothing" />
+          <button id="btnSampling" label="Sampling Tools" imageMso="DataValidation" onAction="BI_Tool_NotYetPorted" />
+        </group>
+        <group id="grpAuditData" label="Audit Data">
+          <button id="btnFindDuplicates" label="Find Duplicates" imageMso="RemoveDuplicates" onAction="BI_Tool_FindDuplicates" />
+          <button id="btnFindUnique" label="Find Unique" imageMso="ConditionalFormattingUniqueValues" onAction="BI_Tool_FindUnique" />
+          <button id="btnFindMissingNumbers" label="Missing Numbers" imageMso="ListRangesShowHide" onAction="BI_Tool_FindMissingNumbers" />
+          <button id="btnRunningTotal" label="Running Total" imageMso="AutoSum" onAction="BI_Tool_RunningTotal" />
+          <button id="btnSortRange" label="Sort Range" imageMso="SortAscending" onAction="BI_Tool_ASort" />
+          <button id="btnAttributeCount" label="Attribute Count" imageMso="DataForm" onAction="BI_Tool_AttributeUnitCount" />
+          <button id="btnUnpivot" label="Unpivot" imageMso="ConvertTextToTable" onAction="BI_Tool_Unpivot" />
+          <button id="btnPivot" label="Pivot" imageMso="PivotTableInsert" onAction="BI_Tool_Pivot" />
+          <button id="btnTopN" label="Top N" imageMso="SortDescending" onAction="BI_Tool_TopN" />
+          <button id="btnBottomN" label="Bottom N" imageMso="SortAscending" onAction="BI_Tool_BottomN" />
+          <button id="btnTopPercent" label="Top Percent" imageMso="SortDescending" onAction="BI_Tool_TopPercent" />
+          <button id="btnBottomPercent" label="Bottom Percent" imageMso="SortAscending" onAction="BI_Tool_BottomPercent" />
+          <button id="btnZScore" label="Z Score" imageMso="Calculator" onAction="BI_Tool_ZScore" />
+        </group>
+        <group id="grpDateText" label="Date &amp; Text">
+          <button id="btnIndianWorkday" label="Indian Workday" imageMso="CalendarInsert" onAction="BI_Tool_WorkDayIndian" />
+          <button id="btnIndianNetworkDays" label="Indian NetworkDays" imageMso="CalendarInsert" onAction="BI_Tool_NetworkDaysIndian" />
+          <button id="btnMonthlyCalendar" label="Monthly Calendar" imageMso="CalendarInsert" onAction="BI_Tool_MonthlyCalendar" />
+          <button id="btnYearlyCalendar" label="Yearly Calendar" imageMso="CalendarInsert" onAction="BI_Tool_YearlyCalendar" />
+          <button id="btnTextTools" label="Text Tools" imageMso="TextBoxInsert" onAction="BI_Tool_TextTools" />
+        </group>
+        <group id="grpHelp" label="Help">
+          <button id="btnAbout" label="About" imageMso="Info" onAction="BI_ShowAbout" />
+        </group>
+      </tab>
+    </tabs>
+  </ribbon>
+</customUI>

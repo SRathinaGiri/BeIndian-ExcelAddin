@@ -1,0 +1,104 @@
+name,in_xltx,in_pdf_catalog,pdf_category,lambda_params,pdf_syntax,param_match,comment,formula_len
+BI_ASort,True,True,Array,"Array, Order, ColumnIndex",=BI_ASort(B13:D32),False,"Returns the sorted array by all the columns  in the order entered. Useful for sorting Countrywise, Regionwise, Statewise, Citywise etc.,",432
+BI_About,True,False,,,,,,725
+BI_AltmanZScore,True,True,Forensic Audit,Data,=BI_AltmanZScore(D12:D18),False,Calculates Altman Z Score. Use BI_AltmanZScoreVariables() function to list the variables.,753
+BI_AltmanZScoreVariables,True,True,Forensic Audit,,=BI_AltmanZScoreVariables(),True,Lists out Altman Z Score Variables.,148
+BI_AnovaSingleFactor,True,True,Statistics,"TableData, alpha, labels","=BI_AnovaSingleFactor(C13:F22,0.05,TRUE)",False,Calculates Anova (Analysis of Variance) Single Factor. This is one of the Data Analysis Toolpak features.,2193
+BI_AnovaTwoFactorsWithoutReplication,True,True,Statistics,"Data, Alpha, Labels","=BI_AnovaTwoFactorsWithoutReplication(TableData, Alpha, [Labels])",False,Calculates Anova (Analysis of Variance) without replication. This is one of the Data Analysis Toolpak features.,3353
+BI_AnsCombeQuartet,True,True,Statistics,,=BI_AnsCombeQuartet(),True,"Shows AnsCombe Quartet. Anscombe's quartet is a group of four data sets that are nearly identical in simple descriptive statistics, but there are peculiarities that fool the regression model once you plot each data set.",982
+BI_ArrayContains,True,True,Array,"Array1, Array2","=BI_ArrayContains(B13:E19,G13:J13)",False,Verifies whether one record of data contains in a table and returns true or false. ,166
+BI_ArrayCountif,True,True,Array,"Array, CriteriaArray","=BI_ArrayCountif(B13:E19,G13:J13)",False,Counts howmany times a record of data repeated in a table of data. If not found returns 0.,728
+BI_ArrayFilter,True,True,Array,"Array, CriteriaArray, SelectedColumns","=BI_ArrayFilter(B13:E19,G13:J13)",False,Filters a Table for a multi-column criteria array by matching selected columns with the criteria array.,1271
+BI_ArrayInArray,True,True,Array,"Array1, Array2","=BI_ArrayInArray(B15:E21,G15:J17)",False,Filters only the available rows in an array found in another array. ,198
+BI_ArrayMatch,True,True,Array,"LookupValueArray, LookupArray, SelectedColumns","=BI_ArrayMatch(G13:J13,B13:E19)",False,Returns the row number of an array where a matching row is first found. Returns #NA if not found.,798
+BI_AttributeUnitCount,True,True,Audit Sampling,Data,=BI_AttributeUnitCount(SalesTable[Sub-Category]),False,Returns Attribute Unit Sampling cumulative count of any attribute.,238
+BI_BeginsWith,True,True,Text,"FindText, WithinText, CaseSensitive","=BI_BeginsWith(FindText,WithinText,[CaseSensitive])",True,Returns whether one text begins with another text. ,291
+BI_BeneishMScore,True,True,Forensic Audit,"LastYear, CurrentYear","=BI_BeneishMScore(C13:C24,D13:D24)",False,Calculates Beneish M Score. Beneish's M-Score is a mathematical model that uses eight financial ratios weighted by coefficients to identify whether a company has manipulated its profits.,2725
+BI_BeneishMScoreVariables,True,True,Forensic Audit,,=BI_BeneishMScoreVariables(),True,Lists out Beneish M Score variables to make it easy to enter two years data for calculating Beneish M Score.,262
+BI_BenfordLaw_FirstDigit,True,True,Forensic Audit,BenfordRange,=BI_BenfordLaw_FirstDigit(B12#),False,Returns Benford Law for the first digit of a data set.,686
+BI_BenfordLaw_FirstThreeDigits,True,True,Forensic Audit,BenfordRange,=BI_BenfordLaw_FirstThreeDigits(B12#),False,Returns Benford Law for the first three digits of a data set.,752
+BI_BenfordLaw_FirstTwoDigits,True,True,Forensic Audit,BenfordRange,=BI_BenfordLaw_FirstTwoDigits(B12#),False,Returns Benford Law for the first two digits of a data set.,748
+BI_BenfordLaw_LastTwoDigits,True,True,Forensic Audit,BenfordRange,=BI_BenfordLaw_LastTwoDigits(B12#),False,Returns Benford Law for the last two digits of a data set.,755
+BI_BenfordLaw_SecondDigit,True,True,Forensic Audit,BenfordRange,=BI_BenfordLaw_SecondDigit(B12#),False,Returns Benford Law for the second digit of a data set.,770
+BI_BenfordLaw_SecondOrder,True,True,Forensic Audit,BenfordRange,=BI_BenfordLaw_SecondOrder(B12#),False,"Calculates Benford Law Second Order - Frequency, Actual and Expected values along with Mean Abstract Deviation. ",1075
+BI_BenfordLaw_SummaryTest,True,True,Forensic Audit,BenfordRange,=BI_BenfordLaw_SummaryTest(B12#),False,"Calculates Benford Law Summary Test - Frequency, Actual and Expected values along with Mean Abstract Deviation. ",801
+BI_BenfordLaw_ThirdDigit,True,True,Forensic Audit,BenfordRange,=BI_BenfordLaw_ThirdDigit(B12#),False,Returns Benford Law for the third digit of a data set.,776
+BI_BottomN,True,True,Statistics,"DataRange, IndexColumn, N","=BI_BottomN(CHOOSECOLS(SalesTable,1,2,6,12),4,B12)",False,Returns Bottom N ranked rows of a column of data.,152
+BI_BottomPercent,True,True,Statistics,"Data, IndexColumn, Percent","=BI_BottomPercent(CHOOSECOLS(SalesTable,1,2,6,12),4,B12)",False,Returns Bottom N Percentage of Data,577
+BI_Consolidate,True,True,Data,"Function, DataRange1, DataRange2, DataRange3, DataRange4, DataRange5, DataRange6, DataRange7, DataRange8, DataRange9, DataRange10","=BI_Consolidate(9,B12:E17,B20:E25,B28:E34)",False,Multiple Consolidation Ranges,1823
+BI_Contains,True,True,Text,"FindText, WithinText, CaseSensitive","=BI_Contains(B14,B12) =BI_Contains(F14,B12,TRUE)",False,Returns true if FindText is found in WithinText.,291
+BI_Correlation,True,True,Statistics,"Data, Labels","=BI_Correlation(C14:F23,TRUE)",False,Returns a Correlation Table of many attributes. This is one of the Data Analysis Toolpak features.,1156
+BI_Covariance,True,True,Statistics,"Data, Labels","=BI_Covariance(C13:F22,TRUE)",False,Returns a Covariance Table of many attributes. This is one of the Data Analysis Toolpak features.,602
+BI_DateDif,True,True,Date,"StartDate, EndDate","=BI_DateDif(C13,C14)",False,"Returns Age in years, months, days etc.,",1322
+BI_Describe,True,True,Statistics,Range,=BI_Describe(SalesTable[Sales]),False,Returns the descriptive statistics of Data.,1468
+BI_DiscountedPayback,True,True,Financial,"CashFlows, DiscountRate","=BI_DiscountedPayback(C13:C21,C23)",False,Returns the Discounted Payback period for a series of cashflows,589
+BI_EMISchedule,True,True,Financial,"Principal, Period, InterestRate","=BI_EMISchedule(C12,C13,C14)",False,Returns EMI Schedule of a loan,850
+BI_EndsWith,True,True,Text,"FindText, WithinText, CaseSensitive","=BI_EndsWith(B14,B12) =BI_EndsWith(E14,B12,TRUE)",False,Returns whether one text ends with another text. ,318
+BI_ExactArray,True,True,Array,"Array1, Array2, CaseSensitive","=BI_ExactArray(B13:E19,G13:J19) =BI_ExactArray(B13:E19,G13:J19,TRUE)",False,Compares two arrays and returns whether both the arrays are equal.,228
+BI_ExponentialSmoothing,True,True,Statistics,"Data, DampingFactor, Labels","=BI_ExponentialSmoothing(C13:C32,,TRUE)",False,Returns Exponential Smoothened data after applying Damping Factor. This is one of the Data Analysis Toolpak features.,595
+BI_ExtractNumbers,True,True,Text,Text,=BI_ExtractNumbers(B12),False,Extracts all the numbers from a text string.,157
+BI_ExtractText,True,True,Text,Text,=BI_ExtractText(B12),False,Extracts all the characters from a  text string excluding numbers.,157
+BI_FDRSchedule,True,True,Financial,"DepositAmount, InterestRate, Stdate, Enddate","=BI_FDRSchedule(C12,C13,C14,C15)",False,Returns the Fixed Deposit Schedule of Interest calculations and maturiy value.,1255
+BI_FillDown,True,True,Text,Data,=BI_FillDown(B13:B27),False,Fills down blank cells with the content above. ,314
+BI_FinancialYear,True,True,Date,"Date, YearEndMonth, Format","=BI_FinancialYear(,,B12)",False,Returns  the financial year (1st April to 31st March) of any date.,461
+BI_FinancialYearEnd,True,True,Date,"Date, YearEndMonth",=BI_FinancialYearEnd(),False,Returns  the financial year end (31st March) of any date.,320
+BI_FinancialYearStart,True,True,Date,"Date, YearEndMonth",=BI_FinancialYearStart(),False,Returns  the financial year start (1st April) of any date.,321
+BI_FindDuplicates,True,True,Audit,List,=BI_FindDuplicates(B13:B24),False,Returns duplicate values from a list,181
+BI_FindMissingNumbers,True,True,Audit,List,=BI_FindMissingNumbers(B13:B20),False,Returns missing numbers from a list of numbers,224
+BI_FindOneOf,True,True,Audit,"Text, Pattern","=BI_FindOneOf(B12,B14)",False,"Returns the position of the first specified character value in a string. If the specified value is not found, 0 is returned. CaseWare IDEA inspiration.",245
+BI_FindUnique,True,True,Audit,List,=BI_FindUnique(B14:B20) =BI_FindDuplicates(B14:B20),False,Returns the values available only once (without duplicates) in a list.,181
+BI_FormulaList,True,True,Audit,reference,=BI_FormulaList(B12:B18),False,Returns the formula list in the specified range.,230
+BI_Fuzzy,True,True,Audit,"a, b, ii, jj, arr","=BI_Fuzzy(B12,B13)",False,Returns the number of modifications required to change from first text to second text. This finds Levenshtein distance between two strings.,1287
+BI_GEL1Test,True,True,Forensic Audit,"AnalyzeData, RelatedData","=BI_GEL1Test(B13#,C13#)",False,Calculates Gestalt Element Link Test between two columns of related data like Salesman and Customer,729
+BI_GEL2Test,True,True,Forensic Audit,"AnalyzeData, RelatedData, DataItem, Total","=BI_GEL2Test(B12#,C12#,E10, SalesTable[Sales])",False,Calculates Gestalt Element Link Test 2 between two columns of related data like Salesman and Customer for a particular dataitem.,1393
+BI_GenerateRandom,True,True,Statistics,"Seed, Size","=BI_GenerateRandom(C12,C13)",False,Function to generate static random numbers between 0 and 1 using a Random Seed. This is one of the Data Analysis Toolpak features.,297
+BI_GenerateRandomBetween,True,True,Statistics,"Seed, Size, Bottom, Top, Integer","=BI_GenerateRandomBetween(C12,C13,C14,C15) =BI_GenerateRandomBetween(C12,C13,C14,C15,TRUE)",False,Function to generate static random numbers between two numbers using a Random Seed. This is one of the Data Analysis Toolpak features.,294
+BI_Histogram,True,True,Statistics,"Range, BinStart, BinIncrement","=BI_Histogram(SalesTable[Sales]) =BI_Histogram(SalesTable[Sales],0,1000)",False,Function to create Histogram analysis. This is one of the Data Analysis Toolpak features.,729
+BI_IndianNum2Word,True,True,Indian,Number,=BI_IndianNum2Word(B12),False,Returns the Indian spelling of a number. (Maximum 16 digits),3067
+BI_Insert,True,True,Text,"Text, Position, InsertText","=BI_Insert(C12,C13,C14)",False,Inserts a sub-string into Character field or string before a specified position.,172
+BI_IsCharAtoZ,True,True,Text,Character,=BI_IsCharAtoZ(B12),False,Verifies whether the character is an alphabet from a to z.,146
+BI_IsLeap,True,True,Date,Date,=BI_IsLeap(),False,Returns whether the year of a date is a leap year,138
+BI_IsValidPAN,True,True,Audit,PAN,=BI_IsValidPAN(B12),False,Function to validate Indian Income Tax PAN,404
+BI_LuhnAlgorithm,True,True,Audit,CCNo,=BI_LuhnAlgorithm(B13),False,Uses Luhn Algorithm to test the validity of Credit/Debit Card Numbers,648
+BI_MUS_Evaluate_OverStatement,True,True,Audit Sampling,"Data, Sample, Audited, Tolerable, Expected, Risk","=BI_MUS_Evaluate_OverStatement(B14#,D18:D47,E18:E47,0.15,0.02,0.05)",False,Returns Monetary Unit Sampling evaluation of Over Statement from the Audited and Samples data.,1516
+BI_MUS_Evaluate_UnderStatement,True,True,Audit Sampling,"Data, Sample, Audited, Tolerable, Expected, Risk","=BI_MUS_Evaluate_UnderStatement(B14#,D18:D47,E18:E47,0.15,0.02,0.05)",False,Returns Monetary Unit Sampling evaluation of Under Statement from the Audited and Samples data.,1517
+BI_MUS_ExtractSample,True,True,Audit Sampling,"Data, Tolerable, Expected, Risk, OnlySamples","=BI_MUS_ExtractSample(B14#,0.15,0.02,0.05,TRUE)",False,Returns Monetary Unit Sampling Samples from Data.,1343
+BI_MUS_SampleSize,True,True,Audit Sampling,"Tolerable, Expected, Risk, Start","=BI_MUS_SampleSize(0.15,0.02,0.05)",False,Returns Monetary Unit Sample size.,343
+BI_MonthlyCalendar,True,True,Date,"Month, Year, Format, Vertical",=BI_MonthlyCalendar(),False,Returns the monthly Calendar,1375
+BI_MovingAverage,True,True,Statistics,"Data, Interval, Labels, StandardError",=BI_MovingAverage(B12#),False,Returns the moving average calculation of data. This is one of the Data Analysis Toolpak features.,996
+BI_NetworkDays.Indian,True,False,,"startdate, enddate, holidays","=BI_NetworkDays.Indian(C12,C13,B16:B21)",False,Returns the number of whole work days between two dates considering Indian banking holidays (second and fourth Saturdays as holidays).,361
+BI_Networkdays.Indian,False,True,Indian,,,,,
+BI_Num2Word,True,True,Text,Number,=BI_Num2Word(B12),False,Returns the English spelling of a Number,2492
+BI_OhlsonsOScore,True,True,Forensic Audit,Data,=BI_OhlsonsOScore(E12:E20),False,Calculate Ohlsons O Score,832
+BI_OhlsonsOScoreVariables,True,True,Forensic Audit,,=BI_OhlsonsOScoreVariables(),True,Calculates Ohlsons O Score. It is used for predicting bankruptcy is a multi-factor financial formula postulated in 1980 by Dr. James Ohlson of the New York University,222
+BI_PaybackPeriod,True,True,Financial,CashFlows,=BI_PaybackPeriod(C13:C21),False,Returns the payback period from series of cash flows,495
+BI_PiotroskiFScore,True,True,Forensic Audit,"LastYearData, CurrentYearData","=BI_PiotroskiFScore(C12:C21,D12:D21)",False,Calculates Piotroski F-score. Use BI_PiotroskiFScoreVariables() to list the variables and enter two years data,2320
+BI_PiotroskiFScoreVariables,True,True,Forensic Audit,,=BI_PiotroskiFScoreVariables(),True,Lists out Piotroski F Score variables to make it easy to enter two years data for calculating Piotroski F Score.,196
+BI_Pivot,True,True,Data,"Data, Value, Row, Col, Function","=BI_Pivot(SalesTable,12,10,7)",False,Creates a Pivot Table from Data.,1116
+BI_Quarter,True,True,Date,"Date, YearEndMonth",=BI_Quarter(),False,Returns the Quarter number for a date.,393
+BI_QuarterEnd,True,True,Date,"Date, YearEndMonth",=BI_QuarterEnd(),False,Returns the Quarter ending date.,348
+BI_QuarterStart,True,True,Date,"Date, YearEndMonth",=BI_QuarterStart(),False,Returns the Quarter Starting date.,352
+BI_Rank.Dense,True,True,Statistics,"Number, Ref, Order","=BI_Rank.Dense(B13#,B13#)",False,Returns the Rank without any missing rank when there is a tie. ,241
+BI_Regression,True,True,Statistics,"KnownYs, KnownXs, Labels, Confidence","=BI_Regression(B12:B32,C12:E32,TRUE,0.9)",False,Calculates the Linear Regression. This is one of the Data Analysis Toolpak features.,3227
+BI_RelativeSizeFactor,True,True,Forensic Audit,"categories, rowvalue, first, second","=BI_RelativeSizeFactor(SalesTable[Customer ID],SalesTable[Sales],1,2)",False,Returns the Relative Size Factor of given data on any attribute.,626
+BI_ReverseText,True,True,Text,Text,=BI_ReverseText(B12),False,Returns the text in reverse order.,109
+BI_RoundNumbersTest,True,True,Forensic Audit,"Data, ColumnIndex, Digits","=BI_RoundNumbersTest(CHOOSECOLS(SalesTable,2,12),2,2)",False,Returns the Round numbers test in data.,1455
+BI_RowOccurence,True,True,Array,"Data, SelectedColumns",=BI_RowOccurence(B13:E19),False,Returns how many times the same complete row or selected columns occurs in the data.,996
+BI_RunningTotal,True,True,Data,Data,=BI_RunningTotal(B12#),False,Returns Running Total of Data,95
+BI_RupeeSymbol,True,True,Indian,,=BI_RupeeSymbol(),True,Returns the Rupee Symbol ₹,33
+BI_SLNSchedule,True,True,Financial,"cost, life, scrap","=BI_SLNSchedule(C12,C13,C14)",False,Returns Straight Line Method of Depreciation Schedule.,514
+BI_SameSameDifferentTest,True,True,Forensic Audit,"Data, TestColumns, DifferentColumn","=BI_SameSameDifferentTest(Data,TestColumns,DifferentColumn)",True,Returns Same values in specified columns and different value in third column. Useful in forensic audit. ,1626
+BI_SameSameSameTest,True,True,Forensic Audit,"Data, TestColumns","=BI_SameSameSameTest(CHOOSECOLS(SalesTable,1,2,9,12,13),{2,3})",False,"Returns Same values in the given columns (like invoice number, supplier id, employee id). Useful in forensic audit. ",1112
+BI_SubsetNumberDuplicationTest,True,True,Forensic Audit,"CategoryData, SubsetData","=BI_SubsetNumberDuplicationTest(SalesTable[Customer ID],SalesTable[Sales])",False,Calculates the Subset Number Duplication Test. ,1060
+BI_Summary,True,True,Data,"Data, ValueColumn, SummaryColumn, Function","=BI_Summary(SalesTable,12,7)",False,Returns Summary of data according to any attribute.,835
+BI_TextSplitByPositions,True,True,Text,"Text, Positions","=BI_TextSplitByPositions(B12,$B$21#)",False,Returns an array of text split by number of positions as in Power Query.,436
+BI_TopN,True,True,Statistics,"DataRange, IndexColumn, N","=BI_TopN(CHOOSECOLS(SalesTable,1,2,6,12),4,B12)",False,Returns Top N ranked rows of a column of data.,155
+BI_TopPercent,True,True,Statistics,"Data, IndexColumn, Percent","=BI_TopPercent(CHOOSECOLS(SalesTable,1,2,6,12),4,B12)",False,Returns Top N Percentage of Data,584
+BI_Unpivot,True,True,Data,"UnpivotData, RemainingData",=BI_Unpivot(B13:E19),False,Returns unpivoted data,1308
+BI_UnpivotExceptFirst,True,True,Data,Data,=BI_UnpivotExceptFirst(B12#),False,Unpivot Except First Column,138
+BI_WDVSchedule,True,True,Financial,"cost, life, scrap","=BI_WDVSchedule(C12,C13,C14)",False,Returns Written Down Value (Declining Balance) Method of Depreciation Schedule.,557
+BI_WordCount,True,True,Text,Text,=BI_WordCount(B13),False,Returns the number of words in text.,191
+BI_WorkDay.Indian,True,False,,"StartDate, Days, Holidays","=BI_WorkDay.Indian(C12,C13,B16:B21)",False,Returns the date after a specified number of Indian workdays (Second and Fourth Saturdays as holidays),638
+BI_Workday.Indian,False,True,Indian,,"=BI_Workday.Indian(StartDate,Days,Holidays)",,,
+BI_YearlyCalendar,True,True,Date,"Year, Format, Vertical",=BI_YearlyCalendar(),False,Returns the Yearly Calendar of any date or current date in horizontal or vertical format.,1530
+BI_ZScore,True,True,Statistics,"Data, Population","=BI_ZScore(D14:D103,TRUE)",False,Returns the Z Score of data.,225

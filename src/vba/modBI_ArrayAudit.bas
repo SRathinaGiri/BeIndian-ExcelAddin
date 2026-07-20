@@ -55,7 +55,7 @@ Private Function BI_CriteriaToRow(ByVal source As Variant) As Variant
     BI_CriteriaToRow = result
 End Function
 
-Private Function BI_SelectedColumns(Optional ByVal selectedColumns As Variant, ByVal defaultCount As Long = 0) As Long()
+Public Function BI_SelectedColumns(Optional ByVal selectedColumns As Variant, Optional ByVal defaultCount As Long = 0) As Long()
     Dim cols() As Long
     Dim data As Variant
     Dim r As Long, c As Long, n As Long

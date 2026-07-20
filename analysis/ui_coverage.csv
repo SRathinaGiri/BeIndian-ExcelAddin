@@ -1,0 +1,102 @@
+lambda_name,vba_name,exclusive_form,callback,category,description
+BI_About,BI_About,frmBI_F001,BI_Tool_Form_F001,Utility,
+BI_AltmanZScore,BI_AltmanZScore,frmBI_F002,BI_Tool_Form_F002,Forensic Audit,Calculates Altman Z Score. Use BI_AltmanZScoreVariables() function to list the variables.
+BI_AltmanZScoreVariables,BI_AltmanZScoreVariables,frmBI_F003,BI_Tool_Form_F003,Forensic Audit,Lists out Altman Z Score Variables.
+BI_AnovaSingleFactor,BI_AnovaSingleFactor,frmBI_F004,BI_Tool_Form_F004,Statistics,Calculates Anova (Analysis of Variance) Single Factor. This is one of the Data Analysis Toolpak features.
+BI_AnovaTwoFactorsWithoutReplication,BI_AnovaTwoFactorsWithoutReplication,frmBI_F005,BI_Tool_Form_F005,Statistics,Calculates Anova (Analysis of Variance) without replication. This is one of the Data Analysis Toolpak features.
+BI_AnsCombeQuartet,BI_AnsCombeQuartet,frmBI_F006,BI_Tool_Form_F006,Statistics,"Shows AnsCombe Quartet. Anscombe's quartet is a group of four data sets that are nearly identical in simple descriptive statistics, but there are peculiarities that fool the regression model once you plot each data set."
+BI_ArrayContains,BI_ArrayContains,frmBI_F007,BI_Tool_Form_F007,Array,Verifies whether one record of data contains in a table and returns true or false.
+BI_ArrayCountif,BI_ArrayCountif,frmBI_F008,BI_Tool_Form_F008,Array,Counts howmany times a record of data repeated in a table of data. If not found returns 0.
+BI_ArrayFilter,BI_ArrayFilter,frmBI_F009,BI_Tool_Form_F009,Array,Filters a Table for a multi-column criteria array by matching selected columns with the criteria array.
+BI_ArrayInArray,BI_ArrayInArray,frmBI_F010,BI_Tool_Form_F010,Array,Filters only the available rows in an array found in another array.
+BI_ArrayMatch,BI_ArrayMatch,frmBI_F011,BI_Tool_Form_F011,Array,Returns the row number of an array where a matching row is first found. Returns #NA if not found.
+BI_ASort,BI_ASort,frmBI_F012,BI_Tool_Form_F012,Array,"Returns the sorted array by all the columns  in the order entered. Useful for sorting Countrywise, Regionwise, Statewise, Citywise etc.,"
+BI_AttributeUnitCount,BI_AttributeUnitCount,frmBI_F013,BI_Tool_Form_F013,Audit Sampling,Returns Attribute Unit Sampling cumulative count of any attribute.
+BI_BeginsWith,BI_BeginsWith,frmBI_F014,BI_Tool_Form_F014,Text,Returns whether one text begins with another text.
+BI_BeneishMScore,BI_BeneishMScore,frmBI_F015,BI_Tool_Form_F015,Forensic Audit,Calculates Beneish M Score. Beneish's M-Score is a mathematical model that uses eight financial ratios weighted by coefficients to identify whether a company has manipulated its profits.
+BI_BeneishMScoreVariables,BI_BeneishMScoreVariables,frmBI_F016,BI_Tool_Form_F016,Forensic Audit,Lists out Beneish M Score variables to make it easy to enter two years data for calculating Beneish M Score.
+BI_BenfordLaw_FirstDigit,BI_BenfordLaw_FirstDigit,frmBI_F017,BI_Tool_Form_F017,Forensic Audit,Returns Benford Law for the first digit of a data set.
+BI_BenfordLaw_FirstThreeDigits,BI_BenfordLaw_FirstThreeDigits,frmBI_F018,BI_Tool_Form_F018,Forensic Audit,Returns Benford Law for the first three digits of a data set.
+BI_BenfordLaw_FirstTwoDigits,BI_BenfordLaw_FirstTwoDigits,frmBI_F019,BI_Tool_Form_F019,Forensic Audit,Returns Benford Law for the first two digits of a data set.
+BI_BenfordLaw_LastTwoDigits,BI_BenfordLaw_LastTwoDigits,frmBI_F020,BI_Tool_Form_F020,Forensic Audit,Returns Benford Law for the last two digits of a data set.
+BI_BenfordLaw_SecondDigit,BI_BenfordLaw_SecondDigit,frmBI_F021,BI_Tool_Form_F021,Forensic Audit,Returns Benford Law for the second digit of a data set.
+BI_BenfordLaw_SecondOrder,BI_BenfordLaw_SecondOrder,frmBI_F022,BI_Tool_Form_F022,Forensic Audit,"Calculates Benford Law Second Order - Frequency, Actual and Expected values along with Mean Abstract Deviation."
+BI_BenfordLaw_SummaryTest,BI_BenfordLaw_SummaryTest,frmBI_F023,BI_Tool_Form_F023,Forensic Audit,"Calculates Benford Law Summary Test - Frequency, Actual and Expected values along with Mean Abstract Deviation."
+BI_BenfordLaw_ThirdDigit,BI_BenfordLaw_ThirdDigit,frmBI_F024,BI_Tool_Form_F024,Forensic Audit,Returns Benford Law for the third digit of a data set.
+BI_BottomN,BI_BottomN,frmBI_F025,BI_Tool_Form_F025,Statistics,Returns Bottom N ranked rows of a column of data.
+BI_BottomPercent,BI_BottomPercent,frmBI_F026,BI_Tool_Form_F026,Statistics,Returns Bottom N Percentage of Data
+BI_Consolidate,BI_Consolidate,frmBI_F027,BI_Tool_Form_F027,Data,Multiple Consolidation Ranges
+BI_Contains,BI_Contains,frmBI_F028,BI_Tool_Form_F028,Text,Returns true if FindText is found in WithinText.
+BI_Correlation,BI_Correlation,frmBI_F029,BI_Tool_Form_F029,Statistics,Returns a Correlation Table of many attributes. This is one of the Data Analysis Toolpak features.
+BI_Covariance,BI_Covariance,frmBI_F030,BI_Tool_Form_F030,Statistics,Returns a Covariance Table of many attributes. This is one of the Data Analysis Toolpak features.
+BI_DateDif,BI_DateDif,frmBI_F031,BI_Tool_Form_F031,Date,"Returns Age in years, months, days etc.,"
+BI_Describe,BI_Describe,frmBI_F032,BI_Tool_Form_F032,Statistics,Returns the descriptive statistics of Data.
+BI_DiscountedPayback,BI_DiscountedPayback,frmBI_F033,BI_Tool_Form_F033,Financial,Returns the Discounted Payback period for a series of cashflows
+BI_EMISchedule,BI_EMISchedule,frmBI_F034,BI_Tool_Form_F034,Financial,Returns EMI Schedule of a loan
+BI_EndsWith,BI_EndsWith,frmBI_F035,BI_Tool_Form_F035,Text,Returns whether one text ends with another text.
+BI_ExactArray,BI_ExactArray,frmBI_F036,BI_Tool_Form_F036,Array,Compares two arrays and returns whether both the arrays are equal.
+BI_ExponentialSmoothing,BI_ExponentialSmoothing,frmBI_F037,BI_Tool_Form_F037,Statistics,Returns Exponential Smoothened data after applying Damping Factor. This is one of the Data Analysis Toolpak features.
+BI_ExtractNumbers,BI_ExtractNumbers,frmBI_F038,BI_Tool_Form_F038,Text,Extracts all the numbers from a text string.
+BI_ExtractText,BI_ExtractText,frmBI_F039,BI_Tool_Form_F039,Text,Extracts all the characters from a  text string excluding numbers.
+BI_FDRSchedule,BI_FDRSchedule,frmBI_F040,BI_Tool_Form_F040,Financial,Returns the Fixed Deposit Schedule of Interest calculations and maturiy value.
+BI_FillDown,BI_FillDown,frmBI_F041,BI_Tool_Form_F041,Text,Fills down blank cells with the content above.
+BI_FinancialYear,BI_FinancialYear,frmBI_F042,BI_Tool_Form_F042,Date,Returns  the financial year (1st April to 31st March) of any date.
+BI_FinancialYearEnd,BI_FinancialYearEnd,frmBI_F043,BI_Tool_Form_F043,Date,Returns  the financial year end (31st March) of any date.
+BI_FinancialYearStart,BI_FinancialYearStart,frmBI_F044,BI_Tool_Form_F044,Date,Returns  the financial year start (1st April) of any date.
+BI_FindDuplicates,BI_FindDuplicates,frmBI_F045,BI_Tool_Form_F045,Audit,Returns duplicate values from a list
+BI_FindMissingNumbers,BI_FindMissingNumbers,frmBI_F046,BI_Tool_Form_F046,Audit,Returns missing numbers from a list of numbers
+BI_FindOneOf,BI_FindOneOf,frmBI_F047,BI_Tool_Form_F047,Audit,"Returns the position of the first specified character value in a string. If the specified value is not found, 0 is returned. CaseWare IDEA inspiration."
+BI_FindUnique,BI_FindUnique,frmBI_F048,BI_Tool_Form_F048,Audit,Returns the values available only once (without duplicates) in a list.
+BI_FormulaList,BI_FormulaList,frmBI_F049,BI_Tool_Form_F049,Audit,Returns the formula list in the specified range.
+BI_Fuzzy,BI_Fuzzy,frmBI_F050,BI_Tool_Form_F050,Audit,Returns the number of modifications required to change from first text to second text. This finds Levenshtein distance between two strings.
+BI_GEL1Test,BI_GEL1Test,frmBI_F051,BI_Tool_Form_F051,Forensic Audit,Calculates Gestalt Element Link Test between two columns of related data like Salesman and Customer
+BI_GEL2Test,BI_GEL2Test,frmBI_F052,BI_Tool_Form_F052,Forensic Audit,Calculates Gestalt Element Link Test 2 between two columns of related data like Salesman and Customer for a particular dataitem.
+BI_GenerateRandom,BI_GenerateRandom,frmBI_F053,BI_Tool_Form_F053,Statistics,Function to generate static random numbers between 0 and 1 using a Random Seed. This is one of the Data Analysis Toolpak features.
+BI_GenerateRandomBetween,BI_GenerateRandomBetween,frmBI_F054,BI_Tool_Form_F054,Statistics,Function to generate static random numbers between two numbers using a Random Seed. This is one of the Data Analysis Toolpak features.
+BI_Histogram,BI_Histogram,frmBI_F055,BI_Tool_Form_F055,Statistics,Function to create Histogram analysis. This is one of the Data Analysis Toolpak features.
+BI_IndianNum2Word,BI_IndianNum2Word,frmBI_F056,BI_Tool_Form_F056,Indian,Returns the Indian spelling of a number. (Maximum 16 digits)
+BI_Insert,BI_Insert,frmBI_F057,BI_Tool_Form_F057,Text,Inserts a sub-string into Character field or string before a specified position.
+BI_IsCharAtoZ,BI_IsCharAtoZ,frmBI_F058,BI_Tool_Form_F058,Text,Verifies whether the character is an alphabet from a to z.
+BI_IsLeap,BI_IsLeap,frmBI_F059,BI_Tool_Form_F059,Date,Returns whether the year of a date is a leap year
+BI_IsValidPAN,BI_IsValidPAN,frmBI_F060,BI_Tool_Form_F060,Audit,Function to validate Indian Income Tax PAN
+BI_LuhnAlgorithm,BI_LuhnAlgorithm,frmBI_F061,BI_Tool_Form_F061,Audit,Uses Luhn Algorithm to test the validity of Credit/Debit Card Numbers
+BI_MonthlyCalendar,BI_MonthlyCalendar,frmBI_F062,BI_Tool_Form_F062,Date,Returns the monthly Calendar
+BI_MovingAverage,BI_MovingAverage,frmBI_F063,BI_Tool_Form_F063,Statistics,Returns the moving average calculation of data. This is one of the Data Analysis Toolpak features.
+BI_MUS_Evaluate_OverStatement,BI_MUS_Evaluate_OverStatement,frmBI_F064,BI_Tool_Form_F064,Audit Sampling,Returns Monetary Unit Sampling evaluation of Over Statement from the Audited and Samples data.
+BI_MUS_Evaluate_UnderStatement,BI_MUS_Evaluate_UnderStatement,frmBI_F065,BI_Tool_Form_F065,Audit Sampling,Returns Monetary Unit Sampling evaluation of Under Statement from the Audited and Samples data.
+BI_MUS_ExtractSample,BI_MUS_ExtractSample,frmBI_F066,BI_Tool_Form_F066,Audit Sampling,Returns Monetary Unit Sampling Samples from Data.
+BI_MUS_SampleSize,BI_MUS_SampleSize,frmBI_F067,BI_Tool_Form_F067,Audit Sampling,Returns Monetary Unit Sample size.
+BI_NetworkDays.Indian,BI_NetworkDays_Indian,frmBI_F068,BI_Tool_Form_F068,Other,Returns the number of whole work days between two dates considering Indian banking holidays (second and fourth Saturdays as holidays).
+BI_Num2Word,BI_Num2Word,frmBI_F069,BI_Tool_Form_F069,Text,Returns the English spelling of a Number
+BI_OhlsonsOScore,BI_OhlsonsOScore,frmBI_F070,BI_Tool_Form_F070,Forensic Audit,Calculate Ohlsons O Score
+BI_OhlsonsOScoreVariables,BI_OhlsonsOScoreVariables,frmBI_F071,BI_Tool_Form_F071,Forensic Audit,Calculates Ohlsons O Score. It is used for predicting bankruptcy is a multi-factor financial formula postulated in 1980 by Dr. James Ohlson of the New York University
+BI_PaybackPeriod,BI_PaybackPeriod,frmBI_F072,BI_Tool_Form_F072,Financial,Returns the payback period from series of cash flows
+BI_PiotroskiFScore,BI_PiotroskiFScore,frmBI_F073,BI_Tool_Form_F073,Forensic Audit,Calculates Piotroski F-score. Use BI_PiotroskiFScoreVariables() to list the variables and enter two years data
+BI_PiotroskiFScoreVariables,BI_PiotroskiFScoreVariables,frmBI_F074,BI_Tool_Form_F074,Forensic Audit,Lists out Piotroski F Score variables to make it easy to enter two years data for calculating Piotroski F Score.
+BI_Pivot,BI_Pivot,frmBI_F075,BI_Tool_Form_F075,Data,Creates a Pivot Table from Data.
+BI_Quarter,BI_Quarter,frmBI_F076,BI_Tool_Form_F076,Date,Returns the Quarter number for a date.
+BI_QuarterEnd,BI_QuarterEnd,frmBI_F077,BI_Tool_Form_F077,Date,Returns the Quarter ending date.
+BI_QuarterStart,BI_QuarterStart,frmBI_F078,BI_Tool_Form_F078,Date,Returns the Quarter Starting date.
+BI_Rank.Dense,BI_Rank_Dense,frmBI_F079,BI_Tool_Form_F079,Statistics,Returns the Rank without any missing rank when there is a tie.
+BI_Regression,BI_Regression,frmBI_F080,BI_Tool_Form_F080,Statistics,Calculates the Linear Regression. This is one of the Data Analysis Toolpak features.
+BI_RelativeSizeFactor,BI_RelativeSizeFactor,frmBI_F081,BI_Tool_Form_F081,Forensic Audit,Returns the Relative Size Factor of given data on any attribute.
+BI_ReverseText,BI_ReverseText,frmBI_F082,BI_Tool_Form_F082,Text,Returns the text in reverse order.
+BI_RoundNumbersTest,BI_RoundNumbersTest,frmBI_F083,BI_Tool_Form_F083,Forensic Audit,Returns the Round numbers test in data.
+BI_RowOccurence,BI_RowOccurence,frmBI_F084,BI_Tool_Form_F084,Array,Returns how many times the same complete row or selected columns occurs in the data.
+BI_RunningTotal,BI_RunningTotal,frmBI_F085,BI_Tool_Form_F085,Data,Returns Running Total of Data
+BI_RupeeSymbol,BI_RupeeSymbol,frmBI_F086,BI_Tool_Form_F086,Indian,Returns the Rupee Symbol ₹
+BI_SameSameDifferentTest,BI_SameSameDifferentTest,frmBI_F087,BI_Tool_Form_F087,Forensic Audit,Returns Same values in specified columns and different value in third column. Useful in forensic audit.
+BI_SameSameSameTest,BI_SameSameSameTest,frmBI_F088,BI_Tool_Form_F088,Forensic Audit,"Returns Same values in the given columns (like invoice number, supplier id, employee id). Useful in forensic audit."
+BI_SLNSchedule,BI_SLNSchedule,frmBI_F089,BI_Tool_Form_F089,Financial,Returns Straight Line Method of Depreciation Schedule.
+BI_SubsetNumberDuplicationTest,BI_SubsetNumberDuplicationTest,frmBI_F090,BI_Tool_Form_F090,Forensic Audit,Calculates the Subset Number Duplication Test.
+BI_Summary,BI_Summary,frmBI_F091,BI_Tool_Form_F091,Data,Returns Summary of data according to any attribute.
+BI_TextSplitByPositions,BI_TextSplitByPositions,frmBI_F092,BI_Tool_Form_F092,Text,Returns an array of text split by number of positions as in Power Query.
+BI_TopN,BI_TopN,frmBI_F093,BI_Tool_Form_F093,Statistics,Returns Top N ranked rows of a column of data.
+BI_TopPercent,BI_TopPercent,frmBI_F094,BI_Tool_Form_F094,Statistics,Returns Top N Percentage of Data
+BI_Unpivot,BI_Unpivot,frmBI_F095,BI_Tool_Form_F095,Data,Returns unpivoted data
+BI_UnpivotExceptFirst,BI_UnpivotExceptFirst,frmBI_F096,BI_Tool_Form_F096,Data,Unpivot Except First Column
+BI_WDVSchedule,BI_WDVSchedule,frmBI_F097,BI_Tool_Form_F097,Financial,Returns Written Down Value (Declining Balance) Method of Depreciation Schedule.
+BI_WordCount,BI_WordCount,frmBI_F098,BI_Tool_Form_F098,Text,Returns the number of words in text.
+BI_WorkDay.Indian,BI_WorkDay_Indian,frmBI_F099,BI_Tool_Form_F099,Other,Returns the date after a specified number of Indian workdays (Second and Fourth Saturdays as holidays)
+BI_YearlyCalendar,BI_YearlyCalendar,frmBI_F100,BI_Tool_Form_F100,Date,Returns the Yearly Calendar of any date or current date in horizontal or vertical format.
+BI_ZScore,BI_ZScore,frmBI_F101,BI_Tool_Form_F101,Statistics,Returns the Z Score of data.

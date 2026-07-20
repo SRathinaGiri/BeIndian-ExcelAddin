@@ -590,6 +590,7 @@ End Function
 
 Public Sub BI_Tool_WorkDayIndian(control As IRibbonControl)
     On Error GoTo ErrHandler
+    Unload frmBI_DateTool
     frmBI_DateTool.Tag = "WorkDay"
     frmBI_DateTool.Show
     Exit Sub
@@ -599,6 +600,7 @@ End Sub
 
 Public Sub BI_Tool_NetworkDaysIndian(control As IRibbonControl)
     On Error GoTo ErrHandler
+    Unload frmBI_DateTool
     frmBI_DateTool.Tag = "NetworkDays"
     frmBI_DateTool.Show
     Exit Sub

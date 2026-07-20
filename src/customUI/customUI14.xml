@@ -1,66 +1,193 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <customUI xmlns="http://schemas.microsoft.com/office/2009/07/customui" onLoad="BI_RibbonOnLoad">
   <ribbon>
     <tabs>
       <tab id="tabBeIndian" label="BeIndian">
         <group id="grpValidators" label="Validators">
-          <button id="btnPAN" label="PAN Validator" imageMso="AcceptInvitation" size="large" onAction="BI_Tool_ValidatePAN" />
+          <button id="btnPAN" label="PAN Validator" imageMso="DataValidation" size="large" onAction="BI_Tool_Form_F060" />
         </group>
         <group id="grpForensics" label="Forensics">
           <button id="btnBenfordFirstDigit" label="Benford Tests" imageMso="ChartInsert" size="large" onAction="BI_Tool_BenfordFirstDigit" />
-          <button id="btnAltman" label="Altman Z-Score" imageMso="Calculator" size="large" onAction="BI_Tool_AltmanZScore" />
-          <button id="btnBeneishScore" label="Beneish M-Score" imageMso="Calculator" onAction="BI_Tool_BeneishMScore" />
-          <button id="btnOhlsonScore" label="Ohlson O-Score" imageMso="Calculator" onAction="BI_Tool_OhlsonOScore" />
-          <button id="btnPiotroskiScore" label="Piotroski F-Score" imageMso="Calculator" onAction="BI_Tool_PiotroskiFScore" />
+          <button id="btnAltman" label="Altman Z-Score" imageMso="Calculator" size="large" onAction="BI_Tool_Form_F002" />
+          <button id="btnBeneishScore" label="Beneish M-Score" imageMso="Calculator" onAction="BI_Tool_Form_F015" />
+          <button id="btnOhlsonScore" label="Ohlson O-Score" imageMso="Calculator" onAction="BI_Tool_Form_F070" />
+          <button id="btnPiotroskiScore" label="Piotroski F-Score" imageMso="Calculator" onAction="BI_Tool_Form_F073" />
           <separator id="sepScoreTemplates" />
           <button id="btnAltmanTemplate" label="Altman Template" imageMso="TableInsert" onAction="BI_Tool_AltmanTemplate" />
           <button id="btnBeneishTemplate" label="Beneish Template" imageMso="TableInsert" onAction="BI_Tool_BeneishTemplate" />
           <button id="btnOhlsonTemplate" label="Ohlson Template" imageMso="TableInsert" onAction="BI_Tool_OhlsonTemplate" />
           <button id="btnPiotroskiTemplate" label="Piotroski Template" imageMso="TableInsert" onAction="BI_Tool_PiotroskiTemplate" />
-          <button id="btnRSF" label="Relative Size Factor" imageMso="TraceDependents" onAction="BI_Tool_RelativeSizeFactor" />
-        </group>
+          <button id="btnRSF" label="Relative Size Factor" imageMso="TraceDependents" onAction="BI_Tool_Form_F081" />
+          </group>
         <group id="grpAnalytics" label="Analytics">
-          <button id="btnEMI" label="EMI Schedule" imageMso="FinancialFunctionsMenu" size="large" onAction="BI_Tool_EMISchedule" />
-          <button id="btnPayback" label="Payback" imageMso="FunctionsFinancialInsertGallery" onAction="BI_Tool_PaybackPeriod" />
-          <button id="btnDiscountedPayback" label="Discounted Payback" imageMso="FunctionsFinancialInsertGallery" onAction="BI_Tool_DiscountedPayback" />
-          <button id="btnSLN" label="SLN Schedule" imageMso="FunctionsFinancialInsertGallery" onAction="BI_Tool_SLNSchedule" />
-          <button id="btnWDV" label="WDV Schedule" imageMso="FunctionsFinancialInsertGallery" onAction="BI_Tool_WDVSchedule" />
+          <button id="btnEMI" label="EMI Schedule" imageMso="FinancialFunctionsMenu" size="large" onAction="BI_Tool_Form_F034" />
+          <button id="btnFDR" label="FDR Schedule" imageMso="FunctionsFinancialInsertGallery" onAction="BI_Tool_Form_F040" />
+          <button id="btnPayback" label="Payback" imageMso="FunctionsFinancialInsertGallery" onAction="BI_Tool_Form_F072" />
+          <button id="btnDiscountedPayback" label="Discounted Payback" imageMso="FunctionsFinancialInsertGallery" onAction="BI_Tool_Form_F033" />
+          <button id="btnSLN" label="SLN Schedule" imageMso="FunctionsFinancialInsertGallery" onAction="BI_Tool_Form_F089" />
+          <button id="btnWDV" label="WDV Schedule" imageMso="FunctionsFinancialInsertGallery" onAction="BI_Tool_Form_F097" />
           <separator id="sepAnalyticsStats" />
-          <button id="btnDescribe" label="Describe" imageMso="PivotTableInsert" onAction="BI_Tool_Describe" />
-          <button id="btnAnovaSingle" label="Anova Single" imageMso="PivotChartInsert" onAction="BI_Tool_AnovaSingleFactor" />
-          <button id="btnAnovaTwo" label="Anova Two-Way" imageMso="PivotChartInsert" onAction="BI_Tool_AnovaTwoFactorsWithoutReplication" />
-          <button id="btnAnscombe" label="Anscombe Quartet" imageMso="ScatterInsert" onAction="BI_Tool_AnsCombeQuartet" />
-          <button id="btnCorrelation" label="Correlation" imageMso="PivotChartInsert" onAction="BI_Tool_Correlation" />
-          <button id="btnCovariance" label="Covariance" imageMso="PivotChartInsert" onAction="BI_Tool_Covariance" />
-          <button id="btnRegression" label="Regression" imageMso="ChartTrendlineInsert" onAction="BI_Tool_Regression" />
-          <button id="btnHistogram" label="Histogram" imageMso="ChartInsert" onAction="BI_Tool_Histogram" />
-          <button id="btnMovingAverage" label="Moving Average" imageMso="ChartInsert" onAction="BI_Tool_MovingAverage" />
-          <button id="btnExponentialSmoothing" label="Exp Smoothing" imageMso="ChartInsert" onAction="BI_Tool_ExponentialSmoothing" />
-          <button id="btnSampling" label="Sampling Tools" imageMso="DataValidation" onAction="BI_Tool_NotYetPorted" />
-        </group>
-        <group id="grpAuditData" label="Audit Data">
-          <button id="btnFindDuplicates" label="Find Duplicates" imageMso="RemoveDuplicates" onAction="BI_Tool_FindDuplicates" />
-          <button id="btnFindUnique" label="Find Unique" imageMso="ConditionalFormattingUniqueValues" onAction="BI_Tool_FindUnique" />
-          <button id="btnFindMissingNumbers" label="Missing Numbers" imageMso="ListRangesShowHide" onAction="BI_Tool_FindMissingNumbers" />
-          <button id="btnRunningTotal" label="Running Total" imageMso="AutoSum" onAction="BI_Tool_RunningTotal" />
-          <button id="btnSortRange" label="Sort Range" imageMso="SortAscending" onAction="BI_Tool_ASort" />
-          <button id="btnAttributeCount" label="Attribute Count" imageMso="DataForm" onAction="BI_Tool_AttributeUnitCount" />
-          <button id="btnUnpivot" label="Unpivot" imageMso="ConvertTextToTable" onAction="BI_Tool_Unpivot" />
-          <button id="btnPivot" label="Pivot" imageMso="PivotTableInsert" onAction="BI_Tool_Pivot" />
-          <button id="btnTopN" label="Top N" imageMso="SortDescending" onAction="BI_Tool_TopN" />
-          <button id="btnBottomN" label="Bottom N" imageMso="SortAscending" onAction="BI_Tool_BottomN" />
-          <button id="btnTopPercent" label="Top Percent" imageMso="SortDescending" onAction="BI_Tool_TopPercent" />
-          <button id="btnBottomPercent" label="Bottom Percent" imageMso="SortAscending" onAction="BI_Tool_BottomPercent" />
-          <button id="btnZScore" label="Z Score" imageMso="Calculator" onAction="BI_Tool_ZScore" />
+          <button id="btnDescribe" label="Describe" imageMso="PivotTableInsert" onAction="BI_Tool_Form_F032" />
+          <button id="btnAnovaSingle" label="Anova Single" imageMso="PivotChartInsert" onAction="BI_Tool_Form_F004" />
+          <button id="btnAnovaTwo" label="Anova Two-Way" imageMso="PivotChartInsert" onAction="BI_Tool_Form_F005" />
+          <button id="btnAnscombe" label="Anscombe Quartet" imageMso="ScatterInsert" onAction="BI_Tool_Form_F006" />
+          <button id="btnCorrelation" label="Correlation" imageMso="PivotChartInsert" onAction="BI_Tool_Form_F029" />
+          <button id="btnCovariance" label="Covariance" imageMso="PivotChartInsert" onAction="BI_Tool_Form_F030" />
+          <button id="btnRegression" label="Regression" imageMso="ChartTrendlineInsert" onAction="BI_Tool_Form_F080" />
+          <button id="btnHistogram" label="Histogram" imageMso="ChartInsert" onAction="BI_Tool_Form_F055" />
+          <button id="btnMovingAverage" label="Moving Average" imageMso="ChartInsert" onAction="BI_Tool_Form_F063" />
+          <button id="btnExponentialSmoothing" label="Exp Smoothing" imageMso="ChartInsert" onAction="BI_Tool_Form_F037" />
+          </group>
+        <group id="grpAuditSampling" label="Audit Sampling"><button id="btnMUSSampleSize" label="MUS Sample Size" imageMso="DataValidation" onAction="BI_Tool_Form_F067" /><button id="btnMUSExtractSample" label="MUS Extract Sample" imageMso="DataValidation" onAction="BI_Tool_Form_F066" /><button id="btnMUSEvaluateOver" label="MUS Evaluate Overstatement" imageMso="DataValidation" onAction="BI_Tool_Form_F064" /><button id="btnMUSEvaluateUnder" label="MUS Evaluate Understatement" imageMso="DataValidation" onAction="BI_Tool_Form_F065" /></group><group id="grpAuditData" label="Audit Data">
+          <button id="btnFindDuplicates" label="Find Duplicates" imageMso="RemoveDuplicates" onAction="BI_Tool_Form_F045" />
+          <button id="btnFindUnique" label="Find Unique" imageMso="ConditionalFormattingUniqueValues" onAction="BI_Tool_Form_F048" />
+          <button id="btnFindMissingNumbers" label="Missing Numbers" imageMso="ListRangesShowHide" onAction="BI_Tool_Form_F046" />
+          <button id="btnRunningTotal" label="Running Total" imageMso="AutoSum" onAction="BI_Tool_Form_F085" />
+          <button id="btnSortRange" label="Sort Range" imageMso="SortAscending" onAction="BI_Tool_Form_F012" />
+          <button id="btnAttributeCount" label="Attribute Count" imageMso="DataForm" onAction="BI_Tool_Form_F013" />
+          <button id="btnUnpivot" label="Unpivot" imageMso="ConvertTextToTable" onAction="BI_Tool_Form_F095" />
+          <button id="btnPivot" label="Pivot" imageMso="PivotTableInsert" onAction="BI_Tool_Form_F075" />
+          <button id="btnTopN" label="Top N" imageMso="SortDescending" onAction="BI_Tool_Form_F093" />
+          <button id="btnBottomN" label="Bottom N" imageMso="SortAscending" onAction="BI_Tool_Form_F025" />
+          <button id="btnTopPercent" label="Top Percent" imageMso="SortDescending" onAction="BI_Tool_Form_F094" />
+          <button id="btnBottomPercent" label="Bottom Percent" imageMso="SortAscending" onAction="BI_Tool_Form_F026" />
+          <button id="btnZScore" label="Z Score" imageMso="Calculator" onAction="BI_Tool_Form_F101" />
         </group>
         <group id="grpDateText" label="Date &amp; Text">
-          <button id="btnIndianWorkday" label="Indian Workday" imageMso="CalendarInsert" onAction="BI_Tool_WorkDayIndian" />
-          <button id="btnIndianNetworkDays" label="Indian NetworkDays" imageMso="CalendarInsert" onAction="BI_Tool_NetworkDaysIndian" />
-          <button id="btnMonthlyCalendar" label="Monthly Calendar" imageMso="CalendarInsert" onAction="BI_Tool_MonthlyCalendar" />
-          <button id="btnYearlyCalendar" label="Yearly Calendar" imageMso="CalendarInsert" onAction="BI_Tool_YearlyCalendar" />
+          <button id="btnIndianWorkday" label="Indian Workday" imageMso="CalendarInsert" onAction="BI_Tool_Form_F099" />
+          <button id="btnIndianNetworkDays" label="Indian NetworkDays" imageMso="CalendarInsert" onAction="BI_Tool_Form_F068" />
+          <button id="btnMonthlyCalendar" label="Monthly Calendar" imageMso="CalendarInsert" onAction="BI_Tool_Form_F062" />
+          <button id="btnYearlyCalendar" label="Yearly Calendar" imageMso="CalendarInsert" onAction="BI_Tool_Form_F100" />
           <button id="btnTextTools" label="Text Tools" imageMso="TextBoxInsert" onAction="BI_Tool_TextTools" />
         </group>
         <group id="grpHelp" label="Help">
+          <menu id="menuAllFunctionForms" label="All Function Forms" imageMso="FunctionWizard" size="large">
+            <menu id="menuForensicAudit" label="Forensic Audit" imageMso="TableAnalyze">
+              <button id="btnForm2" label="AltmanZScore" onAction="BI_Tool_Form_F002" imageMso="Calculator" />
+              <button id="btnForm3" label="AltmanZScoreVariables" onAction="BI_Tool_Form_F003" imageMso="TableInsert" />
+              <button id="btnForm15" label="BeneishMScore" onAction="BI_Tool_Form_F015" imageMso="Calculator" />
+              <button id="btnForm16" label="BeneishMScoreVariables" onAction="BI_Tool_Form_F016" imageMso="TableInsert" />
+              <button id="btnForm17" label="BenfordLaw_FirstDigit" onAction="BI_Tool_Form_F017" imageMso="ChartInsert" />
+              <button id="btnForm18" label="BenfordLaw_FirstThreeDigits" onAction="BI_Tool_Form_F018" imageMso="ChartInsert" />
+              <button id="btnForm19" label="BenfordLaw_FirstTwoDigits" onAction="BI_Tool_Form_F019" imageMso="ChartInsert" />
+              <button id="btnForm20" label="BenfordLaw_LastTwoDigits" onAction="BI_Tool_Form_F020" imageMso="ChartInsert" />
+              <button id="btnForm21" label="BenfordLaw_SecondDigit" onAction="BI_Tool_Form_F021" imageMso="ChartInsert" />
+              <button id="btnForm22" label="BenfordLaw_SecondOrder" onAction="BI_Tool_Form_F022" imageMso="ChartInsert" />
+              <button id="btnForm23" label="BenfordLaw_SummaryTest" onAction="BI_Tool_Form_F023" imageMso="ChartInsert" />
+              <button id="btnForm24" label="BenfordLaw_ThirdDigit" onAction="BI_Tool_Form_F024" imageMso="ChartInsert" />
+              <button id="btnForm51" label="GEL1Test" onAction="BI_Tool_Form_F051" imageMso="TableAnalyze" />
+              <button id="btnForm52" label="GEL2Test" onAction="BI_Tool_Form_F052" imageMso="TableAnalyze" />
+              <button id="btnForm70" label="OhlsonsOScore" onAction="BI_Tool_Form_F070" imageMso="Calculator" />
+              <button id="btnForm71" label="OhlsonsOScoreVariables" onAction="BI_Tool_Form_F071" imageMso="TableInsert" />
+              <button id="btnForm73" label="PiotroskiFScore" onAction="BI_Tool_Form_F073" imageMso="Calculator" />
+              <button id="btnForm74" label="PiotroskiFScoreVariables" onAction="BI_Tool_Form_F074" imageMso="TableInsert" />
+              <button id="btnForm81" label="RelativeSizeFactor" onAction="BI_Tool_Form_F081" imageMso="TableAnalyze" />
+              <button id="btnForm83" label="RoundNumbersTest" onAction="BI_Tool_Form_F083" imageMso="TableAnalyze" />
+              <button id="btnForm87" label="SameSameDifferentTest" onAction="BI_Tool_Form_F087" imageMso="TableAnalyze" />
+              <button id="btnForm88" label="SameSameSameTest" onAction="BI_Tool_Form_F088" imageMso="TableAnalyze" />
+              <button id="btnForm90" label="SubsetNumberDuplicationTest" onAction="BI_Tool_Form_F090" imageMso="TableAnalyze" />
+            </menu>
+            <menu id="menuAuditSampling" label="Audit Sampling" imageMso="DataValidation">
+              <button id="btnForm13" label="AttributeUnitCount" onAction="BI_Tool_Form_F013" imageMso="DataValidation" />
+              <button id="btnForm64" label="MUS_Evaluate_OverStatement" onAction="BI_Tool_Form_F064" imageMso="DataValidation" />
+              <button id="btnForm65" label="MUS_Evaluate_UnderStatement" onAction="BI_Tool_Form_F065" imageMso="DataValidation" />
+              <button id="btnForm66" label="MUS_ExtractSample" onAction="BI_Tool_Form_F066" imageMso="DataValidation" />
+              <button id="btnForm67" label="MUS_SampleSize" onAction="BI_Tool_Form_F067" imageMso="DataValidation" />
+            </menu>
+            <menu id="menuAudit" label="Audit" imageMso="RemoveDuplicates">
+              <button id="btnForm45" label="FindDuplicates" onAction="BI_Tool_Form_F045" imageMso="RemoveDuplicates" />
+              <button id="btnForm46" label="FindMissingNumbers" onAction="BI_Tool_Form_F046" imageMso="ListRangesShowHide" />
+              <button id="btnForm47" label="FindOneOf" onAction="BI_Tool_Form_F047" imageMso="ListRangesShowHide" />
+              <button id="btnForm48" label="FindUnique" onAction="BI_Tool_Form_F048" imageMso="ConditionalFormattingUniqueValues" />
+              <button id="btnForm49" label="FormulaList" onAction="BI_Tool_Form_F049" imageMso="FunctionWizard" />
+              <button id="btnForm50" label="Fuzzy" onAction="BI_Tool_Form_F050" imageMso="ListRangesShowHide" />
+              <button id="btnForm60" label="IsValidPAN" onAction="BI_Tool_Form_F060" imageMso="DataValidation" />
+              <button id="btnForm61" label="LuhnAlgorithm" onAction="BI_Tool_Form_F061" imageMso="DataValidation" />
+            </menu>
+            <menu id="menuStatistics" label="Statistics" imageMso="PivotChartInsert">
+              <button id="btnForm4" label="AnovaSingleFactor" onAction="BI_Tool_Form_F004" imageMso="PivotChartInsert" />
+              <button id="btnForm5" label="AnovaTwoFactorsWithoutReplication" onAction="BI_Tool_Form_F005" imageMso="PivotChartInsert" />
+              <button id="btnForm6" label="AnsCombeQuartet" onAction="BI_Tool_Form_F006" imageMso="ScatterInsert" />
+              <button id="btnForm25" label="BottomN" onAction="BI_Tool_Form_F025" imageMso="SortAscending" />
+              <button id="btnForm26" label="BottomPercent" onAction="BI_Tool_Form_F026" imageMso="SortAscending" />
+              <button id="btnForm29" label="Correlation" onAction="BI_Tool_Form_F029" imageMso="PivotChartInsert" />
+              <button id="btnForm30" label="Covariance" onAction="BI_Tool_Form_F030" imageMso="PivotChartInsert" />
+              <button id="btnForm32" label="Describe" onAction="BI_Tool_Form_F032" imageMso="PivotChartInsert" />
+              <button id="btnForm37" label="ExponentialSmoothing" onAction="BI_Tool_Form_F037" imageMso="ChartInsert" />
+              <button id="btnForm53" label="GenerateRandom" onAction="BI_Tool_Form_F053" imageMso="FunctionWizard" />
+              <button id="btnForm54" label="GenerateRandomBetween" onAction="BI_Tool_Form_F054" imageMso="FunctionWizard" />
+              <button id="btnForm55" label="Histogram" onAction="BI_Tool_Form_F055" imageMso="ChartInsert" />
+              <button id="btnForm63" label="MovingAverage" onAction="BI_Tool_Form_F063" imageMso="ChartInsert" />
+              <button id="btnForm79" label="Rank_Dense" onAction="BI_Tool_Form_F079" imageMso="Calculator" />
+              <button id="btnForm80" label="Regression" onAction="BI_Tool_Form_F080" imageMso="ChartTrendlineInsert" />
+              <button id="btnForm93" label="TopN" onAction="BI_Tool_Form_F093" imageMso="SortDescending" />
+              <button id="btnForm94" label="TopPercent" onAction="BI_Tool_Form_F094" imageMso="SortDescending" />
+              <button id="btnForm101" label="ZScore" onAction="BI_Tool_Form_F101" imageMso="Calculator" />
+            </menu>
+            <menu id="menuFinancial" label="Financial" imageMso="FunctionsFinancialInsertGallery">
+              <button id="btnForm33" label="DiscountedPayback" onAction="BI_Tool_Form_F033" imageMso="FunctionsFinancialInsertGallery" />
+              <button id="btnForm34" label="EMISchedule" onAction="BI_Tool_Form_F034" imageMso="FunctionsFinancialInsertGallery" />
+              <button id="btnForm40" label="FDRSchedule" onAction="BI_Tool_Form_F040" imageMso="FunctionsFinancialInsertGallery" />
+              <button id="btnForm72" label="PaybackPeriod" onAction="BI_Tool_Form_F072" imageMso="FunctionsFinancialInsertGallery" />
+              <button id="btnForm89" label="SLNSchedule" onAction="BI_Tool_Form_F089" imageMso="FunctionsFinancialInsertGallery" />
+              <button id="btnForm97" label="WDVSchedule" onAction="BI_Tool_Form_F097" imageMso="FunctionsFinancialInsertGallery" />
+            </menu>
+            <menu id="menuArray" label="Array" imageMso="TableInsert">
+              <button id="btnForm12" label="ASort" onAction="BI_Tool_Form_F012" imageMso="SortDescending" />
+              <button id="btnForm7" label="ArrayContains" onAction="BI_Tool_Form_F007" imageMso="TextBoxInsert" />
+              <button id="btnForm8" label="ArrayCountif" onAction="BI_Tool_Form_F008" imageMso="TableInsert" />
+              <button id="btnForm9" label="ArrayFilter" onAction="BI_Tool_Form_F009" imageMso="TableInsert" />
+              <button id="btnForm10" label="ArrayInArray" onAction="BI_Tool_Form_F010" imageMso="TableInsert" />
+              <button id="btnForm11" label="ArrayMatch" onAction="BI_Tool_Form_F011" imageMso="TableInsert" />
+              <button id="btnForm36" label="ExactArray" onAction="BI_Tool_Form_F036" imageMso="TableInsert" />
+              <button id="btnForm84" label="RowOccurence" onAction="BI_Tool_Form_F084" imageMso="TableInsert" />
+            </menu>
+            <menu id="menuData" label="Data" imageMso="PivotTableInsert">
+              <button id="btnForm27" label="Consolidate" onAction="BI_Tool_Form_F027" imageMso="AutoSum" />
+              <button id="btnForm75" label="Pivot" onAction="BI_Tool_Form_F075" imageMso="PivotTableInsert" />
+              <button id="btnForm85" label="RunningTotal" onAction="BI_Tool_Form_F085" imageMso="AutoSum" />
+              <button id="btnForm91" label="Summary" onAction="BI_Tool_Form_F091" imageMso="AutoSum" />
+              <button id="btnForm95" label="Unpivot" onAction="BI_Tool_Form_F095" imageMso="ConvertTextToTable" />
+              <button id="btnForm96" label="UnpivotExceptFirst" onAction="BI_Tool_Form_F096" imageMso="ConvertTextToTable" />
+            </menu>
+            <menu id="menuDate" label="Date" imageMso="CalendarInsert">
+              <button id="btnForm31" label="DateDif" onAction="BI_Tool_Form_F031" imageMso="CalendarInsert" />
+              <button id="btnForm42" label="FinancialYear" onAction="BI_Tool_Form_F042" imageMso="FunctionsFinancialInsertGallery" />
+              <button id="btnForm43" label="FinancialYearEnd" onAction="BI_Tool_Form_F043" imageMso="FunctionsFinancialInsertGallery" />
+              <button id="btnForm44" label="FinancialYearStart" onAction="BI_Tool_Form_F044" imageMso="FunctionsFinancialInsertGallery" />
+              <button id="btnForm59" label="IsLeap" onAction="BI_Tool_Form_F059" imageMso="CalendarInsert" />
+              <button id="btnForm62" label="MonthlyCalendar" onAction="BI_Tool_Form_F062" imageMso="CalendarInsert" />
+              <button id="btnForm76" label="Quarter" onAction="BI_Tool_Form_F076" imageMso="CalendarInsert" />
+              <button id="btnForm77" label="QuarterEnd" onAction="BI_Tool_Form_F077" imageMso="CalendarInsert" />
+              <button id="btnForm78" label="QuarterStart" onAction="BI_Tool_Form_F078" imageMso="CalendarInsert" />
+              <button id="btnForm100" label="YearlyCalendar" onAction="BI_Tool_Form_F100" imageMso="CalendarInsert" />
+            </menu>
+            <menu id="menuText" label="Text" imageMso="TextBoxInsert">
+              <button id="btnForm14" label="BeginsWith" onAction="BI_Tool_Form_F014" imageMso="TextBoxInsert" />
+              <button id="btnForm28" label="Contains" onAction="BI_Tool_Form_F028" imageMso="TextBoxInsert" />
+              <button id="btnForm35" label="EndsWith" onAction="BI_Tool_Form_F035" imageMso="TextBoxInsert" />
+              <button id="btnForm38" label="ExtractNumbers" onAction="BI_Tool_Form_F038" imageMso="TextBoxInsert" />
+              <button id="btnForm39" label="ExtractText" onAction="BI_Tool_Form_F039" imageMso="TextBoxInsert" />
+              <button id="btnForm41" label="FillDown" onAction="BI_Tool_Form_F041" imageMso="TextBoxInsert" />
+              <button id="btnForm57" label="Insert" onAction="BI_Tool_Form_F057" imageMso="TextBoxInsert" />
+              <button id="btnForm58" label="IsCharAtoZ" onAction="BI_Tool_Form_F058" imageMso="TextBoxInsert" />
+              <button id="btnForm69" label="Num2Word" onAction="BI_Tool_Form_F069" imageMso="TextBoxInsert" />
+              <button id="btnForm82" label="ReverseText" onAction="BI_Tool_Form_F082" imageMso="TextBoxInsert" />
+              <button id="btnForm92" label="TextSplitByPositions" onAction="BI_Tool_Form_F092" imageMso="TextBoxInsert" />
+              <button id="btnForm98" label="WordCount" onAction="BI_Tool_Form_F098" imageMso="TextBoxInsert" />
+            </menu>
+            <menu id="menuIndian" label="Indian" imageMso="TextBoxInsert">
+              <button id="btnForm56" label="IndianNum2Word" onAction="BI_Tool_Form_F056" imageMso="TextBoxInsert" />
+              <button id="btnForm86" label="RupeeSymbol" onAction="BI_Tool_Form_F086" imageMso="TextBoxInsert" />
+            </menu>
+            <menu id="menuUtility" label="Utility" imageMso="Info">
+              </menu>
+            <menu id="menuOther" label="Other" imageMso="FunctionWizard">
+              <button id="btnForm68" label="NetworkDays_Indian" onAction="BI_Tool_Form_F068" imageMso="CalendarInsert" />
+              <button id="btnForm99" label="WorkDay_Indian" onAction="BI_Tool_Form_F099" imageMso="CalendarInsert" />
+            </menu>
+          </menu>
+          <button id="btnFunctionLauncher" label="Function Launcher" imageMso="FunctionWizard" size="large" onAction="BI_Tool_FunctionLauncher" />
           <button id="btnAbout" label="About" imageMso="Info" onAction="BI_ShowAbout" />
         </group>
       </tab>

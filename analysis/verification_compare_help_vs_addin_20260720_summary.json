@@ -1,0 +1,1280 @@
+{
+  "created_at": "2026-07-20T19:17:01",
+  "expected_workbook": "C:\\Users\\acer\\OneDrive\\MyProjects\\BeIndian\\BeIndian2.0\\BeIndian_Help.xlsx",
+  "addin_result_workbook": "C:\\Users\\acer\\OneDrive\\MyProjects\\BeIndian\\BeIndian2.0\\dist\\verification_addin_static_inputs_20260720_170953.xlsx",
+  "test_cases": 156,
+  "passed_cases": 87,
+  "failed_cases": 69,
+  "checked_nonblank_cells": 52964,
+  "matched_cells": 27283,
+  "mismatched_cells": 25681,
+  "addin_error_cells": 1592,
+  "addin_blank_cells": 19547,
+  "missing_sheets": [
+    "BI_NetworkDays_Indian",
+    "BI_Rank_Dense",
+    "BI_WorkDay_Indian"
+  ],
+  "top_failed_cases": [
+    {
+      "sheet": "BI_RunningTotal",
+      "range": "C12:C10005",
+      "formula": "=BI_RunningTotal(_xlfn.ANCHORARRAY(B12))",
+      "checked_cells": 9994,
+      "matched_cells": 0,
+      "mismatched_cells": 9994,
+      "addin_error_cells": 0,
+      "addin_blank_cells": 9994,
+      "samples": [
+        {
+          "cell": "C12",
+          "expected": 261.96,
+          "addin": null,
+          "issue": "addin_blank"
+        },
+        {
+          "cell": "C13",
+          "expected": 993.8999999999999,
+          "addin": null,
+          "issue": "addin_blank"
+        },
+        {
+          "cell": "C14",
+          "expected": 1008.5199999999999,
+          "addin": null,
+          "issue": "addin_blank"
+        },
+        {
+          "cell": "C15",
+          "expected": 1966.0974999999999,
+          "addin": null,
+          "issue": "addin_blank"
+        },
+        {
+          "cell": "C16",
+          "expected": 1988.4654999999998,
+          "addin": null,
+          "issue": "addin_blank"
+        }
+      ]
+    },
+    {
+      "sheet": "BI_BottomPercent",
+      "range": "B14:E2494",
+      "formula": "=BI_BottomPercent(_xlfn.CHOOSECOLS(SalesTable[],1,2,6,12),4,B12)",
+      "checked_cells": 9924,
+      "matched_cells": 6062,
+      "mismatched_cells": 3862,
+      "addin_error_cells": 0,
+      "addin_blank_cells": 0,
+      "samples": [
+        {
+          "cell": "B23",
+          "expected": 1333,
+          "addin": 4934,
+          "issue": "value_mismatch"
+        },
+        {
+          "cell": "C23",
+          "expected": "CA-2014-122567",
+          "addin": "CA-2015-106978",
+          "issue": "value_mismatch"
+        },
+        {
+          "cell": "D23",
+          "expected": "MN-17935",
+          "addin": "ZC-21910",
+          "issue": "value_mismatch"
+        },
+        {
+          "cell": "B25",
+          "expected": 4934,
+          "addin": 1333,
+          "issue": "value_mismatch"
+        },
+        {
+          "cell": "C25",
+          "expected": "CA-2015-106978",
+          "addin": "CA-2014-122567",
+          "issue": "value_mismatch"
+        }
+      ]
+    },
+    {
+      "sheet": "BI_BenfordLaw_FirstThreeDigits",
+      "range": "D12:G915",
+      "formula": "=BI_BenfordLaw_FirstThreeDigits(_xlfn.ANCHORARRAY(B12))",
+      "checked_cells": 3611,
+      "matched_cells": 0,
+      "mismatched_cells": 3611,
+      "addin_error_cells": 0,
+      "addin_blank_cells": 3611,
+      "samples": [
+        {
+          "cell": "D12",
+          "expected": "Benford Law First Three Digits",
+          "addin": null,
+          "issue": "addin_blank"
+        },
+        {
+          "cell": "D13",
+          "expected": "Digit",
+          "addin": null,
+          "issue": "addin_blank"
+        },
+        {
+          "cell": "E13",
+          "expected": "Frequency",
+          "addin": null,
+          "issue": "addin_blank"
+        },
+        {
+          "cell": "F13",
+          "expected": "Actual",
+          "addin": null,
+          "issue": "addin_blank"
+        },
+        {
+          "cell": "G13",
+          "expected": "Expected",
+          "addin": null,
+          "issue": "addin_blank"
+        }
+      ]
+    },
+    {
+      "sheet": "BI_RelativeSizeFactor",
+      "range": "B13:E806",
+      "formula": "=BI_RelativeSizeFactor(SalesTable[Customer ID],SalesTable[Sales],1,2)",
+      "checked_cells": 3176,
+      "matched_cells": 0,
+      "mismatched_cells": 3176,
+      "addin_error_cells": 1,
+      "addin_blank_cells": 3175,
+      "samples": [
+        {
+          "cell": "B13",
+          "expected": "Category",
+          "addin": "#VALUE!",
+          "issue": "addin_error"
+        },
+        {
+          "cell": "C13",
+          "expected": "First Value",
+          "addin": null,
+          "issue": "addin_blank"
+        },
+        {
+          "cell": "D13",
+          "expected": "Second Value",
+          "addin": null,
+          "issue": "addin_blank"
+        },
+        {
+          "cell": "E13",
+          "expected": "Relative Size Factor",
+          "addin": null,
+          "issue": "addin_blank"
+        },
+        {
+          "cell": "B14",
+          "expected": "IM-15055",
+          "addin": null,
+          "issue": "addin_blank"
+        }
+      ]
+    },
+    {
+      "sheet": "BI_YearlyCalendar",
+      "range": "B12:H108",
+      "formula": "=BI_YearlyCalendar()",
+      "checked_cells": 679,
+      "matched_cells": 0,
+      "mismatched_cells": 679,
+      "addin_error_cells": 679,
+      "addin_blank_cells": 0,
+      "samples": [
+        {
+          "cell": "B12",
+          "expected": "\u0b9c\u0ba9\u0bb5\u0bb0\u0bbf",
+          "addin": "#NAME?",
+          "issue": "addin_error"
+        },
+        {
+          "cell": "C12",
+          "expected": 2026,
+          "addin": "#NAME?",
+          "issue": "addin_error"
+        },
+        {
+          "cell": "D12",
+          "expected": null,
+          "addin": "#NAME?",
+          "issue": "addin_error"
+        },
+        {
+          "cell": "E12",
+          "expected": null,
+          "addin": "#NAME?",
+          "issue": "addin_error"
+        },
+        {
+          "cell": "F12",
+          "expected": null,
+          "addin": "#NAME?",
+          "issue": "addin_error"
+        }
+      ]
+    },
+    {
+      "sheet": "BI_BenfordLaw_LastTwoDigits",
+      "range": "D12:G114",
+      "formula": "=BI_BenfordLaw_LastTwoDigits(_xlfn.ANCHORARRAY(B12))",
+      "checked_cells": 407,
+      "matched_cells": 0,
+      "mismatched_cells": 407,
+      "addin_error_cells": 0,
+      "addin_blank_cells": 407,
+      "samples": [
+        {
+          "cell": "D12",
+          "expected": "Benford Law Last Two Digits",
+          "addin": null,
+          "issue": "addin_blank"
+        },
+        {
+          "cell": "D13",
+          "expected": "Digit",
+          "addin": null,
+          "issue": "addin_blank"
+        },
+        {
+          "cell": "E13",
+          "expected": "Frequency",
+          "addin": null,
+          "issue": "addin_blank"
+        },
+        {
+          "cell": "F13",
+          "expected": "Actual",
+          "addin": null,
+          "issue": "addin_blank"
+        },
+        {
+          "cell": "G13",
+          "expected": "Expected",
+          "addin": null,
+          "issue": "addin_blank"
+        }
+      ]
+    },
+    {
+      "sheet": "BI_ZScore",
+      "range": "B12:E105",
+      "formula": "=BI_BenfordLaw_FirstTwoDigits(SalesTable[Sales])",
+      "checked_cells": 376,
+      "matched_cells": 0,
+      "mismatched_cells": 376,
+      "addin_error_cells": 376,
+      "addin_blank_cells": 0,
+      "samples": [
+        {
+          "cell": "B12",
+          "expected": "Benford Law First Two Digits",
+          "addin": "#NAME?",
+          "issue": "addin_error"
+        },
+        {
+          "cell": "C12",
+          "expected": null,
+          "addin": "#NAME?",
+          "issue": "addin_error"
+        },
+        {
+          "cell": "D12",
+          "expected": null,
+          "addin": "#NAME?",
+          "issue": "addin_error"
+        },
+        {
+          "cell": "E12",
+          "expected": null,
+          "addin": "#NAME?",
+          "issue": "addin_error"
+        },
+        {
+          "cell": "B13",
+          "expected": "Digit",
+          "addin": "#NAME?",
+          "issue": "addin_error"
+        }
+      ]
+    },
+    {
+      "sheet": "BI_BenfordLaw_FirstTwoDigits",
+      "range": "D12:G105",
+      "formula": "=BI_BenfordLaw_FirstTwoDigits(_xlfn.ANCHORARRAY(B12))",
+      "checked_cells": 371,
+      "matched_cells": 0,
+      "mismatched_cells": 371,
+      "addin_error_cells": 0,
+      "addin_blank_cells": 371,
+      "samples": [
+        {
+          "cell": "D12",
+          "expected": "Benford Law First Two Digits",
+          "addin": null,
+          "issue": "addin_blank"
+        },
+        {
+          "cell": "D13",
+          "expected": "Digit",
+          "addin": null,
+          "issue": "addin_blank"
+        },
+        {
+          "cell": "E13",
+          "expected": "Frequency",
+          "addin": null,
+          "issue": "addin_blank"
+        },
+        {
+          "cell": "F13",
+          "expected": "Actual",
+          "addin": null,
+          "issue": "addin_blank"
+        },
+        {
+          "cell": "G13",
+          "expected": "Expected",
+          "addin": null,
+          "issue": "addin_blank"
+        }
+      ]
+    },
+    {
+      "sheet": "BI_BenfordLaw_SecondOrder",
+      "range": "D12:G105",
+      "formula": "=BI_BenfordLaw_SecondOrder(_xlfn.ANCHORARRAY(B12))",
+      "checked_cells": 371,
+      "matched_cells": 0,
+      "mismatched_cells": 371,
+      "addin_error_cells": 0,
+      "addin_blank_cells": 371,
+      "samples": [
+        {
+          "cell": "D12",
+          "expected": "Benford Law Second Order",
+          "addin": null,
+          "issue": "addin_blank"
+        },
+        {
+          "cell": "D13",
+          "expected": "Digit",
+          "addin": null,
+          "issue": "addin_blank"
+        },
+        {
+          "cell": "E13",
+          "expected": "Frequency",
+          "addin": null,
+          "issue": "addin_blank"
+        },
+        {
+          "cell": "F13",
+          "expected": "Actual",
+          "addin": null,
+          "issue": "addin_blank"
+        },
+        {
+          "cell": "G13",
+          "expected": "Expected",
+          "addin": null,
+          "issue": "addin_blank"
+        }
+      ]
+    },
+    {
+      "sheet": "BI_BenfordLaw_SummaryTest",
+      "range": "D12:G105",
+      "formula": "=BI_BenfordLaw_SummaryTest(_xlfn.ANCHORARRAY(B12))",
+      "checked_cells": 371,
+      "matched_cells": 0,
+      "mismatched_cells": 371,
+      "addin_error_cells": 0,
+      "addin_blank_cells": 371,
+      "samples": [
+        {
+          "cell": "D12",
+          "expected": "Benford Law Summary Test",
+          "addin": null,
+          "issue": "addin_blank"
+        },
+        {
+          "cell": "D13",
+          "expected": "Digit",
+          "addin": null,
+          "issue": "addin_blank"
+        },
+        {
+          "cell": "E13",
+          "expected": "Frequency",
+          "addin": null,
+          "issue": "addin_blank"
+        },
+        {
+          "cell": "F13",
+          "expected": "Actual",
+          "addin": null,
+          "issue": "addin_blank"
+        },
+        {
+          "cell": "G13",
+          "expected": "Expected",
+          "addin": null,
+          "issue": "addin_blank"
+        }
+      ]
+    },
+    {
+      "sheet": "BI_Regression",
+      "range": "B34:J75",
+      "formula": "=BI_Regression(B12:B32,C12:E32,TRUE,0.9)",
+      "checked_cells": 378,
+      "matched_cells": 47,
+      "mismatched_cells": 331,
+      "addin_error_cells": 0,
+      "addin_blank_cells": 0,
+      "samples": [
+        {
+          "cell": "C34",
+          "expected": null,
+          "addin": 0,
+          "issue": "value_mismatch"
+        },
+        {
+          "cell": "D34",
+          "expected": null,
+          "addin": 0,
+          "issue": "value_mismatch"
+        },
+        {
+          "cell": "E34",
+          "expected": null,
+          "addin": 0,
+          "issue": "value_mismatch"
+        },
+        {
+          "cell": "F34",
+          "expected": null,
+          "addin": 0,
+          "issue": "value_mismatch"
+        },
+        {
+          "cell": "G34",
+          "expected": null,
+          "addin": 0,
+          "issue": "value_mismatch"
+        }
+      ]
+    },
+    {
+      "sheet": "BI_GEL1Test",
+      "range": "E13:I69",
+      "formula": "=BI_GEL1Test(_xlfn.ANCHORARRAY(B13),_xlfn.ANCHORARRAY(C13))",
+      "checked_cells": 285,
+      "matched_cells": 0,
+      "mismatched_cells": 285,
+      "addin_error_cells": 0,
+      "addin_blank_cells": 285,
+      "samples": [
+        {
+          "cell": "E13",
+          "expected": "Labels",
+          "addin": null,
+          "issue": "addin_blank"
+        },
+        {
+          "cell": "F13",
+          "expected": 0,
+          "addin": null,
+          "issue": "addin_blank"
+        },
+        {
+          "cell": "G13",
+          "expected": 239,
+          "addin": null,
+          "issue": "addin_blank"
+        },
+        {
+          "cell": "H13",
+          "expected": 364,
+          "addin": null,
+          "issue": "addin_blank"
+        },
+        {
+          "cell": "I13",
+          "expected": 0.6565934065934066,
+          "addin": null,
+          "issue": "addin_blank"
+        }
+      ]
+    },
+    {
+      "sheet": "BI_UnpivotExceptFirst",
+      "range": "B32:D83",
+      "formula": "=BI_UnpivotExceptFirst(_xlfn.ANCHORARRAY(B12))",
+      "checked_cells": 156,
+      "matched_cells": 0,
+      "mismatched_cells": 156,
+      "addin_error_cells": 156,
+      "addin_blank_cells": 0,
+      "samples": [
+        {
+          "cell": "B32",
+          "expected": null,
+          "addin": "#NAME?",
+          "issue": "addin_error"
+        },
+        {
+          "cell": "C32",
+          "expected": "Attributes",
+          "addin": "#NAME?",
+          "issue": "addin_error"
+        },
+        {
+          "cell": "D32",
+          "expected": "Values",
+          "addin": "#NAME?",
+          "issue": "addin_error"
+        },
+        {
+          "cell": "B33",
+          "expected": "Accessories",
+          "addin": "#NAME?",
+          "issue": "addin_error"
+        },
+        {
+          "cell": "C33",
+          "expected": "Consumer",
+          "addin": "#NAME?",
+          "issue": "addin_error"
+        }
+      ]
+    },
+    {
+      "sheet": "BI_AnovaTwoFactorsWithoutRepli",
+      "range": "B32:H63",
+      "formula": "=BI_AnovaTwoFactorsWithoutReplication(B13:F29,0.05,TRUE)",
+      "checked_cells": 135,
+      "matched_cells": 0,
+      "mismatched_cells": 135,
+      "addin_error_cells": 1,
+      "addin_blank_cells": 134,
+      "samples": [
+        {
+          "cell": "B32",
+          "expected": "Anova:Two-FactorWithoutReplication",
+          "addin": "#VALUE!",
+          "issue": "addin_error"
+        },
+        {
+          "cell": "B34",
+          "expected": "SUMMARY",
+          "addin": null,
+          "issue": "addin_blank"
+        },
+        {
+          "cell": "C34",
+          "expected": "Count",
+          "addin": null,
+          "issue": "addin_blank"
+        },
+        {
+          "cell": "D34",
+          "expected": "Sum",
+          "addin": null,
+          "issue": "addin_blank"
+        },
+        {
+          "cell": "E34",
+          "expected": "Average",
+          "addin": null,
+          "issue": "addin_blank"
+        }
+      ]
+    },
+    {
+      "sheet": "BI_MUS_ExtractSample",
+      "range": "F14:I47",
+      "formula": "=BI_MUS_ExtractSample(_xlfn.ANCHORARRAY(B14),0.15,0.02,0.05)",
+      "checked_cells": 130,
+      "matched_cells": 0,
+      "mismatched_cells": 130,
+      "addin_error_cells": 0,
+      "addin_blank_cells": 130,
+      "samples": [
+        {
+          "cell": "F14",
+          "expected": "Population Size",
+          "addin": null,
+          "issue": "addin_blank"
+        },
+        {
+          "cell": "G14",
+          "expected": 9994,
+          "addin": null,
+          "issue": "addin_blank"
+        },
+        {
+          "cell": "F15",
+          "expected": "Sample Size",
+          "addin": null,
+          "issue": "addin_blank"
+        },
+        {
+          "cell": "G15",
+          "expected": 30,
+          "addin": null,
+          "issue": "addin_blank"
+        },
+        {
+          "cell": "F16",
+          "expected": "Monetary Unit",
+          "addin": null,
+          "issue": "addin_blank"
+        }
+      ]
+    },
+    {
+      "sheet": "BI_ZScore",
+      "range": "F14:F103",
+      "formula": "=BI_ZScore(D14:D103,TRUE)",
+      "checked_cells": 90,
+      "matched_cells": 0,
+      "mismatched_cells": 90,
+      "addin_error_cells": 90,
+      "addin_blank_cells": 0,
+      "samples": [
+        {
+          "cell": "F14",
+          "expected": 3.5995566551299296,
+          "addin": "#NAME?",
+          "issue": "addin_error"
+        },
+        {
+          "cell": "F15",
+          "expected": 3.325382087985538,
+          "addin": "#NAME?",
+          "issue": "addin_error"
+        },
+        {
+          "cell": "F16",
+          "expected": 3.211142685008708,
+          "addin": "#NAME?",
+          "issue": "addin_error"
+        },
+        {
+          "cell": "F17",
+          "expected": 1.8745416701798008,
+          "addin": "#NAME?",
+          "issue": "addin_error"
+        },
+        {
+          "cell": "F18",
+          "expected": 2.662793550719926,
+          "addin": "#NAME?",
+          "issue": "addin_error"
+        }
+      ]
+    },
+    {
+      "sheet": "BI_AnovaSingleFactor",
+      "range": "B25:H40",
+      "formula": "=BI_AnovaSingleFactor(C13:F22,0.05,TRUE)",
+      "checked_cells": 112,
+      "matched_cells": 30,
+      "mismatched_cells": 82,
+      "addin_error_cells": 0,
+      "addin_blank_cells": 0,
+      "samples": [
+        {
+          "cell": "C25",
+          "expected": null,
+          "addin": 0,
+          "issue": "value_mismatch"
+        },
+        {
+          "cell": "D25",
+          "expected": null,
+          "addin": 0,
+          "issue": "value_mismatch"
+        },
+        {
+          "cell": "E25",
+          "expected": null,
+          "addin": 0,
+          "issue": "value_mismatch"
+        },
+        {
+          "cell": "F25",
+          "expected": null,
+          "addin": 0,
+          "issue": "value_mismatch"
+        },
+        {
+          "cell": "G25",
+          "expected": null,
+          "addin": 0,
+          "issue": "value_mismatch"
+        }
+      ]
+    },
+    {
+      "sheet": "BI_Pivot",
+      "range": "B12:E29",
+      "formula": "=BI_Pivot(SalesTable[],12,10,7)",
+      "checked_cells": 72,
+      "matched_cells": 0,
+      "mismatched_cells": 72,
+      "addin_error_cells": 1,
+      "addin_blank_cells": 71,
+      "samples": [
+        {
+          "cell": "B12",
+          "expected": null,
+          "addin": "#VALUE!",
+          "issue": "addin_error"
+        },
+        {
+          "cell": "C12",
+          "expected": "Consumer",
+          "addin": null,
+          "issue": "addin_blank"
+        },
+        {
+          "cell": "D12",
+          "expected": "Corporate",
+          "addin": null,
+          "issue": "addin_blank"
+        },
+        {
+          "cell": "E12",
+          "expected": "Home Office",
+          "addin": null,
+          "issue": "addin_blank"
+        },
+        {
+          "cell": "B13",
+          "expected": "Accessories",
+          "addin": null,
+          "issue": "addin_blank"
+        }
+      ]
+    },
+    {
+      "sheet": "BI_UnpivotExceptFirst",
+      "range": "B12:E29",
+      "formula": "=BI_Pivot(SalesTable[],12,10,7)",
+      "checked_cells": 72,
+      "matched_cells": 0,
+      "mismatched_cells": 72,
+      "addin_error_cells": 72,
+      "addin_blank_cells": 0,
+      "samples": [
+        {
+          "cell": "B12",
+          "expected": null,
+          "addin": "#NAME?",
+          "issue": "addin_error"
+        },
+        {
+          "cell": "C12",
+          "expected": "Consumer",
+          "addin": "#NAME?",
+          "issue": "addin_error"
+        },
+        {
+          "cell": "D12",
+          "expected": "Corporate",
+          "addin": "#NAME?",
+          "issue": "addin_error"
+        },
+        {
+          "cell": "E12",
+          "expected": "Home Office",
+          "addin": "#NAME?",
+          "issue": "addin_error"
+        },
+        {
+          "cell": "B13",
+          "expected": "Accessories",
+          "addin": "#NAME?",
+          "issue": "addin_error"
+        }
+      ]
+    },
+    {
+      "sheet": "BI_MUS_Evaluate_OverStatement",
+      "range": "C14:D47",
+      "formula": "=BI_MUS_ExtractSample(_xlfn.ANCHORARRAY(B14),0.15,0.02,0.05,TRUE)",
+      "checked_cells": 68,
+      "matched_cells": 0,
+      "mismatched_cells": 68,
+      "addin_error_cells": 0,
+      "addin_blank_cells": 68,
+      "samples": [
+        {
+          "cell": "C14",
+          "expected": "Population Size",
+          "addin": null,
+          "issue": "addin_blank"
+        },
+        {
+          "cell": "D14",
+          "expected": 9994,
+          "addin": null,
+          "issue": "addin_blank"
+        },
+        {
+          "cell": "C15",
+          "expected": "Sample Size",
+          "addin": null,
+          "issue": "addin_blank"
+        },
+        {
+          "cell": "D15",
+          "expected": 30,
+          "addin": null,
+          "issue": "addin_blank"
+        },
+        {
+          "cell": "C16",
+          "expected": "Monetary Unit",
+          "addin": null,
+          "issue": "addin_blank"
+        }
+      ]
+    },
+    {
+      "sheet": "BI_MUS_Evaluate_UnderStatement",
+      "range": "C14:D47",
+      "formula": "=BI_MUS_ExtractSample(_xlfn.ANCHORARRAY(B14),0.15,0.02,0.05,TRUE)",
+      "checked_cells": 68,
+      "matched_cells": 0,
+      "mismatched_cells": 68,
+      "addin_error_cells": 0,
+      "addin_blank_cells": 68,
+      "samples": [
+        {
+          "cell": "C14",
+          "expected": "Population Size",
+          "addin": null,
+          "issue": "addin_blank"
+        },
+        {
+          "cell": "D14",
+          "expected": 9994,
+          "addin": null,
+          "issue": "addin_blank"
+        },
+        {
+          "cell": "C15",
+          "expected": "Sample Size",
+          "addin": null,
+          "issue": "addin_blank"
+        },
+        {
+          "cell": "D15",
+          "expected": 30,
+          "addin": null,
+          "issue": "addin_blank"
+        },
+        {
+          "cell": "C16",
+          "expected": "Monetary Unit",
+          "addin": null,
+          "issue": "addin_blank"
+        }
+      ]
+    },
+    {
+      "sheet": "BI_MUS_ExtractSample",
+      "range": "C14:D47",
+      "formula": "=BI_MUS_ExtractSample(_xlfn.ANCHORARRAY(B14),0.15,0.02,0.05,TRUE)",
+      "checked_cells": 68,
+      "matched_cells": 0,
+      "mismatched_cells": 68,
+      "addin_error_cells": 0,
+      "addin_blank_cells": 68,
+      "samples": [
+        {
+          "cell": "C14",
+          "expected": "Population Size",
+          "addin": null,
+          "issue": "addin_blank"
+        },
+        {
+          "cell": "D14",
+          "expected": 9994,
+          "addin": null,
+          "issue": "addin_blank"
+        },
+        {
+          "cell": "C15",
+          "expected": "Sample Size",
+          "addin": null,
+          "issue": "addin_blank"
+        },
+        {
+          "cell": "D15",
+          "expected": 30,
+          "addin": null,
+          "issue": "addin_blank"
+        },
+        {
+          "cell": "C16",
+          "expected": "Monetary Unit",
+          "addin": null,
+          "issue": "addin_blank"
+        }
+      ]
+    },
+    {
+      "sheet": "BI_Unpivot",
+      "range": "B57:E72",
+      "formula": "=BI_Unpivot(D50:F55,B50:C55)",
+      "checked_cells": 64,
+      "matched_cells": 0,
+      "mismatched_cells": 64,
+      "addin_error_cells": 64,
+      "addin_blank_cells": 0,
+      "samples": [
+        {
+          "cell": "B57",
+          "expected": "RollNo",
+          "addin": "#NAME?",
+          "issue": "addin_error"
+        },
+        {
+          "cell": "C57",
+          "expected": "Name",
+          "addin": "#NAME?",
+          "issue": "addin_error"
+        },
+        {
+          "cell": "D57",
+          "expected": "Attributes",
+          "addin": "#NAME?",
+          "issue": "addin_error"
+        },
+        {
+          "cell": "E57",
+          "expected": "Values",
+          "addin": "#NAME?",
+          "issue": "addin_error"
+        },
+        {
+          "cell": "B58",
+          "expected": 1,
+          "addin": "#NAME?",
+          "issue": "addin_error"
+        }
+      ]
+    },
+    {
+      "sheet": "BI_WDVSchedule",
+      "range": "B16:E28",
+      "formula": "=BI_WDVSchedule(C12,C13,C14)",
+      "checked_cells": 52,
+      "matched_cells": 0,
+      "mismatched_cells": 52,
+      "addin_error_cells": 52,
+      "addin_blank_cells": 0,
+      "samples": [
+        {
+          "cell": "B16",
+          "expected": "WDV Rate :",
+          "addin": "#NAME?",
+          "issue": "addin_error"
+        },
+        {
+          "cell": "C16",
+          "expected": 0.2056717652757185,
+          "addin": "#NAME?",
+          "issue": "addin_error"
+        },
+        {
+          "cell": "D16",
+          "expected": null,
+          "addin": "#NAME?",
+          "issue": "addin_error"
+        },
+        {
+          "cell": "E16",
+          "expected": null,
+          "addin": "#NAME?",
+          "issue": "addin_error"
+        },
+        {
+          "cell": "B17",
+          "expected": "Year",
+          "addin": "#NAME?",
+          "issue": "addin_error"
+        }
+      ]
+    },
+    {
+      "sheet": "BI_BenfordLaw_SecondDigit",
+      "range": "D12:G25",
+      "formula": "=BI_BenfordLaw_SecondDigit(_xlfn.ANCHORARRAY(B12))",
+      "checked_cells": 51,
+      "matched_cells": 0,
+      "mismatched_cells": 51,
+      "addin_error_cells": 0,
+      "addin_blank_cells": 51,
+      "samples": [
+        {
+          "cell": "D12",
+          "expected": "Benford Law Second Digit",
+          "addin": null,
+          "issue": "addin_blank"
+        },
+        {
+          "cell": "D13",
+          "expected": "Digit",
+          "addin": null,
+          "issue": "addin_blank"
+        },
+        {
+          "cell": "E13",
+          "expected": "Frequency",
+          "addin": null,
+          "issue": "addin_blank"
+        },
+        {
+          "cell": "F13",
+          "expected": "Actual",
+          "addin": null,
+          "issue": "addin_blank"
+        },
+        {
+          "cell": "G13",
+          "expected": "Expected",
+          "addin": null,
+          "issue": "addin_blank"
+        }
+      ]
+    },
+    {
+      "sheet": "BI_BenfordLaw_ThirdDigit",
+      "range": "D12:G25",
+      "formula": "=BI_BenfordLaw_ThirdDigit(_xlfn.ANCHORARRAY(B12))",
+      "checked_cells": 51,
+      "matched_cells": 0,
+      "mismatched_cells": 51,
+      "addin_error_cells": 0,
+      "addin_blank_cells": 51,
+      "samples": [
+        {
+          "cell": "D12",
+          "expected": "Benford Law Third Digit",
+          "addin": null,
+          "issue": "addin_blank"
+        },
+        {
+          "cell": "D13",
+          "expected": "Digit",
+          "addin": null,
+          "issue": "addin_blank"
+        },
+        {
+          "cell": "E13",
+          "expected": "Frequency",
+          "addin": null,
+          "issue": "addin_blank"
+        },
+        {
+          "cell": "F13",
+          "expected": "Actual",
+          "addin": null,
+          "issue": "addin_blank"
+        },
+        {
+          "cell": "G13",
+          "expected": "Expected",
+          "addin": null,
+          "issue": "addin_blank"
+        }
+      ]
+    },
+    {
+      "sheet": "BI_Unpivot",
+      "range": "B21:C45",
+      "formula": "=BI_Unpivot(B13:E19)",
+      "checked_cells": 50,
+      "matched_cells": 0,
+      "mismatched_cells": 50,
+      "addin_error_cells": 50,
+      "addin_blank_cells": 0,
+      "samples": [
+        {
+          "cell": "B21",
+          "expected": "Attributes",
+          "addin": "#NAME?",
+          "issue": "addin_error"
+        },
+        {
+          "cell": "C21",
+          "expected": "Values",
+          "addin": "#NAME?",
+          "issue": "addin_error"
+        },
+        {
+          "cell": "B22",
+          "expected": "April",
+          "addin": "#NAME?",
+          "issue": "addin_error"
+        },
+        {
+          "cell": "C22",
+          "expected": 1500,
+          "addin": "#NAME?",
+          "issue": "addin_error"
+        },
+        {
+          "cell": "B23",
+          "expected": "May",
+          "addin": "#NAME?",
+          "issue": "addin_error"
+        }
+      ]
+    },
+    {
+      "sheet": "BI_BenfordLaw_FirstDigit",
+      "range": "D12:G24",
+      "formula": "=BI_BenfordLaw_FirstDigit(_xlfn.ANCHORARRAY(B12))",
+      "checked_cells": 47,
+      "matched_cells": 0,
+      "mismatched_cells": 47,
+      "addin_error_cells": 0,
+      "addin_blank_cells": 47,
+      "samples": [
+        {
+          "cell": "D12",
+          "expected": "Benford Law First Digit",
+          "addin": null,
+          "issue": "addin_blank"
+        },
+        {
+          "cell": "D13",
+          "expected": "Digit",
+          "addin": null,
+          "issue": "addin_blank"
+        },
+        {
+          "cell": "E13",
+          "expected": "Frequency",
+          "addin": null,
+          "issue": "addin_blank"
+        },
+        {
+          "cell": "F13",
+          "expected": "Actual",
+          "addin": null,
+          "issue": "addin_blank"
+        },
+        {
+          "cell": "G13",
+          "expected": "Expected",
+          "addin": null,
+          "issue": "addin_blank"
+        }
+      ]
+    },
+    {
+      "sheet": "BI_MovingAverage",
+      "range": "D12:E31",
+      "formula": "=BI_MovingAverage(_xlfn.ANCHORARRAY(B12),5,,TRUE)",
+      "checked_cells": 40,
+      "matched_cells": 0,
+      "mismatched_cells": 40,
+      "addin_error_cells": 0,
+      "addin_blank_cells": 40,
+      "samples": [
+        {
+          "cell": "D12",
+          "expected": "#N/A",
+          "addin": null,
+          "issue": "addin_blank"
+        },
+        {
+          "cell": "E12",
+          "expected": "#N/A",
+          "addin": null,
+          "issue": "addin_blank"
+        },
+        {
+          "cell": "D13",
+          "expected": "#N/A",
+          "addin": null,
+          "issue": "addin_blank"
+        },
+        {
+          "cell": "E13",
+          "expected": "#N/A",
+          "addin": null,
+          "issue": "addin_blank"
+        },
+        {
+          "cell": "D14",
+          "expected": "#N/A",
+          "addin": null,
+          "issue": "addin_blank"
+        }
+      ]
+    },
+    {
+      "sheet": "BI_TopPercent",
+      "range": "B14:E23",
+      "formula": "=BI_TopPercent(_xlfn.CHOOSECOLS(SalesTable[],1,2,6,12),4,B12)",
+      "checked_cells": 40,
+      "matched_cells": 0,
+      "mismatched_cells": 40,
+      "addin_error_cells": 40,
+      "addin_blank_cells": 0,
+      "samples": [
+        {
+          "cell": "B14",
+          "expected": 2698,
+          "addin": "#NAME?",
+          "issue": "addin_error"
+        },
+        {
+          "cell": "C14",
+          "expected": "CA-2014-145317",
+          "addin": "#NAME?",
+          "issue": "addin_error"
+        },
+        {
+          "cell": "D14",
+          "expected": "SM-20320",
+          "addin": "#NAME?",
+          "issue": "addin_error"
+        },
+        {
+          "cell": "E14",
+          "expected": 22638.48,
+          "addin": "#NAME?",
+          "issue": "addin_error"
+        },
+        {
+          "cell": "B15",
+          "expected": 6827,
+          "addin": "#NAME?",
+          "issue": "addin_error"
+        }
+      ]
+    }
+  ]
+}

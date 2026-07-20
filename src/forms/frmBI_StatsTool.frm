@@ -193,6 +193,7 @@ Private Sub cmdRun_Click()
         outputCell.Value = result
     End If
     outputCell.CurrentRegion.Columns.AutoFit
+    If toolName = "ANSCOMBEQUARTET" Then BI_CreateAnscombeQuartetChart outputCell
     Unload Me
     Exit Sub
 ErrHandler:

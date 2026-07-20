@@ -542,6 +542,62 @@ Public Function BI_AnsCombeQuartet() As Variant
 End Function
 
 '/**
+' * Description: Creates four scatter charts for the Anscombe Quartet table written by BI_AnsCombeQuartet.
+' * Parameters: OutputCell - Top-left cell of the Anscombe output table.
+' * Returns: None.
+' */
+Public Sub BI_CreateAnscombeQuartetChart(ByVal OutputCell As Range)
+    On Error GoTo ErrHandler
+    Dim ws As Worksheet
+    Dim i As Long
+    Dim chartObj As ChartObject
+    Dim xRange As Range, yRange As Range
+    Dim chartLeft As Double, chartTop As Double
+    Dim chartWidth As Double, chartHeight As Double
+
+    Set ws = OutputCell.Worksheet
+    chartWidth = 240
+    chartHeight = 170
+    chartLeft = OutputCell.Offset(0, 10).Left
+    chartTop = OutputCell.Top
+
+    For i = 1 To 4
+        Set xRange = OutputCell.Offset(1, (i - 1) * 2).Resize(11, 1)
+        Set yRange = OutputCell.Offset(1, (i - 1) * 2 + 1).Resize(11, 1)
+        Set chartObj = ws.ChartObjects.Add( _
+            chartLeft + ((i - 1) Mod 2) * (chartWidth + 18), _
+            chartTop + ((i - 1) \ 2) * (chartHeight + 28), _
+            chartWidth, _
+            chartHeight)
+        With chartObj.Chart
+            .ChartType = xlXYScatter
+            .HasTitle = True
+            .ChartTitle.Text = "Anscombe Set " & CStr(i)
+            .SeriesCollection.NewSeries
+            With .SeriesCollection(1)
+                .Name = "Set " & CStr(i)
+                .XValues = xRange
+                .Values = yRange
+            End With
+            .HasLegend = False
+            With .Axes(xlCategory)
+                .MinimumScale = 0
+                .MaximumScale = 20
+                .MajorUnit = 5
+            End With
+            With .Axes(xlValue)
+                .MinimumScale = 0
+                .MaximumScale = 14
+                .MajorUnit = 2
+            End With
+        End With
+    Next i
+    Exit Sub
+ErrHandler:
+    MsgBox "Anscombe chart creation failed: " & Err.Description, vbExclamation, "BeIndian"
+End Sub
+
+'/**
 ' * Description: Returns a dense rank for a number within a reference range.
 ' * Parameters: NumberValue - Number to rank; RefRange - Reference range; Order - Optional order.
 ' * Returns: Dense rank.
@@ -967,6 +1023,7 @@ ErrHandler:
 End Function
 
 Private Sub BI_ShowStatsTool(ByVal toolName As String)
+    Unload frmBI_StatsTool
     frmBI_StatsTool.Tag = toolName
     frmBI_StatsTool.Show
 End Sub

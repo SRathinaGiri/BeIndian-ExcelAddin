@@ -2,6 +2,10 @@ tmp/
 .codex_extract_xltx/
 .codex_pdf_text.txt
 dist/*.zip
+dist/*backup*.xlam
+dist/tmp_*.xlsx
+dist/verification_*.xlsx
+dist/mini_udf_formula_test.xlsx
 *.log
 *.tmp
 *.bak

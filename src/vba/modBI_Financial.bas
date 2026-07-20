@@ -129,6 +129,54 @@ Public Function BI_WDVSchedule(ByVal Cost As Double, ByVal Life As Long, ByVal S
     BI_WDVSchedule = result
 End Function
 
+'/**
+' * Description: Returns a fixed deposit schedule of interest calculations and maturity value.
+' * Parameters: DepositAmount - Principal; InterestRate - Annual rate; Stdate - Start date; Enddate - End date.
+' * Returns: Variant array containing due date, days, opening, interest, and closing.
+' */
+Public Function BI_FDRSchedule(ByVal DepositAmount As Double, ByVal InterestRate As Double, ByVal Stdate As Date, ByVal Enddate As Date) As Variant
+    On Error GoTo ErrHandler
+    Dim dueDates() As Date
+    Dim rows As Long, i As Long
+    Dim nextDate As Date
+    Dim opening As Double, interest As Double, closing As Double
+    Dim result() As Variant
+
+    rows = 1
+    ReDim dueDates(1 To 1)
+    dueDates(1) = Stdate
+    nextDate = DateSerial(Year(Stdate), ((Month(Stdate) + 2) \ 3) * 3 + 1, 0)
+    If nextDate <= Stdate Then nextDate = DateSerial(Year(DateAdd("m", 3, Stdate)), ((Month(DateAdd("m", 3, Stdate)) + 2) \ 3) * 3 + 1, 0)
+
+    Do While nextDate < Enddate
+        rows = rows + 1
+        ReDim Preserve dueDates(1 To rows)
+        dueDates(rows) = nextDate
+        nextDate = DateSerial(Year(DateAdd("m", 3, nextDate)), Month(DateAdd("m", 3, nextDate)) + 1, 0)
+    Loop
+    rows = rows + 1
+    ReDim Preserve dueDates(1 To rows)
+    dueDates(rows) = Enddate
+
+    ReDim result(1 To rows, 1 To 5)
+    result(1, 1) = "Date": result(1, 2) = "Days": result(1, 3) = "Opening": result(1, 4) = "Interest": result(1, 5) = "Closing"
+    opening = DepositAmount
+    For i = 1 To rows - 1
+        interest = opening * InterestRate / 365# * (dueDates(i + 1) - dueDates(i))
+        closing = opening + interest
+        result(i + 1, 1) = dueDates(i)
+        result(i + 1, 2) = dueDates(i + 1) - dueDates(i)
+        result(i + 1, 3) = opening
+        result(i + 1, 4) = interest
+        result(i + 1, 5) = closing
+        opening = closing
+    Next i
+    BI_FDRSchedule = result
+    Exit Function
+ErrHandler:
+    BI_FDRSchedule = CVErr(xlErrValue)
+End Function
+
 Public Sub BI_Tool_EMISchedule(control As IRibbonControl)
     On Error GoTo ErrHandler
     frmBI_EMISchedule.Show
@@ -139,6 +187,7 @@ End Sub
 
 Public Sub BI_Tool_PaybackPeriod(control As IRibbonControl)
     On Error GoTo ErrHandler
+    Unload frmBI_FinancialTool
     frmBI_FinancialTool.Tag = "Payback"
     frmBI_FinancialTool.Show
     Exit Sub
@@ -148,6 +197,7 @@ End Sub
 
 Public Sub BI_Tool_DiscountedPayback(control As IRibbonControl)
     On Error GoTo ErrHandler
+    Unload frmBI_FinancialTool
     frmBI_FinancialTool.Tag = "DiscountedPayback"
     frmBI_FinancialTool.Show
     Exit Sub
@@ -157,6 +207,7 @@ End Sub
 
 Public Sub BI_Tool_SLNSchedule(control As IRibbonControl)
     On Error GoTo ErrHandler
+    Unload frmBI_FinancialTool
     frmBI_FinancialTool.Tag = "SLN"
     frmBI_FinancialTool.Show
     Exit Sub
@@ -166,6 +217,7 @@ End Sub
 
 Public Sub BI_Tool_WDVSchedule(control As IRibbonControl)
     On Error GoTo ErrHandler
+    Unload frmBI_FinancialTool
     frmBI_FinancialTool.Tag = "WDV"
     frmBI_FinancialTool.Show
     Exit Sub

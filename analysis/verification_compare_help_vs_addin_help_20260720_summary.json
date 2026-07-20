@@ -1,0 +1,810 @@
+{
+  "created_at": "2026-07-20T19:19:57",
+  "expected_workbook": "C:\\Users\\acer\\OneDrive\\MyProjects\\BeIndian\\BeIndian2.0\\BeIndian_Help.xlsx",
+  "addin_help_workbook": "C:\\Users\\acer\\OneDrive\\MyProjects\\BeIndian\\BeIndian2.0\\dist\\BeIndian_Addin_Help.xlsx",
+  "test_cases": 152,
+  "passed_cases": 127,
+  "failed_cases": 25,
+  "checked_nonblank_cells": 52442,
+  "matched_cells": 51424,
+  "mismatched_cells": 1018,
+  "addin_error_cells": 20,
+  "addin_blank_cells": 130,
+  "missing_sheets": [
+    "BI_AltmanZScoreVariables",
+    "BI_BeneishMScoreVariables",
+    "BI_NetworkDays_Indian",
+    "BI_OhlsonsOScoreVariables",
+    "BI_PiotroskiFScoreVariables",
+    "BI_Rank_Dense",
+    "BI_WorkDay_Indian"
+  ],
+  "top_failed_cases": [
+    {
+      "sheet": "BI_YearlyCalendar",
+      "range": "B12:H108",
+      "formula": "=BI_YearlyCalendar()",
+      "checked_cells": 591,
+      "matched_cells": 0,
+      "mismatched_cells": 591,
+      "addin_error_cells": 0,
+      "addin_blank_cells": 117,
+      "samples": [
+        {
+          "cell": "B12",
+          "expected": "\u0b9c\u0ba9\u0bb5\u0bb0\u0bbf",
+          "addin": "Jan",
+          "issue": "value_mismatch"
+        },
+        {
+          "cell": "C12",
+          "expected": 2026,
+          "addin": 2024,
+          "issue": "value_mismatch"
+        },
+        {
+          "cell": "B13",
+          "expected": "\u0b9e\u0bbe\u0baf\u0bbf\u0bb1\u0bc1",
+          "addin": "Sun",
+          "issue": "value_mismatch"
+        },
+        {
+          "cell": "C13",
+          "expected": "\u0ba4\u0bbf\u0b99\u0bcd\u0b95\u0bb3\u0bcd",
+          "addin": "Mon",
+          "issue": "value_mismatch"
+        },
+        {
+          "cell": "D13",
+          "expected": "\u0b9a\u0bc6\u0bb5\u0bcd\u0bb5\u0bbe\u0baf\u0bcd",
+          "addin": "Tue",
+          "issue": "value_mismatch"
+        }
+      ]
+    },
+    {
+      "sheet": "BI_Regression",
+      "range": "B34:J75",
+      "formula": "=BI_Regression(B12:B32,C12:E32,TRUE,0.9)",
+      "checked_cells": 138,
+      "matched_cells": 55,
+      "mismatched_cells": 83,
+      "addin_error_cells": 1,
+      "addin_blank_cells": 0,
+      "samples": [
+        {
+          "cell": "C37",
+          "expected": 0.5549475271967054,
+          "addin": 0.1163182578867048,
+          "issue": "value_mismatch"
+        },
+        {
+          "cell": "C38",
+          "expected": 0.307966757941738,
+          "addin": 0.01352993711779796,
+          "issue": "value_mismatch"
+        },
+        {
+          "cell": "C39",
+          "expected": 0.17821052505581392,
+          "addin": -0.1714331996726151,
+          "issue": "value_mismatch"
+        },
+        {
+          "cell": "C40",
+          "expected": 50.97979492863157,
+          "addin": 66.29501730383599,
+          "issue": "value_mismatch"
+        },
+        {
+          "cell": "D45",
+          "expected": 18505.168144554744,
+          "addin": 964.4808909453714,
+          "issue": "value_mismatch"
+        }
+      ]
+    },
+    {
+      "sheet": "BI_AnovaTwoFactorsWithoutRepli",
+      "range": "B32:H63",
+      "formula": "=BI_AnovaTwoFactorsWithoutReplication(B13:F29,0.05,TRUE)",
+      "checked_cells": 135,
+      "matched_cells": 64,
+      "mismatched_cells": 71,
+      "addin_error_cells": 0,
+      "addin_blank_cells": 0,
+      "samples": [
+        {
+          "cell": "D35",
+          "expected": 4549,
+          "addin": 4329,
+          "issue": "value_mismatch"
+        },
+        {
+          "cell": "E35",
+          "expected": 1137.25,
+          "addin": 1082.25,
+          "issue": "value_mismatch"
+        },
+        {
+          "cell": "F35",
+          "expected": 2284.25,
+          "addin": 3274.25,
+          "issue": "value_mismatch"
+        },
+        {
+          "cell": "D36",
+          "expected": 4536,
+          "addin": 4413,
+          "issue": "value_mismatch"
+        },
+        {
+          "cell": "E36",
+          "expected": 1134,
+          "addin": 1103.25,
+          "issue": "value_mismatch"
+        }
+      ]
+    },
+    {
+      "sheet": "BI_MonthlyCalendar",
+      "range": "B12:H18",
+      "formula": "=BI_MonthlyCalendar()",
+      "checked_cells": 41,
+      "matched_cells": 0,
+      "mismatched_cells": 41,
+      "addin_error_cells": 0,
+      "addin_blank_cells": 1,
+      "samples": [
+        {
+          "cell": "B12",
+          "expected": "\u0b9c\u0bc2\u0bb2\u0bc8",
+          "addin": "Oct",
+          "issue": "value_mismatch"
+        },
+        {
+          "cell": "C12",
+          "expected": 2026,
+          "addin": 2024,
+          "issue": "value_mismatch"
+        },
+        {
+          "cell": "B13",
+          "expected": "\u0b9e\u0bbe\u0baf\u0bbf\u0bb1\u0bc1",
+          "addin": "Sun",
+          "issue": "value_mismatch"
+        },
+        {
+          "cell": "C13",
+          "expected": "\u0ba4\u0bbf\u0b99\u0bcd\u0b95\u0bb3\u0bcd",
+          "addin": "Mon",
+          "issue": "value_mismatch"
+        },
+        {
+          "cell": "D13",
+          "expected": "\u0b9a\u0bc6\u0bb5\u0bcd\u0bb5\u0bbe\u0baf\u0bcd",
+          "addin": "Tue",
+          "issue": "value_mismatch"
+        }
+      ]
+    },
+    {
+      "sheet": "BI_MonthlyCalendar",
+      "range": "B22:H28",
+      "formula": "=BI_MonthlyCalendar(,,\"DDDD\")",
+      "checked_cells": 41,
+      "matched_cells": 0,
+      "mismatched_cells": 41,
+      "addin_error_cells": 0,
+      "addin_blank_cells": 1,
+      "samples": [
+        {
+          "cell": "B22",
+          "expected": "\u0b9c\u0bc2\u0bb2\u0bc8",
+          "addin": "October",
+          "issue": "value_mismatch"
+        },
+        {
+          "cell": "C22",
+          "expected": 2026,
+          "addin": 2024,
+          "issue": "value_mismatch"
+        },
+        {
+          "cell": "B23",
+          "expected": "\u0b9e\u0bbe\u0baf\u0bbf\u0bb1\u0bcd\u0bb1\u0bc1\u0b95\u0bcd\u0b95\u0bbf\u0bb4\u0bae\u0bc8",
+          "addin": "Sunday",
+          "issue": "value_mismatch"
+        },
+        {
+          "cell": "C23",
+          "expected": "\u0ba4\u0bbf\u0b99\u0bcd\u0b95\u0bb3\u0bcd\u0b95\u0bbf\u0bb4\u0bae\u0bc8",
+          "addin": "Monday",
+          "issue": "value_mismatch"
+        },
+        {
+          "cell": "D23",
+          "expected": "\u0b9a\u0bc6\u0bb5\u0bcd\u0bb5\u0bbe\u0baf\u0bcd\u0b95\u0bcd\u0b95\u0bbf\u0bb4\u0bae\u0bc8",
+          "addin": "Tuesday",
+          "issue": "value_mismatch"
+        }
+      ]
+    },
+    {
+      "sheet": "BI_MonthlyCalendar",
+      "range": "B32:G39",
+      "formula": "=BI_MonthlyCalendar(,,,TRUE)",
+      "checked_cells": 41,
+      "matched_cells": 0,
+      "mismatched_cells": 41,
+      "addin_error_cells": 0,
+      "addin_blank_cells": 1,
+      "samples": [
+        {
+          "cell": "B32",
+          "expected": "\u0b9c\u0bc2\u0bb2\u0bc8",
+          "addin": "Oct",
+          "issue": "value_mismatch"
+        },
+        {
+          "cell": "C32",
+          "expected": 2026,
+          "addin": 2024,
+          "issue": "value_mismatch"
+        },
+        {
+          "cell": "B33",
+          "expected": "\u0b9e\u0bbe\u0baf\u0bbf\u0bb1\u0bc1",
+          "addin": "Sun",
+          "issue": "value_mismatch"
+        },
+        {
+          "cell": "D33",
+          "expected": 5,
+          "addin": 6,
+          "issue": "value_mismatch"
+        },
+        {
+          "cell": "E33",
+          "expected": 12,
+          "addin": 13,
+          "issue": "value_mismatch"
+        }
+      ]
+    },
+    {
+      "sheet": "BI_MovingAverage",
+      "range": "D12:E31",
+      "formula": "=BI_MovingAverage(_xlfn.ANCHORARRAY(B12),5,,TRUE)",
+      "checked_cells": 40,
+      "matched_cells": 12,
+      "mismatched_cells": 28,
+      "addin_error_cells": 12,
+      "addin_blank_cells": 0,
+      "samples": [
+        {
+          "cell": "D16",
+          "expected": 1662.2,
+          "addin": 1448.4,
+          "issue": "value_mismatch"
+        },
+        {
+          "cell": "D17",
+          "expected": 1553.2,
+          "addin": 1544.2,
+          "issue": "value_mismatch"
+        },
+        {
+          "cell": "D18",
+          "expected": 1451.4,
+          "addin": 1524.2,
+          "issue": "value_mismatch"
+        },
+        {
+          "cell": "D19",
+          "expected": 1432,
+          "addin": 1625.8,
+          "issue": "value_mismatch"
+        },
+        {
+          "cell": "D20",
+          "expected": 1434.4,
+          "addin": 1615.6,
+          "issue": "value_mismatch"
+        }
+      ]
+    },
+    {
+      "sheet": "BI_Correlation",
+      "range": "B26:F38",
+      "formula": "=BI_Correlation(C14:F23,TRUE)",
+      "checked_cells": 40,
+      "matched_cells": 20,
+      "mismatched_cells": 20,
+      "addin_error_cells": 0,
+      "addin_blank_cells": 0,
+      "samples": [
+        {
+          "cell": "C28",
+          "expected": 0.18005510003354486,
+          "addin": -0.2885950762652894,
+          "issue": "value_mismatch"
+        },
+        {
+          "cell": "C29",
+          "expected": -0.21788606176716632,
+          "addin": 0.02585313369490233,
+          "issue": "value_mismatch"
+        },
+        {
+          "cell": "D29",
+          "expected": -0.22981671078293772,
+          "addin": 0.05060963814403942,
+          "issue": "value_mismatch"
+        },
+        {
+          "cell": "C30",
+          "expected": -0.17027588729664936,
+          "addin": -0.7305771968593113,
+          "issue": "value_mismatch"
+        },
+        {
+          "cell": "D30",
+          "expected": 0.025118997180012138,
+          "addin": 0.2089904927989154,
+          "issue": "value_mismatch"
+        }
+      ]
+    },
+    {
+      "sheet": "BI_AnovaSingleFactor",
+      "range": "B25:H40",
+      "formula": "=BI_AnovaSingleFactor(C13:F22,0.05,TRUE)",
+      "checked_cells": 49,
+      "matched_cells": 30,
+      "mismatched_cells": 19,
+      "addin_error_cells": 0,
+      "addin_blank_cells": 0,
+      "samples": [
+        {
+          "cell": "D29",
+          "expected": 9911,
+          "addin": 9924,
+          "issue": "value_mismatch"
+        },
+        {
+          "cell": "E29",
+          "expected": 1101.2222222222222,
+          "addin": 1102.666666666667,
+          "issue": "value_mismatch"
+        },
+        {
+          "cell": "F29",
+          "expected": 1814.6944444444441,
+          "addin": 2818,
+          "issue": "value_mismatch"
+        },
+        {
+          "cell": "D30",
+          "expected": 9878,
+          "addin": 9930,
+          "issue": "value_mismatch"
+        },
+        {
+          "cell": "E30",
+          "expected": 1097.5555555555557,
+          "addin": 1103.333333333333,
+          "issue": "value_mismatch"
+        }
+      ]
+    },
+    {
+      "sheet": "BI_ExponentialSmoothing",
+      "range": "D14:D32",
+      "formula": "=BI_ExponentialSmoothing(C13:C32,,TRUE)",
+      "checked_cells": 19,
+      "matched_cells": 0,
+      "mismatched_cells": 19,
+      "addin_error_cells": 0,
+      "addin_blank_cells": 0,
+      "samples": [
+        {
+          "cell": "D14",
+          "expected": 1392,
+          "addin": 1924,
+          "issue": "value_mismatch"
+        },
+        {
+          "cell": "D15",
+          "expected": 1627.1999999999998,
+          "addin": 1839.3,
+          "issue": "value_mismatch"
+        },
+        {
+          "cell": "D16",
+          "expected": 1698.4599999999998,
+          "addin": 1648.69,
+          "issue": "value_mismatch"
+        },
+        {
+          "cell": "D17",
+          "expected": 1524.5379999999998,
+          "addin": 1334.607,
+          "issue": "value_mismatch"
+        },
+        {
+          "cell": "D18",
+          "expected": 1470.2613999999999,
+          "addin": 1424.4821,
+          "issue": "value_mismatch"
+        }
+      ]
+    },
+    {
+      "sheet": "BI_ExponentialSmoothing",
+      "range": "E14:E32",
+      "formula": "=BI_ExponentialSmoothing(C13:C32,E12,TRUE)",
+      "checked_cells": 19,
+      "matched_cells": 0,
+      "mismatched_cells": 19,
+      "addin_error_cells": 0,
+      "addin_blank_cells": 0,
+      "samples": [
+        {
+          "cell": "E14",
+          "expected": 1392,
+          "addin": 1924,
+          "issue": "value_mismatch"
+        },
+        {
+          "cell": "E15",
+          "expected": 1560,
+          "addin": 1863.5,
+          "issue": "value_mismatch"
+        },
+        {
+          "cell": "E16",
+          "expected": 1644.5,
+          "addin": 1715.25,
+          "issue": "value_mismatch"
+        },
+        {
+          "cell": "E17",
+          "expected": 1547.25,
+          "addin": 1457.625,
+          "issue": "value_mismatch"
+        },
+        {
+          "cell": "E18",
+          "expected": 1497.125,
+          "addin": 1460.3125,
+          "issue": "value_mismatch"
+        }
+      ]
+    },
+    {
+      "sheet": "BI_MovingAverage",
+      "range": "C12:C31",
+      "formula": "=BI_MovingAverage(_xlfn.ANCHORARRAY(B12))",
+      "checked_cells": 20,
+      "matched_cells": 2,
+      "mismatched_cells": 18,
+      "addin_error_cells": 2,
+      "addin_blank_cells": 0,
+      "samples": [
+        {
+          "cell": "C14",
+          "expected": 1840,
+          "addin": 1504.666666666667,
+          "issue": "value_mismatch"
+        },
+        {
+          "cell": "C15",
+          "expected": 1802.3333333333333,
+          "addin": 1461.333333333333,
+          "issue": "value_mismatch"
+        },
+        {
+          "cell": "C16",
+          "expected": 1554.3333333333333,
+          "addin": 1396,
+          "issue": "value_mismatch"
+        },
+        {
+          "cell": "C17",
+          "expected": 1321.6666666666667,
+          "addin": 1509.333333333333,
+          "issue": "value_mismatch"
+        },
+        {
+          "cell": "C18",
+          "expected": 1259.6666666666667,
+          "addin": 1656.666666666667,
+          "issue": "value_mismatch"
+        }
+      ]
+    },
+    {
+      "sheet": "BI_Covariance",
+      "range": "B25:F29",
+      "formula": "=BI_Covariance(C13:F22,TRUE)",
+      "checked_cells": 19,
+      "matched_cells": 9,
+      "mismatched_cells": 10,
+      "addin_error_cells": 0,
+      "addin_blank_cells": 0,
+      "samples": [
+        {
+          "cell": "C26",
+          "expected": 3641.5802469135797,
+          "addin": 4028.839506172839,
+          "issue": "value_mismatch"
+        },
+        {
+          "cell": "C27",
+          "expected": 35.086419753086474,
+          "addin": 555.3827160493827,
+          "issue": "value_mismatch"
+        },
+        {
+          "cell": "D27",
+          "expected": 2779.3580246913575,
+          "addin": 4103.95061728395,
+          "issue": "value_mismatch"
+        },
+        {
+          "cell": "C28",
+          "expected": -1085.5555555555557,
+          "addin": -2459.222222222222,
+          "issue": "value_mismatch"
+        },
+        {
+          "cell": "D28",
+          "expected": 470.44444444444446,
+          "addin": -207.888888888889,
+          "issue": "value_mismatch"
+        }
+      ]
+    },
+    {
+      "sheet": "BI_DateDif",
+      "range": "B16:D21",
+      "formula": "=BI_DateDif(C13,C14)",
+      "checked_cells": 18,
+      "matched_cells": 12,
+      "mismatched_cells": 6,
+      "addin_error_cells": 0,
+      "addin_blank_cells": 0,
+      "samples": [
+        {
+          "cell": "D16",
+          "expected": 26,
+          "addin": 24,
+          "issue": "value_mismatch"
+        },
+        {
+          "cell": "D17",
+          "expected": 6,
+          "addin": 9,
+          "issue": "value_mismatch"
+        },
+        {
+          "cell": "D18",
+          "expected": 19,
+          "addin": 7,
+          "issue": "value_mismatch"
+        },
+        {
+          "cell": "D19",
+          "expected": 318,
+          "addin": 297,
+          "issue": "value_mismatch"
+        },
+        {
+          "cell": "D20",
+          "expected": 9697,
+          "addin": 9047,
+          "issue": "value_mismatch"
+        }
+      ]
+    },
+    {
+      "sheet": "BI_FinancialYear",
+      "range": "C12",
+      "formula": "=BI_FinancialYear(,,B12)",
+      "checked_cells": 1,
+      "matched_cells": 0,
+      "mismatched_cells": 1,
+      "addin_error_cells": 0,
+      "addin_blank_cells": 0,
+      "samples": [
+        {
+          "cell": "C12",
+          "expected": "26-27",
+          "addin": "24-25",
+          "issue": "value_mismatch"
+        }
+      ]
+    },
+    {
+      "sheet": "BI_FinancialYear",
+      "range": "C13",
+      "formula": "=BI_FinancialYear(,,B13)",
+      "checked_cells": 1,
+      "matched_cells": 0,
+      "mismatched_cells": 1,
+      "addin_error_cells": 0,
+      "addin_blank_cells": 0,
+      "samples": [
+        {
+          "cell": "C13",
+          "expected": "2026-27",
+          "addin": "2024-25",
+          "issue": "value_mismatch"
+        }
+      ]
+    },
+    {
+      "sheet": "BI_FinancialYear",
+      "range": "C14",
+      "formula": "=BI_FinancialYear(,,B14)",
+      "checked_cells": 1,
+      "matched_cells": 0,
+      "mismatched_cells": 1,
+      "addin_error_cells": 0,
+      "addin_blank_cells": 0,
+      "samples": [
+        {
+          "cell": "C14",
+          "expected": "2026-2027",
+          "addin": "2024-2025",
+          "issue": "value_mismatch"
+        }
+      ]
+    },
+    {
+      "sheet": "BI_FinancialYearEnd",
+      "range": "B12",
+      "formula": "=BI_FinancialYearEnd()",
+      "checked_cells": 1,
+      "matched_cells": 0,
+      "mismatched_cells": 1,
+      "addin_error_cells": 0,
+      "addin_blank_cells": 0,
+      "samples": [
+        {
+          "cell": "B12",
+          "expected": "2027-03-31 00:00:00",
+          "addin": "2025-03-31 00:00:00",
+          "issue": "value_mismatch"
+        }
+      ]
+    },
+    {
+      "sheet": "BI_FinancialYearStart",
+      "range": "B12",
+      "formula": "=BI_FinancialYearStart()",
+      "checked_cells": 1,
+      "matched_cells": 0,
+      "mismatched_cells": 1,
+      "addin_error_cells": 0,
+      "addin_blank_cells": 0,
+      "samples": [
+        {
+          "cell": "B12",
+          "expected": "2026-04-01 00:00:00",
+          "addin": "2024-04-01 00:00:00",
+          "issue": "value_mismatch"
+        }
+      ]
+    },
+    {
+      "sheet": "BI_IsLeap",
+      "range": "B12",
+      "formula": "=BI_IsLeap()",
+      "checked_cells": 1,
+      "matched_cells": 0,
+      "mismatched_cells": 1,
+      "addin_error_cells": 0,
+      "addin_blank_cells": 0,
+      "samples": [
+        {
+          "cell": "B12",
+          "expected": false,
+          "addin": true,
+          "issue": "value_mismatch"
+        }
+      ]
+    },
+    {
+      "sheet": "BI_Quarter",
+      "range": "B15",
+      "formula": "=BI_Quarter()",
+      "checked_cells": 1,
+      "matched_cells": 0,
+      "mismatched_cells": 1,
+      "addin_error_cells": 0,
+      "addin_blank_cells": 0,
+      "samples": [
+        {
+          "cell": "B15",
+          "expected": 2,
+          "addin": 3,
+          "issue": "value_mismatch"
+        }
+      ]
+    },
+    {
+      "sheet": "BI_QuarterEnd",
+      "range": "B12",
+      "formula": "=BI_QuarterEnd()",
+      "checked_cells": 1,
+      "matched_cells": 0,
+      "mismatched_cells": 1,
+      "addin_error_cells": 0,
+      "addin_blank_cells": 0,
+      "samples": [
+        {
+          "cell": "B12",
+          "expected": "2026-09-30 00:00:00",
+          "addin": "2024-12-31 00:00:00",
+          "issue": "value_mismatch"
+        }
+      ]
+    },
+    {
+      "sheet": "BI_QuarterEnd",
+      "range": "B14",
+      "formula": "=BI_QuarterEnd(,10)",
+      "checked_cells": 1,
+      "matched_cells": 0,
+      "mismatched_cells": 1,
+      "addin_error_cells": 0,
+      "addin_blank_cells": 0,
+      "samples": [
+        {
+          "cell": "B14",
+          "expected": "2026-07-31 00:00:00",
+          "addin": "2024-10-31 00:00:00",
+          "issue": "value_mismatch"
+        }
+      ]
+    },
+    {
+      "sheet": "BI_QuarterStart",
+      "range": "B12",
+      "formula": "=BI_QuarterStart()",
+      "checked_cells": 1,
+      "matched_cells": 0,
+      "mismatched_cells": 1,
+      "addin_error_cells": 0,
+      "addin_blank_cells": 0,
+      "samples": [
+        {
+          "cell": "B12",
+          "expected": "2026-07-01 00:00:00",
+          "addin": "2024-10-01 00:00:00",
+          "issue": "value_mismatch"
+        }
+      ]
+    },
+    {
+      "sheet": "BI_QuarterStart",
+      "range": "B14",
+      "formula": "=BI_QuarterStart(,10)",
+      "checked_cells": 1,
+      "matched_cells": 0,
+      "mismatched_cells": 1,
+      "addin_error_cells": 0,
+      "addin_blank_cells": 0,
+      "samples": [
+        {
+          "cell": "B14",
+          "expected": "2026-05-01 00:00:00",
+          "addin": "2024-08-01 00:00:00",
+          "issue": "value_mismatch"
+        }
+      ]
+    }
+  ]
+}

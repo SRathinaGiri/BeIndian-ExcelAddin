@@ -29,6 +29,17 @@ The add-in adds a **BeIndian** ribbon tab with tools grouped for audit workflows
 
 Most tools can be used through ribbon forms. Many functions are also available as worksheet UDFs with the `BI_` prefix.
 
+## XLTX Lambda Template vs XLAM Add-in
+
+Do not load the old BeIndian `.xltx` Lambda template and this `.xlam` add-in in the same Excel session.
+
+Both versions use `BI_` function names. If both are loaded together, Excel may resolve a formula to the workbook/template Lambda name instead of the add-in VBA function, which can make testing and results confusing.
+
+Use one version at a time:
+
+- Use `BeIndian2_VBA.xlam` for Excel 2019, Excel 2021, and Microsoft 365 on Windows.
+- Use the older `.xltx` Lambda template only in Excel versions that support Lambda functions.
+
 ## Installation
 
 1. Download `dist/BeIndian2_VBA.xlam`.
@@ -76,4 +87,3 @@ BeIndian is intended to support audit analytics and spreadsheet review. It does 
 ## Author
 
 CA S. Rathinagiri
-

@@ -2,7 +2,7 @@
 
 BeIndian is a VBA-based Microsoft Excel add-in for Indian audit analytics, forensic review, sampling, text/date utilities, and financial calculations.
 
-This repository contains the Excel Add-in version of BeIndian, converted from the earlier Microsoft 365 LAMBDA template approach into a VBA `.xlam` add-in that can be used in Excel 2019, Excel 2021, and Microsoft 365 on Windows.
+This repository contains the Excel Add-in version of BeIndian, implemented as a VBA `.xlam` add-in that can be used in Excel 2019, Excel 2021, and Microsoft 365 on Windows. BeIndian is also available as a Microsoft 365 LAMBDA template for Excel versions that support LAMBDA functions.
 
 ## Current Release
 
@@ -31,14 +31,14 @@ Most tools can be used through ribbon forms. Many functions are also available a
 
 ## XLTX Lambda Template vs XLAM Add-in
 
-Do not load the old BeIndian `.xltx` Lambda template and this `.xlam` add-in in the same Excel session.
+Do not load the BeIndian `.xltx` LAMBDA template and this `.xlam` add-in in the same Excel session.
 
 Both versions use `BI_` function names. If both are loaded together, Excel may resolve a formula to the workbook/template Lambda name instead of the add-in VBA function, which can make testing and results confusing.
 
 Use one version at a time:
 
 - Use `BeIndian2_VBA.xlam` for Excel 2019, Excel 2021, and Microsoft 365 on Windows.
-- Use the older `.xltx` Lambda template only in Excel versions that support Lambda functions.
+- Use the `.xltx` LAMBDA template in Excel versions that support LAMBDA functions.
 
 ## Installation
 

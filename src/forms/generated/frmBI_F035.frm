@@ -74,6 +74,7 @@ Private Function BI_IsManagedControl(ByVal controlName As String) As Boolean
     BI_IsManagedControl = (controlName = "lblBIHeader" Or controlName = "lblBIDescription" Or _
         controlName = "lblOutput" Or controlName = "txtOutput" Or controlName = "cmdOutput" Or _
         controlName = "cmdRun" Or controlName = "cmdCancel" Or controlName = "chkNewSheet" Or _
+        Left$(controlName, 6) = "cboArg" Or _
         Left$(controlName, 6) = "lblArg" Or Left$(controlName, 6) = "txtArg" Or Left$(controlName, 6) = "cmdArg")
 End Function
 
@@ -190,6 +191,198 @@ Private Sub BI_ApplySelectionDefaults()
     On Error GoTo 0
 End Sub
 
+Private Function BI_ArgumentUsesSelector(ByVal argIndex As Long) As Boolean
+    Select Case FUNCTION_NAME & "|" & CStr(argIndex)
+        Case "BI_AnovaSingleFactor|3", "BI_AnovaTwoFactorsWithoutReplication|3", _
+             "BI_BeginsWith|3", "BI_Contains|3", "BI_Correlation|2", "BI_Covariance|2", _
+             "BI_EndsWith|3", "BI_ExactArray|3", "BI_ExponentialSmoothing|3", _
+             "BI_GenerateRandomBetween|5", "BI_MonthlyCalendar|4", "BI_MovingAverage|3", _
+             "BI_MovingAverage|4", "BI_MUS_ExtractSample|5", "BI_Regression|3", _
+             "BI_YearlyCalendar|3", "BI_ZScore|2", _
+             "BI_ASort|2", "BI_Rank_Dense|3", _
+             "BI_FinancialYear|2", "BI_FinancialYear|3", "BI_FinancialYearEnd|2", _
+             "BI_FinancialYearStart|2", "BI_MonthlyCalendar|1", "BI_MonthlyCalendar|3", _
+             "BI_Pivot|5", "BI_Quarter|2", "BI_QuarterEnd|2", "BI_QuarterStart|2", _
+             "BI_Summary|4", "BI_YearlyCalendar|2"
+            BI_ArgumentUsesSelector = True
+    End Select
+End Function
+
+Private Sub BI_AddSelectorItem(ByVal cbo As Object, ByVal captionText As String)
+    cbo.AddItem captionText
+End Sub
+
+Private Function BI_IsBooleanSelector(ByVal argIndex As Long) As Boolean
+    Select Case FUNCTION_NAME & "|" & CStr(argIndex)
+        Case "BI_AnovaSingleFactor|3", "BI_AnovaTwoFactorsWithoutReplication|3", _
+             "BI_BeginsWith|3", "BI_Contains|3", "BI_Correlation|2", "BI_Covariance|2", _
+             "BI_EndsWith|3", "BI_ExactArray|3", "BI_ExponentialSmoothing|3", _
+             "BI_GenerateRandomBetween|5", "BI_MonthlyCalendar|4", "BI_MovingAverage|3", _
+             "BI_MovingAverage|4", "BI_MUS_ExtractSample|5", "BI_Regression|3", _
+             "BI_YearlyCalendar|3", "BI_ZScore|2"
+            BI_IsBooleanSelector = True
+    End Select
+End Function
+
+Private Function BI_IsSummarySelector(ByVal argIndex As Long) As Boolean
+    Select Case FUNCTION_NAME & "|" & CStr(argIndex)
+        Case "BI_Pivot|5", "BI_Summary|4"
+            BI_IsSummarySelector = True
+    End Select
+End Function
+
+Private Function BI_IsYearEndMonthSelector(ByVal argIndex As Long) As Boolean
+    Select Case FUNCTION_NAME & "|" & CStr(argIndex)
+        Case "BI_FinancialYear|2", "BI_FinancialYearEnd|2", "BI_FinancialYearStart|2", _
+             "BI_Quarter|2", "BI_QuarterEnd|2", "BI_QuarterStart|2"
+            BI_IsYearEndMonthSelector = True
+    End Select
+End Function
+
+Private Sub BI_EnsureArgumentSelector(ByVal argIndex As Long, ByVal leftValue As Single, ByVal topValue As Single, ByVal widthValue As Single)
+    On Error Resume Next
+    Dim cbo As Object
+    Dim controlName As String
+    controlName = "cboArg" & CStr(argIndex)
+    Set cbo = Me.Controls(controlName)
+    If cbo Is Nothing Then Set cbo = Me.Controls.Add("Forms.ComboBox.1", controlName, True)
+    With cbo
+        .Left = leftValue
+        .Top = topValue
+        .Width = widthValue
+        .Height = 18
+        .Style = 2
+        .Clear
+        If BI_IsBooleanSelector(argIndex) Then
+            BI_AddSelectorItem cbo, "False"
+            BI_AddSelectorItem cbo, "True"
+            .Value = "False"
+        ElseIf BI_IsSummarySelector(argIndex) Then
+            BI_AddSelectorItem cbo, "Sum"
+            BI_AddSelectorItem cbo, "Average"
+            BI_AddSelectorItem cbo, "Count"
+            BI_AddSelectorItem cbo, "Count Numbers"
+            BI_AddSelectorItem cbo, "Max"
+            BI_AddSelectorItem cbo, "Min"
+            BI_AddSelectorItem cbo, "Product"
+            BI_AddSelectorItem cbo, "StdDev Sample"
+            BI_AddSelectorItem cbo, "StdDev Population"
+            BI_AddSelectorItem cbo, "Variance Sample"
+            BI_AddSelectorItem cbo, "Variance Population"
+            .Value = "Sum"
+        ElseIf BI_IsYearEndMonthSelector(argIndex) Then
+            BI_AddSelectorItem cbo, "January"
+            BI_AddSelectorItem cbo, "February"
+            BI_AddSelectorItem cbo, "March"
+            BI_AddSelectorItem cbo, "April"
+            BI_AddSelectorItem cbo, "May"
+            BI_AddSelectorItem cbo, "June"
+            BI_AddSelectorItem cbo, "July"
+            BI_AddSelectorItem cbo, "August"
+            BI_AddSelectorItem cbo, "September"
+            BI_AddSelectorItem cbo, "October"
+            BI_AddSelectorItem cbo, "November"
+            BI_AddSelectorItem cbo, "December"
+            .Value = "March"
+        ElseIf FUNCTION_NAME = "BI_ASort" And argIndex = 2 Then
+            BI_AddSelectorItem cbo, "Ascending"
+            BI_AddSelectorItem cbo, "Descending"
+            .Value = "Ascending"
+        ElseIf FUNCTION_NAME = "BI_Rank_Dense" And argIndex = 3 Then
+            BI_AddSelectorItem cbo, "Descending"
+            BI_AddSelectorItem cbo, "Ascending"
+            .Value = "Descending"
+        ElseIf FUNCTION_NAME = "BI_FinancialYear" And argIndex = 3 Then
+            BI_AddSelectorItem cbo, "FY 2023-24"
+            BI_AddSelectorItem cbo, "2023-24"
+            BI_AddSelectorItem cbo, "2024"
+            .Value = "FY 2023-24"
+        ElseIf FUNCTION_NAME = "BI_MonthlyCalendar" And argIndex = 1 Then
+            BI_AddSelectorItem cbo, "Current month"
+            BI_AddSelectorItem cbo, "January"
+            BI_AddSelectorItem cbo, "February"
+            BI_AddSelectorItem cbo, "March"
+            BI_AddSelectorItem cbo, "April"
+            BI_AddSelectorItem cbo, "May"
+            BI_AddSelectorItem cbo, "June"
+            BI_AddSelectorItem cbo, "July"
+            BI_AddSelectorItem cbo, "August"
+            BI_AddSelectorItem cbo, "September"
+            BI_AddSelectorItem cbo, "October"
+            BI_AddSelectorItem cbo, "November"
+            BI_AddSelectorItem cbo, "December"
+            .Value = "Current month"
+        ElseIf (FUNCTION_NAME = "BI_MonthlyCalendar" And argIndex = 3) Or (FUNCTION_NAME = "BI_YearlyCalendar" And argIndex = 2) Then
+            BI_AddSelectorItem cbo, "DDD"
+            BI_AddSelectorItem cbo, "DDDD"
+            .Value = "DDD"
+        End If
+        .Visible = True
+    End With
+    On Error GoTo 0
+End Sub
+
+Private Function BI_MonthNumberFromName(ByVal monthName As String) As Variant
+    Select Case monthName
+        Case "January": BI_MonthNumberFromName = 1
+        Case "February": BI_MonthNumberFromName = 2
+        Case "March": BI_MonthNumberFromName = 3
+        Case "April": BI_MonthNumberFromName = 4
+        Case "May": BI_MonthNumberFromName = 5
+        Case "June": BI_MonthNumberFromName = 6
+        Case "July": BI_MonthNumberFromName = 7
+        Case "August": BI_MonthNumberFromName = 8
+        Case "September": BI_MonthNumberFromName = 9
+        Case "October": BI_MonthNumberFromName = 10
+        Case "November": BI_MonthNumberFromName = 11
+        Case "December": BI_MonthNumberFromName = 12
+        Case Else: BI_MonthNumberFromName = Empty
+    End Select
+End Function
+
+Private Function BI_SummaryFunctionNumFromText(ByVal captionText As String) As Long
+    Select Case captionText
+        Case "Average": BI_SummaryFunctionNumFromText = 1
+        Case "Count": BI_SummaryFunctionNumFromText = 2
+        Case "Count Numbers": BI_SummaryFunctionNumFromText = 3
+        Case "Max": BI_SummaryFunctionNumFromText = 4
+        Case "Min": BI_SummaryFunctionNumFromText = 5
+        Case "Product": BI_SummaryFunctionNumFromText = 6
+        Case "StdDev Sample": BI_SummaryFunctionNumFromText = 7
+        Case "StdDev Population": BI_SummaryFunctionNumFromText = 8
+        Case "Variance Sample": BI_SummaryFunctionNumFromText = 10
+        Case "Variance Population": BI_SummaryFunctionNumFromText = 11
+        Case Else: BI_SummaryFunctionNumFromText = 9
+    End Select
+End Function
+
+Private Function BI_SelectorValue(ByVal argIndex As Long) As Variant
+    Dim selectedText As String
+    selectedText = CStr(Me.Controls("cboArg" & CStr(argIndex)).Value)
+    If BI_IsBooleanSelector(argIndex) Then
+        BI_SelectorValue = (selectedText = "True")
+    ElseIf BI_IsSummarySelector(argIndex) Then
+        BI_SelectorValue = BI_SummaryFunctionNumFromText(selectedText)
+    ElseIf BI_IsYearEndMonthSelector(argIndex) Then
+        BI_SelectorValue = BI_MonthNumberFromName(selectedText)
+    ElseIf FUNCTION_NAME = "BI_ASort" And argIndex = 2 Then
+        If selectedText = "Descending" Then BI_SelectorValue = -1 Else BI_SelectorValue = 1
+    ElseIf FUNCTION_NAME = "BI_Rank_Dense" And argIndex = 3 Then
+        If selectedText = "Ascending" Then BI_SelectorValue = 1 Else BI_SelectorValue = 0
+    ElseIf FUNCTION_NAME = "BI_FinancialYear" And argIndex = 3 Then
+        Select Case selectedText
+            Case "2023-24": BI_SelectorValue = 2
+            Case "2024": BI_SelectorValue = 3
+            Case Else: BI_SelectorValue = 1
+        End Select
+    ElseIf FUNCTION_NAME = "BI_MonthlyCalendar" And argIndex = 1 Then
+        BI_SelectorValue = BI_MonthNumberFromName(selectedText)
+    ElseIf (FUNCTION_NAME = "BI_MonthlyCalendar" And argIndex = 3) Or (FUNCTION_NAME = "BI_YearlyCalendar" And argIndex = 2) Then
+        BI_SelectorValue = selectedText
+    Else
+        BI_SelectorValue = selectedText
+    End If
+End Function
 Private Function BI_NewSheetName() As String
     Dim baseName As String
     baseName = Replace(BI_DisplayName(), ".", "_")
@@ -297,11 +490,18 @@ Private Sub ConfigureGeneratedForm()
         If i <= visibleParams Then
             BI_SetLabel "lblArg" & CStr(i), BI_ParamLabel(i)
             BI_MoveControl "lblArg" & CStr(i), margin, rowTop + (i - 1) * rowHeight + 2, labelWidth
-            BI_MoveControl "txtArg" & CStr(i), inputLeft, rowTop + (i - 1) * rowHeight, inputWidth
-            BI_MoveControl "cmdArg" & CStr(i), selectLeft, rowTop + (i - 1) * rowHeight - 1, 54
-            On Error Resume Next
-            Me.Controls("cmdArg" & CStr(i)).Caption = "..."
-            On Error GoTo 0
+            If BI_ArgumentUsesSelector(i) Then
+                BI_SetVisible "txtArg" & CStr(i), False
+                BI_SetVisible "cmdArg" & CStr(i), False
+                BI_EnsureArgumentSelector i, inputLeft, rowTop + (i - 1) * rowHeight, inputWidth
+            Else
+                BI_SetVisible "cboArg" & CStr(i), False
+                BI_MoveControl "txtArg" & CStr(i), inputLeft, rowTop + (i - 1) * rowHeight, inputWidth
+                BI_MoveControl "cmdArg" & CStr(i), selectLeft, rowTop + (i - 1) * rowHeight - 1, 54
+                On Error Resume Next
+                Me.Controls("cmdArg" & CStr(i)).Caption = "..."
+                On Error GoTo 0
+            End If
         End If
     Next i
 
@@ -318,6 +518,7 @@ Private Sub ConfigureGeneratedForm()
     buttonTop = bottomTop + 49
     BI_MoveControl "cmdRun", formWidth - margin - 174, buttonTop, 78
     BI_MoveControl "cmdCancel", formWidth - margin - 86, buttonTop, 76
+    Me.Controls("cmdCancel").Caption = "Close"
     descTop = buttonTop + 34
     BI_EnsureDescription descTop
     On Error Resume Next
@@ -523,13 +724,18 @@ Private Sub RunFunction()
     Dim rawText As String
 
     For i = 1 To PARAM_COUNT
-        rawText = Trim$(Me.Controls("txtArg" & i).Text)
-        If Len(rawText) > 0 Then argc = i
-        If TryParseRange(rawText, rng) Then
-            Set argRanges(i) = rng
-            Set args(i) = rng
+        If BI_ArgumentUsesSelector(i) Then
+            args(i) = BI_SelectorValue(i)
+            argc = i
         Else
-            args(i) = ParseScalarArgument(rawText)
+            rawText = Trim$(Me.Controls("txtArg" & i).Text)
+            If Len(rawText) > 0 Then argc = i
+            If TryParseRange(rawText, rng) Then
+                Set argRanges(i) = rng
+                Set args(i) = rng
+            Else
+                args(i) = ParseScalarArgument(rawText)
+            End If
         End If
     Next i
 
@@ -547,6 +753,7 @@ Private Sub RunFunction()
         WriteResult outputCell, result
     End If
     If FUNCTION_NAME = "BI_AnsCombeQuartet" Then BI_CreateAnscombeQuartetChart outputCell
+    Unload Me
     Exit Sub
 ErrHandler:
     MsgBox FUNCTION_NAME & " failed: " & Err.Description, vbExclamation, "BeIndian"

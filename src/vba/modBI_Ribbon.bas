@@ -13,9 +13,7 @@ End Sub
 
 Public Sub BI_ShowAbout(control As IRibbonControl)
     On Error GoTo ErrHandler
-    MsgBox "BeIndian Excel Audit Tool" & vbCrLf & _
-           "Version: " & BI_VERSION & vbCrLf & _
-           "Pure VBA add-in conversion in progress.", vbInformation, "BeIndian"
+    frmBI_About.Show
     Exit Sub
 ErrHandler:
     MsgBox "Could not show About: " & Err.Description, vbExclamation, "BeIndian"

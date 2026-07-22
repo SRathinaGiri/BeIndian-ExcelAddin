@@ -16,6 +16,7 @@ Attribute VB_Exposed = False
 Option Explicit
 
 Private Sub UserForm_Initialize()
+    Me.cmdCancel.Caption = "Close"
     If Len(Me.Tag) = 0 Then Me.Tag = "Altman"
     Me.txtModel.Text = Me.Tag
     Me.txtModel.Locked = True

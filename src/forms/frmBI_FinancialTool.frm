@@ -16,6 +16,7 @@ Attribute VB_Exposed = False
 Option Explicit
 
 Private Sub UserForm_Initialize()
+    Me.cmdCancel.Caption = "Close"
     If Len(Me.Tag) = 0 Then Me.Tag = "Payback"
     Me.txtTool.Text = Me.Tag
     Me.txtTool.Locked = True

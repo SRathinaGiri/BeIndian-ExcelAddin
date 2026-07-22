@@ -16,6 +16,7 @@ Attribute VB_Exposed = False
 Option Explicit
 
 Private Sub UserForm_Initialize()
+    Me.cmdCancel.Caption = "Close"
     Me.cmbTest.Clear
     Me.cmbTest.AddItem "First Digit"
     Me.cmbTest.AddItem "First Two Digits"

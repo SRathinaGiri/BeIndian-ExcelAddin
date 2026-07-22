@@ -16,6 +16,7 @@ Attribute VB_Exposed = False
 Option Explicit
 
 Private Sub UserForm_Initialize()
+    Me.cmdCancel.Caption = "Close"
     Me.txtOutput.Text = ActiveCell.Address(External:=True)
 End Sub
 

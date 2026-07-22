@@ -16,6 +16,7 @@ Attribute VB_Exposed = False
 Option Explicit
 
 Private Sub UserForm_Initialize()
+    Me.cmdCancel.Caption = "Close"
     With Me.cmbAction
         .AddItem "BeginsWith"
         .AddItem "Contains"

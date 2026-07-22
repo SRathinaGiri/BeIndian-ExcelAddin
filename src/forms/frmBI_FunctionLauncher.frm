@@ -22,6 +22,7 @@ Private Function IsLauncherHidden(ByVal functionName As String) As Boolean
 End Function
 
 Private Sub UserForm_Initialize()
+    Me.cmdCancel.Caption = "Close"
     Dim i As Long
     mFunctions = BI_LauncherFunctionList()
     Me.cmbFunction.Clear
@@ -172,6 +173,7 @@ Private Sub cmdRun_Click()
 
     Set outputCell = Application.Range(Me.txtOutput.Text).Cells(1, 1)
     WriteResult outputCell, result
+    Unload Me
     Exit Sub
 ErrHandler:
     MsgBox "Function execution failed: " & Err.Description, vbExclamation, "BeIndian"

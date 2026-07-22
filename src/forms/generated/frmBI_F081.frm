@@ -338,6 +338,7 @@ Private Sub ConfigureGeneratedForm()
     buttonTop = bottomTop + 49
     BI_MoveControl "cmdRun", formWidth - margin - 174, buttonTop, 78
     BI_MoveControl "cmdCancel", formWidth - margin - 86, buttonTop, 76
+    Me.Controls("cmdCancel").Caption = "Close"
     descTop = buttonTop + 34
     BI_EnsureDescription descTop
     On Error Resume Next
@@ -567,6 +568,7 @@ Private Sub RunFunction()
         WriteResult outputCell, result
     End If
     If FUNCTION_NAME = "BI_AnsCombeQuartet" Then BI_CreateAnscombeQuartetChart outputCell
+    Unload Me
     Exit Sub
 ErrHandler:
     MsgBox FUNCTION_NAME & " failed: " & Err.Description, vbExclamation, "BeIndian"

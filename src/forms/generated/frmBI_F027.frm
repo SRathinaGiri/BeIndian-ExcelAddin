@@ -74,6 +74,7 @@ Private Function BI_IsManagedControl(ByVal controlName As String) As Boolean
     BI_IsManagedControl = (controlName = "lblBIHeader" Or controlName = "lblBIDescription" Or _
         controlName = "lblOutput" Or controlName = "txtOutput" Or controlName = "cmdOutput" Or _
         controlName = "cmdRun" Or controlName = "cmdCancel" Or controlName = "chkNewSheet" Or _
+        controlName = "cboFunction" Or _
         Left$(controlName, 6) = "lblArg" Or Left$(controlName, 6) = "txtArg" Or Left$(controlName, 6) = "cmdArg")
 End Function
 
@@ -185,10 +186,74 @@ End Function
 
 Private Sub BI_ApplySelectionDefaults()
     On Error Resume Next
-    If PARAM_COUNT > 0 Then Me.Controls("txtArg1").Text = BI_DefaultInputAddress()
+    If PARAM_COUNT > 1 Then Me.Controls("txtArg2").Text = BI_DefaultInputAddress()
     Me.txtOutput.Text = BI_DefaultOutputAddress()
     On Error GoTo 0
 End Sub
+
+Private Sub BI_AddConsolidateSummary(ByVal cbo As Object, ByVal captionText As String)
+    cbo.AddItem captionText
+End Sub
+
+Private Sub BI_EnsureConsolidateFunctionDropdown(ByVal leftValue As Single, ByVal topValue As Single, ByVal widthValue As Single)
+    On Error Resume Next
+    Dim cbo As Object
+    Set cbo = Me.Controls("cboFunction")
+    If cbo Is Nothing Then Set cbo = Me.Controls.Add("Forms.ComboBox.1", "cboFunction", True)
+    With cbo
+        .Left = leftValue
+        .Top = topValue
+        .Width = widthValue
+        .Height = 18
+        .Style = 2
+        .Clear
+        BI_AddConsolidateSummary cbo, "Sum"
+        BI_AddConsolidateSummary cbo, "Average"
+        BI_AddConsolidateSummary cbo, "Count"
+        BI_AddConsolidateSummary cbo, "Count Numbers"
+        BI_AddConsolidateSummary cbo, "Max"
+        BI_AddConsolidateSummary cbo, "Min"
+        BI_AddConsolidateSummary cbo, "Product"
+        BI_AddConsolidateSummary cbo, "StdDev Sample"
+        BI_AddConsolidateSummary cbo, "StdDev Population"
+        BI_AddConsolidateSummary cbo, "Variance Sample"
+        BI_AddConsolidateSummary cbo, "Variance Population"
+        .Value = "Sum"
+        .Visible = True
+    End With
+    On Error GoTo 0
+End Sub
+
+Private Function BI_ConsolidateFunctionNum() As Long
+    On Error GoTo UseDefault
+    Select Case CStr(Me.Controls("cboFunction").Value)
+        Case "Average"
+            BI_ConsolidateFunctionNum = 1
+        Case "Count"
+            BI_ConsolidateFunctionNum = 2
+        Case "Count Numbers"
+            BI_ConsolidateFunctionNum = 3
+        Case "Max"
+            BI_ConsolidateFunctionNum = 4
+        Case "Min"
+            BI_ConsolidateFunctionNum = 5
+        Case "Product"
+            BI_ConsolidateFunctionNum = 6
+        Case "StdDev Sample"
+            BI_ConsolidateFunctionNum = 7
+        Case "StdDev Population"
+            BI_ConsolidateFunctionNum = 8
+        Case "Variance Sample"
+            BI_ConsolidateFunctionNum = 10
+        Case "Variance Population"
+            BI_ConsolidateFunctionNum = 11
+        Case Else
+            BI_ConsolidateFunctionNum = 9
+    End Select
+    Exit Function
+UseDefault:
+    BI_ConsolidateFunctionNum = 9
+End Function
 
 Private Function BI_NewSheetName() As String
     Dim baseName As String
@@ -297,11 +362,17 @@ Private Sub ConfigureGeneratedForm()
         If i <= visibleParams Then
             BI_SetLabel "lblArg" & CStr(i), BI_ParamLabel(i)
             BI_MoveControl "lblArg" & CStr(i), margin, rowTop + (i - 1) * rowHeight + 2, labelWidth
-            BI_MoveControl "txtArg" & CStr(i), inputLeft, rowTop + (i - 1) * rowHeight, inputWidth
-            BI_MoveControl "cmdArg" & CStr(i), selectLeft, rowTop + (i - 1) * rowHeight - 1, 54
-            On Error Resume Next
-            Me.Controls("cmdArg" & CStr(i)).Caption = "..."
-            On Error GoTo 0
+            If i = 1 Then
+                BI_SetVisible "txtArg1", False
+                BI_SetVisible "cmdArg1", False
+                BI_EnsureConsolidateFunctionDropdown inputLeft, rowTop, inputWidth
+            Else
+                BI_MoveControl "txtArg" & CStr(i), inputLeft, rowTop + (i - 1) * rowHeight, inputWidth
+                BI_MoveControl "cmdArg" & CStr(i), selectLeft, rowTop + (i - 1) * rowHeight - 1, 54
+                On Error Resume Next
+                Me.Controls("cmdArg" & CStr(i)).Caption = "..."
+                On Error GoTo 0
+            End If
         End If
     Next i
 
@@ -318,6 +389,7 @@ Private Sub ConfigureGeneratedForm()
     buttonTop = bottomTop + 49
     BI_MoveControl "cmdRun", formWidth - margin - 174, buttonTop, 78
     BI_MoveControl "cmdCancel", formWidth - margin - 86, buttonTop, 76
+    Me.Controls("cmdCancel").Caption = "Close"
     descTop = buttonTop + 34
     BI_EnsureDescription descTop
     On Error Resume Next
@@ -523,13 +595,18 @@ Private Sub RunFunction()
     Dim rawText As String
 
     For i = 1 To PARAM_COUNT
-        rawText = Trim$(Me.Controls("txtArg" & i).Text)
-        If Len(rawText) > 0 Then argc = i
-        If TryParseRange(rawText, rng) Then
-            Set argRanges(i) = rng
-            Set args(i) = rng
+        If i = 1 Then
+            args(i) = BI_ConsolidateFunctionNum()
+            argc = i
         Else
-            args(i) = ParseScalarArgument(rawText)
+            rawText = Trim$(Me.Controls("txtArg" & i).Text)
+            If Len(rawText) > 0 Then argc = i
+            If TryParseRange(rawText, rng) Then
+                Set argRanges(i) = rng
+                Set args(i) = rng
+            Else
+                args(i) = ParseScalarArgument(rawText)
+            End If
         End If
     Next i
 
@@ -547,6 +624,7 @@ Private Sub RunFunction()
         WriteResult outputCell, result
     End If
     If FUNCTION_NAME = "BI_AnsCombeQuartet" Then BI_CreateAnscombeQuartetChart outputCell
+    Unload Me
     Exit Sub
 ErrHandler:
     MsgBox FUNCTION_NAME & " failed: " & Err.Description, vbExclamation, "BeIndian"

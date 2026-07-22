@@ -1,10 +1,10 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmBI_F086 
    Caption         =   "BI_RupeeSymbol"
-   ClientHeight    =   4640
+   ClientHeight    =   2840
    ClientLeft      =   110
    ClientTop       =   450
-   ClientWidth     =   10180
+   ClientWidth     =   7100
    OleObjectBlob   =   "frmBI_F086.frx":0000
    StartUpPosition =   1  'CenterOwner
 End
@@ -73,7 +73,7 @@ End Function
 Private Function BI_IsManagedControl(ByVal controlName As String) As Boolean
     BI_IsManagedControl = (controlName = "lblBIHeader" Or controlName = "lblBIDescription" Or _
         controlName = "lblOutput" Or controlName = "txtOutput" Or controlName = "cmdOutput" Or _
-        controlName = "cmdRun" Or controlName = "cmdCancel" Or _
+        controlName = "cmdRun" Or controlName = "cmdCancel" Or controlName = "chkNewSheet" Or _
         Left$(controlName, 6) = "lblArg" Or Left$(controlName, 6) = "txtArg" Or Left$(controlName, 6) = "cmdArg")
 End Function
 
@@ -140,6 +140,119 @@ Private Sub BI_EnsureDescription(ByVal topValue As Single)
     On Error GoTo 0
 End Sub
 
+Private Function BI_LongestLabelLength() As Long
+    Dim i As Long
+    Dim n As Long
+    For i = 1 To PARAM_COUNT
+        If Len(BI_ParamLabel(i)) > n Then n = Len(BI_ParamLabel(i))
+    Next i
+    If n < Len("Output") Then n = Len("Output")
+    BI_LongestLabelLength = n
+End Function
+
+Private Function BI_CompactFormWidth() As Single
+    Dim w As Single
+    w = 330 + (BI_LongestLabelLength() * 4.2)
+    If w < 460 Then w = 460
+    If w > 620 Then w = 620
+    BI_CompactFormWidth = w
+End Function
+
+
+Private Function BI_CurrentSelectionRange() As Range
+    On Error Resume Next
+    If TypeName(Selection) = "Range" Then
+        Set BI_CurrentSelectionRange = Selection
+    Else
+        Set BI_CurrentSelectionRange = ActiveCell
+    End If
+    On Error GoTo 0
+End Function
+
+Private Function BI_DefaultInputAddress() As String
+    Dim selectedRange As Range
+    Set selectedRange = BI_CurrentSelectionRange()
+    If Not selectedRange Is Nothing Then BI_DefaultInputAddress = selectedRange.Address(External:=True)
+End Function
+
+Private Function BI_DefaultOutputAddress() As String
+    Dim selectedRange As Range
+    Set selectedRange = BI_CurrentSelectionRange()
+    If Not selectedRange Is Nothing Then
+        BI_DefaultOutputAddress = selectedRange.Cells(1, 1).Offset(0, selectedRange.Columns.Count).Address(External:=True)
+    End If
+End Function
+
+Private Sub BI_ApplySelectionDefaults()
+    On Error Resume Next
+    If PARAM_COUNT > 0 Then Me.Controls("txtArg1").Text = BI_DefaultInputAddress()
+    Me.txtOutput.Text = BI_DefaultOutputAddress()
+    On Error GoTo 0
+End Sub
+
+Private Function BI_NewSheetName() As String
+    Dim baseName As String
+    baseName = Replace(BI_DisplayName(), ".", "_")
+    If Len(baseName) > 24 Then baseName = Left$(baseName, 24)
+    BI_NewSheetName = baseName
+End Function
+
+Private Function BI_UniqueSheetName(ByVal baseName As String) As String
+    Dim candidate As String
+    Dim suffix As Long
+    candidate = baseName
+    Do While BI_WorksheetExists(candidate)
+        suffix = suffix + 1
+        candidate = Left$(baseName, 27 - Len(CStr(suffix))) & "_" & CStr(suffix)
+    Loop
+    BI_UniqueSheetName = candidate
+End Function
+
+Private Function BI_WorksheetExists(ByVal sheetName As String) As Boolean
+    On Error GoTo MissingSheet
+    Dim ws As Worksheet
+    Set ws = ActiveWorkbook.Worksheets(sheetName)
+    BI_WorksheetExists = True
+    Exit Function
+MissingSheet:
+    BI_WorksheetExists = False
+End Function
+
+Private Function BI_UseNewSheet() As Boolean
+    On Error Resume Next
+    BI_UseNewSheet = CBool(Me.Controls("chkNewSheet").Value)
+    On Error GoTo 0
+End Function
+
+Private Function BI_ResolveOutputCell() As Range
+    Dim ws As Worksheet
+    If BI_UseNewSheet() Then
+        Set ws = ActiveWorkbook.Worksheets.Add(After:=ActiveSheet)
+        ws.Name = BI_UniqueSheetName(BI_NewSheetName())
+        Set BI_ResolveOutputCell = ws.Range("A1")
+    Else
+        Set BI_ResolveOutputCell = Application.Range(Me.txtOutput.Text).Cells(1, 1)
+    End If
+End Function
+
+Private Sub BI_EnsureNewSheetOption(ByVal leftValue As Single, ByVal topValue As Single, ByVal widthValue As Single)
+    On Error Resume Next
+    Dim chk As Object
+    Set chk = Me.Controls("chkNewSheet")
+    If chk Is Nothing Then Set chk = Me.Controls.Add("Forms.CheckBox.1", "chkNewSheet", True)
+    With chk
+        .Caption = "New sheet"
+        .Left = leftValue
+        .Top = topValue
+        .Width = widthValue
+        .Height = 18
+        .Value = False
+        .ControlTipText = "Write the result to a new worksheet at A1 instead of the selected output cell."
+        .Visible = True
+    End With
+    On Error GoTo 0
+End Sub
+
 Private Sub ConfigureGeneratedForm()
     Dim i As Long
     Dim rowTop As Single
@@ -148,46 +261,72 @@ Private Sub ConfigureGeneratedForm()
     Dim bottomTop As Single
     Dim buttonTop As Single
     Dim descTop As Single
+    Dim margin As Single
+    Dim labelWidth As Single
+    Dim inputLeft As Single
+    Dim inputWidth As Single
+    Dim selectLeft As Single
+    Dim formWidth As Single
 
     Me.Caption = BI_DisplayName()
-    Me.txtOutput.Text = ActiveCell.Address(External:=True)
+    BI_ApplySelectionDefaults
     BI_HideLegacyUsageLabels
-    BI_EnsureHeader
 
-    rowTop = 48
-    rowHeight = 30
+    margin = 10
+    rowTop = 38
+    rowHeight = 24
     visibleParams = PARAM_COUNT
+    formWidth = BI_CompactFormWidth()
+    labelWidth = 92 + (BI_LongestLabelLength() * 3.2)
+    If labelWidth < 110 Then labelWidth = 110
+    If labelWidth > 220 Then labelWidth = 220
+    inputLeft = margin + labelWidth + 8
+    selectLeft = formWidth - margin - 54
+    inputWidth = selectLeft - inputLeft - 6
+    If inputWidth < 190 Then inputWidth = 190
+
+    BI_EnsureHeader
+    On Error Resume Next
+    Me.Controls("lblBIHeader").Width = formWidth - (margin * 2)
+    On Error GoTo 0
+
     For i = 1 To 12
         BI_SetVisible "lblArg" & CStr(i), (i <= visibleParams)
         BI_SetVisible "txtArg" & CStr(i), (i <= visibleParams)
         BI_SetVisible "cmdArg" & CStr(i), (i <= visibleParams)
         If i <= visibleParams Then
             BI_SetLabel "lblArg" & CStr(i), BI_ParamLabel(i)
-            BI_MoveControl "lblArg" & CStr(i), 12, rowTop + (i - 1) * rowHeight, 130
-            BI_MoveControl "txtArg" & CStr(i), 150, rowTop + (i - 1) * rowHeight - 2, 330
-            BI_MoveControl "cmdArg" & CStr(i), 490, rowTop + (i - 1) * rowHeight - 3, 70
+            BI_MoveControl "lblArg" & CStr(i), margin, rowTop + (i - 1) * rowHeight + 2, labelWidth
+            BI_MoveControl "txtArg" & CStr(i), inputLeft, rowTop + (i - 1) * rowHeight, inputWidth
+            BI_MoveControl "cmdArg" & CStr(i), selectLeft, rowTop + (i - 1) * rowHeight - 1, 54
             On Error Resume Next
-            Me.Controls("cmdArg" & CStr(i)).Caption = "Select"
-            If i = 1 And TypeName(Selection) = "Range" Then Me.Controls("txtArg1").Text = Selection.Address(External:=True)
+            Me.Controls("cmdArg" & CStr(i)).Caption = "..."
             On Error GoTo 0
         End If
     Next i
 
-    bottomTop = rowTop + visibleParams * rowHeight + 14
+    bottomTop = rowTop + visibleParams * rowHeight + 8
     BI_SetLabel "lblOutput", "Output"
-    BI_MoveControl "lblOutput", 12, bottomTop, 130
-    BI_MoveControl "txtOutput", 150, bottomTop - 2, 330
-    BI_MoveControl "cmdOutput", 490, bottomTop - 3, 70
+    BI_MoveControl "lblOutput", margin, bottomTop + 2, labelWidth
+    BI_MoveControl "txtOutput", inputLeft, bottomTop, inputWidth
+    BI_MoveControl "cmdOutput", selectLeft, bottomTop - 1, 54
     On Error Resume Next
-    Me.Controls("cmdOutput").Caption = "Select"
-    buttonTop = bottomTop + 42
-    BI_MoveControl "cmdRun", 350, buttonTop, 90
-    BI_MoveControl "cmdCancel", 450, buttonTop, 90
-    descTop = buttonTop + 46
-    BI_EnsureDescription descTop
-    Me.Height = descTop + BI_DescriptionHeight() + 42
-    Me.Width = 600
+    Me.Controls("cmdOutput").Caption = "..."
     On Error GoTo 0
+    BI_EnsureNewSheetOption inputLeft, bottomTop + 25, inputWidth
+
+    buttonTop = bottomTop + 49
+    BI_MoveControl "cmdRun", formWidth - margin - 174, buttonTop, 78
+    BI_MoveControl "cmdCancel", formWidth - margin - 86, buttonTop, 76
+    descTop = buttonTop + 34
+    BI_EnsureDescription descTop
+    On Error Resume Next
+    Me.Controls("lblBIDescription").Left = margin
+    Me.Controls("lblBIDescription").Width = formWidth - (margin * 2)
+    On Error GoTo 0
+
+    Me.Width = formWidth
+    Me.Height = descTop + BI_DescriptionHeight() + 28
 End Sub
 
 Private Sub UserForm_Initialize()
@@ -242,13 +381,141 @@ Private Sub WriteResult(ByVal outputCell As Range, ByVal result As Variant)
         outputCell.Value = result
     End If
 End Sub
+
+Private Sub WriteCellWiseNewSheetReport(ByVal outputCell As Range, ByVal inputRange As Range, ByVal result As Variant)
+    Dim rowIndex As Long
+    Dim colIndex As Long
+    Dim outRow As Long
+    With outputCell.Worksheet
+        outputCell.Value = BI_DisplayName()
+        outputCell.Offset(1, 0).Value = "Input"
+        outputCell.Offset(1, 1).Value = "Output"
+        outputCell.Resize(1, 2).Font.Bold = True
+        outputCell.Offset(1, 0).Resize(1, 2).Font.Bold = True
+        outRow = 2
+        For rowIndex = 1 To inputRange.Rows.Count
+            For colIndex = 1 To inputRange.Columns.Count
+                outputCell.Offset(outRow, 0).Value = inputRange.Cells(rowIndex, colIndex).Value
+                outputCell.Offset(outRow, 1).Value = result(rowIndex, colIndex)
+                outRow = outRow + 1
+            Next colIndex
+        Next rowIndex
+        outputCell.CurrentRegion.Columns.AutoFit
+    End With
+End Sub
+
 Private Sub cmdCancel_Click()
     Unload Me
 End Sub
+
+Private Function BI_IsCellWiseFunction() As Boolean
+    Select Case FUNCTION_NAME
+        Case "BI_BeginsWith", "BI_Contains", "BI_EndsWith", "BI_ExtractNumbers", "BI_ExtractText", _
+             "BI_FinancialYear", "BI_FinancialYearEnd", "BI_FinancialYearStart", "BI_FindOneOf", _
+             "BI_Fuzzy", "BI_IndianNum2Word", "BI_Insert", "BI_IsCharAtoZ", "BI_IsLeap", _
+             "BI_IsValidPAN", "BI_LuhnAlgorithm", "BI_NetworkDays_Indian", "BI_Num2Word", _
+             "BI_Quarter", "BI_QuarterEnd", "BI_QuarterStart", "BI_ReverseText", "BI_WordCount", _
+             "BI_WorkDay_Indian"
+            BI_IsCellWiseFunction = True
+    End Select
+End Function
+
+Private Function BI_IsVectorArgument(ByVal argIndex As Long) As Boolean
+    Select Case FUNCTION_NAME
+        Case "BI_NetworkDays_Indian"
+            BI_IsVectorArgument = (argIndex = 1 Or argIndex = 2)
+        Case "BI_WorkDay_Indian"
+            BI_IsVectorArgument = (argIndex = 1 Or argIndex = 2)
+        Case "BI_BeginsWith", "BI_Contains", "BI_EndsWith"
+            BI_IsVectorArgument = (argIndex = 1 Or argIndex = 2)
+        Case "BI_FindOneOf", "BI_Fuzzy"
+            BI_IsVectorArgument = (argIndex = 1 Or argIndex = 2)
+        Case "BI_Insert"
+            BI_IsVectorArgument = (argIndex = 1)
+        Case Else
+            BI_IsVectorArgument = (argIndex = 1)
+    End Select
+End Function
+
+Private Function BI_FirstMappableRange(ByRef argRanges() As Range) As Range
+    Dim i As Long
+    If Not BI_IsCellWiseFunction() Then Exit Function
+    For i = 1 To PARAM_COUNT
+        If BI_IsVectorArgument(i) Then
+            If Not argRanges(i) Is Nothing Then
+                If argRanges(i).Cells.CountLarge > 1 Then
+                    Set BI_FirstMappableRange = argRanges(i)
+                    Exit Function
+                End If
+            End If
+        End If
+    Next i
+End Function
+
+Private Function BI_RangeCellValue(ByVal sourceRange As Range, ByVal templateRange As Range, ByVal rowIndex As Long, ByVal colIndex As Long) As Variant
+    If sourceRange.Cells.CountLarge = 1 Then
+        BI_RangeCellValue = sourceRange.Cells(1, 1).Value
+    ElseIf sourceRange.Rows.Count = templateRange.Rows.Count And sourceRange.Columns.Count = templateRange.Columns.Count Then
+        BI_RangeCellValue = sourceRange.Cells(rowIndex, colIndex).Value
+    ElseIf sourceRange.Rows.Count = templateRange.Rows.Count And sourceRange.Columns.Count = 1 Then
+        BI_RangeCellValue = sourceRange.Cells(rowIndex, 1).Value
+    ElseIf sourceRange.Rows.Count = 1 And sourceRange.Columns.Count = templateRange.Columns.Count Then
+        BI_RangeCellValue = sourceRange.Cells(1, colIndex).Value
+    Else
+        Err.Raise vbObjectError + 513, FUNCTION_NAME, "Vector input ranges must match the selected range shape, or be a single row/column aligned with it."
+    End If
+End Function
+
+
+
+Private Function BI_RunWithArgs(ByVal argc As Long, ByRef args() As Variant) As Variant
+    Select Case argc
+        Case 0: BI_RunWithArgs = Application.Run(FUNCTION_NAME)
+        Case 1: BI_RunWithArgs = Application.Run(FUNCTION_NAME, args(1))
+        Case 2: BI_RunWithArgs = Application.Run(FUNCTION_NAME, args(1), args(2))
+        Case 3: BI_RunWithArgs = Application.Run(FUNCTION_NAME, args(1), args(2), args(3))
+        Case 4: BI_RunWithArgs = Application.Run(FUNCTION_NAME, args(1), args(2), args(3), args(4))
+        Case 5: BI_RunWithArgs = Application.Run(FUNCTION_NAME, args(1), args(2), args(3), args(4), args(5))
+        Case 6: BI_RunWithArgs = Application.Run(FUNCTION_NAME, args(1), args(2), args(3), args(4), args(5), args(6))
+        Case 7: BI_RunWithArgs = Application.Run(FUNCTION_NAME, args(1), args(2), args(3), args(4), args(5), args(6), args(7))
+        Case 8: BI_RunWithArgs = Application.Run(FUNCTION_NAME, args(1), args(2), args(3), args(4), args(5), args(6), args(7), args(8))
+        Case 9: BI_RunWithArgs = Application.Run(FUNCTION_NAME, args(1), args(2), args(3), args(4), args(5), args(6), args(7), args(8), args(9))
+        Case 10: BI_RunWithArgs = Application.Run(FUNCTION_NAME, args(1), args(2), args(3), args(4), args(5), args(6), args(7), args(8), args(9), args(10))
+        Case 11: BI_RunWithArgs = Application.Run(FUNCTION_NAME, args(1), args(2), args(3), args(4), args(5), args(6), args(7), args(8), args(9), args(10), args(11))
+        Case 12: BI_RunWithArgs = Application.Run(FUNCTION_NAME, args(1), args(2), args(3), args(4), args(5), args(6), args(7), args(8), args(9), args(10), args(11), args(12))
+    End Select
+End Function
+
+Private Function BI_RunCellWise(ByVal argc As Long, ByRef args() As Variant, ByRef argRanges() As Range, ByVal templateRange As Range) As Variant
+    Dim outputValues() As Variant
+    Dim callArgs(1 To 12) As Variant
+    Dim r As Long
+    Dim c As Long
+    Dim i As Long
+    ReDim outputValues(1 To templateRange.Rows.Count, 1 To templateRange.Columns.Count)
+    For r = 1 To templateRange.Rows.Count
+        For c = 1 To templateRange.Columns.Count
+            For i = 1 To PARAM_COUNT
+                If BI_IsVectorArgument(i) And Not argRanges(i) Is Nothing Then
+                    callArgs(i) = BI_RangeCellValue(argRanges(i), templateRange, r, c)
+                ElseIf IsObject(args(i)) Then
+                    Set callArgs(i) = args(i)
+                Else
+                    callArgs(i) = args(i)
+                End If
+            Next i
+            outputValues(r, c) = BI_RunWithArgs(argc, callArgs)
+        Next c
+    Next r
+    BI_RunCellWise = outputValues
+End Function
+
 Private Sub RunFunction()
     On Error GoTo ErrHandler
     Dim args(1 To 12) As Variant
+    Dim argRanges(1 To 12) As Range
     Dim rng As Range
+    Dim mapRange As Range
     Dim result As Variant
     Dim outputCell As Range
     Dim i As Long
@@ -259,29 +526,26 @@ Private Sub RunFunction()
         rawText = Trim$(Me.Controls("txtArg" & i).Text)
         If Len(rawText) > 0 Then argc = i
         If TryParseRange(rawText, rng) Then
+            Set argRanges(i) = rng
             Set args(i) = rng
         Else
             args(i) = ParseScalarArgument(rawText)
         End If
     Next i
 
-    Select Case argc
-        Case 0: result = Application.Run(FUNCTION_NAME)
-        Case 1: result = Application.Run(FUNCTION_NAME, args(1))
-        Case 2: result = Application.Run(FUNCTION_NAME, args(1), args(2))
-        Case 3: result = Application.Run(FUNCTION_NAME, args(1), args(2), args(3))
-        Case 4: result = Application.Run(FUNCTION_NAME, args(1), args(2), args(3), args(4))
-        Case 5: result = Application.Run(FUNCTION_NAME, args(1), args(2), args(3), args(4), args(5))
-        Case 6: result = Application.Run(FUNCTION_NAME, args(1), args(2), args(3), args(4), args(5), args(6))
-        Case 7: result = Application.Run(FUNCTION_NAME, args(1), args(2), args(3), args(4), args(5), args(6), args(7))
-        Case 8: result = Application.Run(FUNCTION_NAME, args(1), args(2), args(3), args(4), args(5), args(6), args(7), args(8))
-        Case 9: result = Application.Run(FUNCTION_NAME, args(1), args(2), args(3), args(4), args(5), args(6), args(7), args(8), args(9))
-        Case 10: result = Application.Run(FUNCTION_NAME, args(1), args(2), args(3), args(4), args(5), args(6), args(7), args(8), args(9), args(10))
-        Case 11: result = Application.Run(FUNCTION_NAME, args(1), args(2), args(3), args(4), args(5), args(6), args(7), args(8), args(9), args(10), args(11))
-        Case 12: result = Application.Run(FUNCTION_NAME, args(1), args(2), args(3), args(4), args(5), args(6), args(7), args(8), args(9), args(10), args(11), args(12))
-    End Select
-    Set outputCell = Application.Range(Me.txtOutput.Text).Cells(1, 1)
-    WriteResult outputCell, result
+    Set mapRange = BI_FirstMappableRange(argRanges)
+    If Not mapRange Is Nothing Then
+        result = BI_RunCellWise(argc, args, argRanges, mapRange)
+    Else
+        result = BI_RunWithArgs(argc, args)
+    End If
+
+    Set outputCell = BI_ResolveOutputCell()
+    If BI_UseNewSheet() And Not mapRange Is Nothing Then
+        WriteCellWiseNewSheetReport outputCell, mapRange, result
+    Else
+        WriteResult outputCell, result
+    End If
     If FUNCTION_NAME = "BI_AnsCombeQuartet" Then BI_CreateAnscombeQuartetChart outputCell
     Exit Sub
 ErrHandler:

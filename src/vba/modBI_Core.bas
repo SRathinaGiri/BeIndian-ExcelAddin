@@ -1,7 +1,7 @@
 Attribute VB_Name = "modBI_Core"
 Option Explicit
 
-Public Const BI_VERSION As String = "2.0-vba-preview-2026.05.07.2"
+Public Const BI_VERSION As String = "1.0.0 (Excel Add-in)"
 
 '/**
 ' * Description: Returns add-in metadata.

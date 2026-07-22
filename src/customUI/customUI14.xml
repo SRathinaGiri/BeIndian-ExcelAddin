@@ -247,8 +247,6 @@
               <button id="btnForm68" label="NetworkDays_Indian" onAction="BI_Tool_Form_F068" image="img_btnForm68" />
               <button id="btnForm99" label="WorkDay_Indian" onAction="BI_Tool_Form_F099" image="img_btnForm99" />
             </menu>
-            <menu id="menuUtility" label="Utility" image="img_menuUtility">
-              </menu>
           </menu>
           <button id="btnAbout" label="About" onAction="BI_ShowAbout" image="img_beindian_32" />
         </group>

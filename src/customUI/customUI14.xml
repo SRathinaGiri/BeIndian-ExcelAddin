@@ -6,17 +6,18 @@
         <group id="grpValidators" label="Validators">
           <button id="btnPAN" label="PAN Validator" imageMso="DataValidation" size="large" onAction="BI_Tool_Form_F060" />
         </group>
+        <group id="grpScoreTemplates" label="Score Templates">
+          <button id="btnAltmanTemplate" label="Altman" imageMso="TableInsert" size="large" onAction="BI_Tool_AltmanTemplate" />
+          <button id="btnBeneishTemplate" label="Beneish" imageMso="TableInsert" onAction="BI_Tool_BeneishTemplate" />
+          <button id="btnOhlsonTemplate" label="Ohlson" imageMso="TableInsert" onAction="BI_Tool_OhlsonTemplate" />
+          <button id="btnPiotroskiTemplate" label="Piotroski" imageMso="TableInsert" onAction="BI_Tool_PiotroskiTemplate" />
+        </group>
         <group id="grpForensics" label="Forensics">
           <button id="btnBenfordFirstDigit" label="Benford Tests" imageMso="ChartInsert" size="large" onAction="BI_Tool_BenfordFirstDigit" />
           <button id="btnAltman" label="Altman Z-Score" imageMso="Calculator" size="large" onAction="BI_Tool_Form_F002" />
           <button id="btnBeneishScore" label="Beneish M-Score" imageMso="Calculator" onAction="BI_Tool_Form_F015" />
           <button id="btnOhlsonScore" label="Ohlson O-Score" imageMso="Calculator" onAction="BI_Tool_Form_F070" />
           <button id="btnPiotroskiScore" label="Piotroski F-Score" imageMso="Calculator" onAction="BI_Tool_Form_F073" />
-          <separator id="sepScoreTemplates" />
-          <button id="btnAltmanTemplate" label="Altman Template" imageMso="TableInsert" onAction="BI_Tool_AltmanTemplate" />
-          <button id="btnBeneishTemplate" label="Beneish Template" imageMso="TableInsert" onAction="BI_Tool_BeneishTemplate" />
-          <button id="btnOhlsonTemplate" label="Ohlson Template" imageMso="TableInsert" onAction="BI_Tool_OhlsonTemplate" />
-          <button id="btnPiotroskiTemplate" label="Piotroski Template" imageMso="TableInsert" onAction="BI_Tool_PiotroskiTemplate" />
           <button id="btnRSF" label="Relative Size Factor" imageMso="TraceDependents" onAction="BI_Tool_Form_F081" />
           </group>
         <group id="grpAnalytics" label="Analytics">

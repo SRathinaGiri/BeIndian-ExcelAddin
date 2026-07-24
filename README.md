@@ -11,6 +11,10 @@ This repository contains the Excel Add-in version of BeIndian, implemented as a 
 - Macro workbook/source package: [`dist/BeIndian2_VBA.xlsm`](dist/BeIndian2_VBA.xlsm)
 - Help workbook: [`dist/BeIndian_Addin_Help.xlsx`](dist/BeIndian_Addin_Help.xlsx)
 
+## Screenshots
+
+![BeIndian Excel Add-in screenshot collection](ScreenShots/BeIndianCollection.jpg)
+
 ## Feature Areas
 
 The add-in adds a **BeIndian** ribbon tab with tools grouped for audit workflows:
